@@ -76,7 +76,6 @@ ul{
     width: 80%;
     margin: auto;
     display: flex;
-    padding: 10px; 
     flex-direction: column;
     background-color: whitesmoke;
 }
