@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="Estilo.css">
+    <link rel="shortcut icon" href="imagens/Logo_Temporaria.png" />
+</head>
+
+<body>
+
+    <div>
+        <div class="header">
+            <div class="container">
+
+                <h1 class="titulo">Sentinel Track</h1>
+
+                <div class="imagem">
+                    <img src="imagens/Logo_Temporaria.png" alt="Logo">
+                </div>
+
+                <ul class="barra">
+                    <li>
+                        <a href="Index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="simulador.html"  id="aqui"> Simulador </a>
+                    </li>
+                    <li>
+                        <a href="">Cadastro</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="meio">
+        <div class="card">
+            <div class="container">
+                <label>Média de pessoas que transitam por mês:</label>
+                <input type="text" id="qtdPessoasINP">
+
+                <label>Valor do aluguel por loja:</label>
+                <input type="text" id="valorAluguelINP">
+
+                <button onclick="calcular()">Calcular</button>
+
+                <hr>
+
+                <div class="resultado">
+                    <h2 id="result"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rodape">
+        <div class="container">
+            <p>
+                &copy; Feito pela equipe Sentinel Track &copy; 
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var qtdPessoas = document.getElementById("qtdPessoasINP").value;
+        var valorAluguel = document.getElementById("valorAluguelINP").value;
+        var resultado = valorAluguel * 1.2
+        result.innerHTML =
+            `Tendo como premissa que 60% das pessoas que entram no shopping, ou seja ${qtdPessoas * 0.6} pessoas, passe na frente de pelo menos 4 lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até 20%.<br>`
+        result.innerHTML += "<br>O valor do aluguel das lojas mais vistas será de R$" + resultado.toFixed(2)
+    }
+</script>
