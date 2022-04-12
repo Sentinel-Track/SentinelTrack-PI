@@ -11,62 +11,61 @@
 </head>
 
 <body>
-
-    <div>
+    <div class="bg_header">
         <div class="header">
             <div class="container">
 
-                <h1 class="titulo">Sentinel Track</h1>
-
-                <div class="imagem">
+                <div class="titulo">
                     <img src="imagens/Logo_Temporaria.png" alt="Logo">
+                    <h1>Sentinel Track</h1>
                 </div>
 
-                <ul class="barra">
-                    <li>
-                        <a href="Index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="simulador.html"  id="aqui"> Simulador </a>
-                    </li>
-                    <li>
-                        <a href="">Cadastro</a>
-                    </li>
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
-                </ul>
+                <div class="urls">
+                    <ul>
+                        <li>
+                            <a href="Index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="simulador.html" id="aqui"> Simulador </a>
+                        </li>
+                        <li>
+                            <a href="login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="meio">
-        <div class="card">
-            <div class="container">
-                <label>Média de pessoas que transitam por mês:</label>
-                <input type="text" id="qtdPessoasINP">
 
-                <label>Valor do aluguel por loja:</label>
-                <input type="text" id="valorAluguelINP">
+    <div class="simulador">
+        <div class="container">
+            <div class="banner">
+
+                <div class="label">
+                    <label>Média de pessoas que transitam por mês:</label>
+                    <input type="text" id="qtdPessoasINP">
+                </div>
+
+                <div class="label">
+                    <label>Valor do aluguel por loja:</label>
+                    <input type="text" id="valorAluguelINP">
+                </div>
 
                 <button onclick="calcular()">Calcular</button>
 
                 <hr>
-
-                <div class="resultado">
-                    <h2 id="result"></h2>
-                </div>
+                <div id="result"></div>
             </div>
         </div>
     </div>
 
-    <div class="rodape">
-        <div class="container">
-            <p>
-                &copy; Feito pela equipe Sentinel Track &copy; 
-            </p>
-        </div>
+    <div class="footerbar">
+        <p>
+            &copy; Feito pela equipe Sentinel Track &copy;
+        </p>
     </div>
+
 </body>
 
 </html>
@@ -76,7 +75,7 @@
         var valorAluguel = document.getElementById("valorAluguelINP").value;
         var resultado = valorAluguel * 1.2
         result.innerHTML =
-            `Tendo como premissa que 60% das pessoas que entram no shopping, ou seja ${qtdPessoas * 0.6} pessoas, passe na frente de pelo menos 4 lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até 20%.<br>`
-        result.innerHTML += "<br>O valor do aluguel das lojas mais vistas será de R$" + resultado.toFixed(2)
+            `Tendo como premissa que <b>60%</b> das pessoas que entram no shopping, ou seja <b>${qtdPessoas * 0.6}</b> pessoas, passe na frente de pelo menos <b>4</b> lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até <b>20%</b>.
+            <br><br>O valor do aluguel das lojas mais vistas será de <b>R$${resultado.toFixed(2)}</b>`;
     }
 </script>

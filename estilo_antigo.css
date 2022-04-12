@@ -1,0 +1,312 @@
+body {
+    margin: 0;
+    background: #010e1a;
+    font-family: monospace;
+}
+
+.header {
+    border-bottom: #D7263D solid 2px;
+    border-bottom-left-radius: 300px;
+    height: 70px;
+}
+
+.header ul #aqui {
+    font-weight: 1000;
+    color: #D7263D;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo {
+    color: #D7263D;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.barra {
+    color: rgb(194, 179, 179);
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 350px;
+    padding: 0;
+    align-items: center;
+}
+
+.barra a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.header .container .imagem img {
+    height: 60px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+/* Fim do cabeçalho */
+
+/* Começo do banner */
+
+.banner {
+    background-image: url("imagens/Laser_Sentinel_Track.png");
+    height: calc(100vh - 70px);
+    background-size: cover;
+    color: #fff;
+    display: flex;
+}
+
+.banner .container p span {
+    font-weight: 1000;
+    color: #D7263D;
+}
+
+.banner .container {
+    font-size: 36px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.623);
+    width: 350px;
+    height: 320px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.banner .container p {
+    width: 300px;
+}
+
+/* Fim do Banner */
+
+/* Começo do Social */
+
+.social {
+    background-color: #02182b;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.caixa2 span {
+    color: #D7263D;
+}
+
+.caixa1 span {
+    color: #D7263D;
+}
+
+.caixa3 span {
+    color: #D7263D;
+}
+
+.caixa1 img {
+    width: 100px;
+}
+
+.caixa2 img {
+    width: 125px;
+}
+
+.caixa3 img {
+    width: 100px;
+}
+
+.social .caixas {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 500px;
+}
+
+.caixa1 {
+    padding: 20px;
+    width: 200px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: #D7263D solid 2px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    color: #fff;
+    background-color: #010e1a;
+}
+
+.caixa2 {
+    padding: 20px;
+    width: 200px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: #D7263D solid 2px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #010e1a;
+}
+
+.caixa3 {
+    padding: 20px;
+    width: 200px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: #D7263D solid 2px;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #fff;
+    background-color: #010e1a;
+}
+
+/* Fim do Banner */
+
+/* Inicio Rodape */
+
+.rodape {
+    background-color: #010e1a;
+    border: #D7263D solid 2px;
+    border-top-right-radius: 300px;
+    height: 50px;
+    color: rgb(194, 179, 179);
+    display: flex;
+    font-size: 18px;
+}
+
+.rodape .container {
+    justify-content: center;
+}
+
+/* Fim do Rodapé */
+
+.imgFundo .container {
+    width: 80%;
+    height: min-content;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.imgFundo .container .boxLogin {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    background-color: #02182B;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.imgFundo .container .boxLogin img {
+    width: 110px;
+}
+
+.imgFundo .container .boxLogin div label {
+    color: #fff;
+    width: min-content;
+    font-size: 1.2rem;
+}
+
+.imgFundo .container .boxLogin div input {
+    width: 100%;
+    border-radius: 7px;
+    height: 30px;
+    border: 0;
+}
+
+.imgFundo .container .boxLogin button {
+    width: 120px;
+    padding: 8px;
+    border-radius: 7px;
+    border: 0;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: monospace;
+    background-color: #fff;
+    color: #d7263d;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.meio {
+    height: 83vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('imagens/Laser_Sentinel_Track.png');
+    background-size: cover;
+}
+
+.card {
+    display: flex;
+    width: 500px;
+    height: 440px;
+    background-color: #02182B;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.card label{
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 15px;
+}
+
+.card input{
+    width: 60%;
+    border-radius: 7px;
+    height: 30px;
+    border: 0;
+}
+
+.card .container{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card button{
+    width: 120px;
+    padding: 8px;
+    border-radius: 7px;
+    border: 0;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: monospace;
+    background-color: #fff;
+    color: #d7263d;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.card hr{
+    border: #d7263d 1px solid;
+    width: 90%;
+}
+
+.resultado{
+    height: 190px;
+}
+
+.resultado h2{
+    color: white;
+    font-size: 1rem;
+    text-align: justify;
+}
