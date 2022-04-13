@@ -1,14 +1,16 @@
 /* Começo globais */
 
 body {
-    margin: 0%;
+    margin: 0;
+    padding: 0;
     font-family: monospace;
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 .container {
     width: 80%;
     display: flex;
+    
 }
 
 /* Fim globais */
@@ -33,6 +35,7 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 90vw;
+    
 }
 
 .header .titulo {
@@ -76,11 +79,12 @@ body {
 }
 
 .home {
-    height: 70vh;
+    height: calc(100vh - 72px);
     width: 100%;
     display: flex;
     justify-content: center;
     background-image: url(imagens/shopping_bg.jpg);
+  
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,6 +93,7 @@ body {
 .home .container {
     justify-content: center;
     align-items: center;
+    
 }
 
 .home .banner {
@@ -106,7 +111,7 @@ body {
 .home .banner p {
     padding: 15px;
     color: white;
-    font-size: 40px;
+    font-size: 38px;
     margin: 0;
 }
 
@@ -122,11 +127,12 @@ body {
 .boxes {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: rgb(235, 235, 235);
 }
 
 .boxes .container {
     justify-content: space-evenly;
+    background-color: rgb(235, 235, 235);
 }
 
 .boxes .box {
@@ -164,12 +170,11 @@ body {
 /* Começo login */
 
 .login {
-    background-color: lightcoral;
-    height: 80vh;
+    height: calc(100vh - 72px);
     width: 100%;
     display: flex;
     justify-content: center;
-    background-image: url(imagens/shopping_bg.jpg);
+    background-image: url(imagens/login.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -187,7 +192,9 @@ body {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    height: 350px;
+    height: min-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
     width: 300px;
     border-top: 3px solid #D7263D;
     border-top-right-radius: 30px;
@@ -200,6 +207,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 5px;
+    font-size: 20px;
 }
 
 input {
@@ -207,6 +216,7 @@ input {
     padding: 9px;
     font-size: 15px;
     border: none;
+    width: 250px;
     border-radius: 10px;
     margin-top: 5px;
     color: white;
@@ -237,15 +247,16 @@ button {
 /* Começo Simulador */
 
 .simulador {
-    background-color: lightgreen;
-    height: 80vh;
+   
+    height: calc(100vh - 72px);
     width: 100%;
     display: flex;
     justify-content: center;
-    background-image: url(imagens/shopping_bg.jpg);
+    background-image: url(imagens/lucro.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .simulador .container {
@@ -296,6 +307,12 @@ button {
     border-top: 3px solid #D7263D;
     border-top-right-radius: 300px;
     background-color: #010e1a;
+    
 }
 
 /* Fim footerbar */
+
+.btnEntrar{
+    cursor: pointer;
+    width: 200px;
+}
