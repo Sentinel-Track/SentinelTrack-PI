@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="imagens/Logo_Temporaria.png" />
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+    <div class="bg_header">
+        <div class="header">
+            <div class="container">
+
+                <div class="titulo">
+                    <img src="imagens/Logo_Temporaria.png" alt="Logo">
+                    <h1>Sentinel Track</h1>
+                </div>
+
+                <div class="urls">
+                    <ul>
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dash">
+        <div class="fold">
+            <h3 class="texts">Opções de vizualização:</h3>
+            <button class="botao" onclick="mostrarBarra()">Diário</button>
+            <button class="botao" onclick="mostrarLinha()">Semanal</button>
+        </div>
+<div class="grafico">
+    <div class="chart" id="diario" style="display: none;">
+        <canvas id="barra"></canvas>
+    </div>
+    <div class="chart" id="semanal" style="display: none;">
+        <canvas id="linha"></canvas>
+
+    </div>
+</div>
+    </div>
+
+    <div class="footerbar">
+        <p>
+            &copy; Feito pela equipe Sentinel Track &copy;
+        </p>
+    </div>
+</body>
+
+</html>
+<script>
+    const dia = [
+        'Segunda',
+        'Terça',
+        'Quarta',
+        'Quinta',
+        'Sexta',
+        'Sábado',
+        'Domingo',
+    ];
+
+    const fluxo = {
+        labels: dia,
+        datasets: [{
+            label: 'Quantidade de pessoas no dia',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [460000, 400000, 500000, 500000, 900000, 1200000, 1000000],
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: fluxo,
+        options: {}
+    };
+
+    const semana = [
+        '1º Semana',
+        '2º Semana',
+        '3º Semana',
+        '4º Semana',
+        '5º Semana',
+        '6º Semana',
+        '7º Semana',
+    ];
+
+    const qtdPessoas = {
+        labels: semana,
+        datasets: [{
+            label: 'Quantidade de pessoas na semana',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [5960000, 6620000, 6650000, 9470000, 9950000, 12900000, 19290000],
+        }]
+    };
+
+    const config2 = {
+        type: 'line',
+        data: qtdPessoas,
+        options: {}
+    };
+</script>
+<script>
+    const barra = new Chart(
+        document.getElementById('barra'),
+        config
+    );
+
+    const linha = new Chart(
+        document.getElementById('linha'),
+        config2
+    );
+</script>
+<script>
+    function mostrarBarra() {
+        diario.style.display = 'none'
+        semanal.style.display = 'block'
+    }
+
+    function mostrarLinha() {
+
+        semanal.style.display = 'none'
+        diario.style.display = 'block'
+    }
+</script>

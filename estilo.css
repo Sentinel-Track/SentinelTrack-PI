@@ -10,7 +10,7 @@ body {
 .container {
     width: 80%;
     display: flex;
-    
+
 }
 
 /* Fim globais */
@@ -35,7 +35,7 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 90vw;
-    
+
 }
 
 .header .titulo {
@@ -74,7 +74,7 @@ body {
 
 /* Começo home */
 
-.bg_header{
+.bg_header {
     background-color: #010e1a;
 }
 
@@ -84,7 +84,7 @@ body {
     display: flex;
     justify-content: center;
     background-image: url(imagens/shopping_bg.jpg);
-  
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -93,7 +93,7 @@ body {
 .home .container {
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .home .banner {
@@ -247,7 +247,7 @@ button {
 /* Começo Simulador */
 
 .simulador {
-   
+
     height: calc(100vh - 72px);
     width: 100%;
     display: flex;
@@ -297,6 +297,52 @@ button {
 
 /* Fim Simulador */
 
+/* Começo da Dashboard */
+.dash {
+    display: flex;
+    background-color: #021b33;
+    height: 90vh;
+    align-items: center;
+
+
+}
+
+.dash .chart {
+    position: relative;
+    height: 45vh;
+    width: 45vw;
+    display: none;
+    padding: 15vw;
+
+}
+
+.fold {
+    background-color: #082845;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 20vw;
+    height: 100%;
+    border-top-right-radius: 20px;
+    justify-content: center;
+    padding-left: 10px;
+
+}
+
+.texts {
+    color: white;
+    font-size: large;
+
+}
+
+.botao {
+    height: 20px;
+    width: 75px;
+    border-radius: 20px;
+    font-size: smaller;
+}
+
 /* Começo footerbar */
 
 .footerbar {
@@ -307,12 +353,12 @@ button {
     border-top: 3px solid #D7263D;
     border-top-right-radius: 300px;
     background-color: #010e1a;
-    
+
 }
 
 /* Fim footerbar */
 
-.btnEntrar{
+.btnEntrar {
     cursor: pointer;
     width: 200px;
 }
