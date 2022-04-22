@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: monospace;
-    background-color: whitesmoke;
+    background-color: #021b33;
 }
 
 .container {
@@ -301,18 +301,27 @@ button {
 .dash {
     display: flex;
     background-color: #021b33;
-    height: 90vh;
+    height: 100vh;
     align-items: center;
+    
 
 
 }
-
-.dash .chart {
-    position: relative;
-    height: 45vh;
-    width: 45vw;
+.grafico{
+    width: 100%;
     display: none;
-    padding: 15vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.chart {
+    position: relative;
+    height: 50vh;
+    width: 50vw;
+    display: none;
+   
 
 }
 
@@ -337,12 +346,47 @@ button {
 }
 
 .botao {
-    height: 20px;
-    width: 75px;
+    height: 30px;
+    width: 100px;
     border-radius: 20px;
     font-size: smaller;
+    cursor: pointer;
 }
 
+.kpis{
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+}
+
+.kpi{
+    width: 100px;
+    height: 100px;
+    border: solid 3px #D7263D;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: 10px;
+}
+.nmr{
+    font-size: 25px;
+    color: white;
+}
+
+.title{
+    font-size: 15px;
+    color: white;
+    margin: 5px;
+    width: min-content;
+    align-self: center;
+    text-align: center;
+
+}
 /* Começo footerbar */
 
 .footerbar {

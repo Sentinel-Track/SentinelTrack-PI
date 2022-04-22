@@ -41,15 +41,31 @@
             <button class="botao" onclick="mostrarBarra()">Diário</button>
             <button class="botao" onclick="mostrarLinha()">Semanal</button>
         </div>
-<div class="grafico">
-    <div class="chart" id="diario" style="display: none;">
-        <canvas id="barra"></canvas>
-    </div>
-    <div class="chart" id="semanal" style="display: none;">
-        <canvas id="linha"></canvas>
 
-    </div>
-</div>
+
+        <div class="grafico" id="grafico">
+            <div class="kpis" style="color: wheat;">
+                <div class="kpi">
+                    <span class="nmr">397M</span>
+                    <span class="title">Pessoas por mês</span>
+                </div>
+                <div class="kpi">
+                    <span class="nmr">99M</span>
+                    <span class="title">Pessoas p/ semana</span>
+                </div>
+                <div class="kpi">
+                    <span class="nmr">14M</span>
+                    <span class="title">Pessoas por dia</span>
+                </div>
+            </div>
+            <div class="chart" id="diario" style="display: none;">
+                <canvas id="barra"></canvas>
+            </div>
+            <div class="chart" id="semanal" style="display: none;">
+                <canvas id="linha"></canvas>
+
+            </div>
+        </div>
     </div>
 
     <div class="footerbar">
@@ -75,8 +91,8 @@
         labels: dia,
         datasets: [{
             label: 'Quantidade de pessoas no dia',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(215, 38, 61)',
+            borderColor: 'rgb(215, 38, 61)',
             data: [460000, 400000, 500000, 500000, 900000, 1200000, 1000000],
         }]
     };
@@ -101,8 +117,8 @@
         labels: semana,
         datasets: [{
             label: 'Quantidade de pessoas na semana',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgb(215, 38, 61)',
+            borderColor: 'rgb(215, 38, 61)',
             data: [5960000, 6620000, 6650000, 9470000, 9950000, 12900000, 19290000],
         }]
     };
@@ -127,12 +143,14 @@
 <script>
     function mostrarBarra() {
         diario.style.display = 'none'
+        grafico.style.display = 'flex'
         semanal.style.display = 'block'
     }
 
     function mostrarLinha() {
 
         semanal.style.display = 'none'
+        grafico.style.display = 'flex'
         diario.style.display = 'block'
     }
 </script>

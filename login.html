@@ -55,7 +55,7 @@
 
                 <div class="label">
                    <span style="font-size: 18px;">Não possui cadastro?</span>  <a href="cadastro.html"> Clique aqui</a>
-                    <button class="btnEntrar">Entrar</button>
+                    <button class="btnEntrar" onclick="entrar()">Entrar</button>
                 </div>
             </div>
         </div>
@@ -69,3 +69,8 @@
 </body>
 
 </html>
+<script>
+    function entrar() {
+        location.href = './dashboard.html'
+    }
+</script>
