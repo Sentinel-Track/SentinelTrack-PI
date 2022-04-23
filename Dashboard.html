@@ -41,9 +41,10 @@
             <button class="botao" onclick="mostrarBarra()">Diário</button>
             <button class="botao" onclick="mostrarLinha()">Semanal</button>
         </div>
-
-
+<div id="chartmg" class="fotochart"><img src="imagens/barra.gif"></div>
+       
         <div class="grafico" id="grafico">
+            
             <div class="kpis" style="color: wheat;">
                 <div class="kpi">
                     <span class="nmr">397M</span>
@@ -145,6 +146,7 @@
         diario.style.display = 'none'
         grafico.style.display = 'flex'
         semanal.style.display = 'block'
+        chartmg.style.display = 'none'
     }
 
     function mostrarLinha() {
@@ -152,5 +154,6 @@
         semanal.style.display = 'none'
         grafico.style.display = 'flex'
         diario.style.display = 'block'
+        chartmg.style.display = 'none'
     }
 </script>

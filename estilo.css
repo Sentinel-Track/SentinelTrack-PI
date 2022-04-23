@@ -342,6 +342,11 @@ button {
 
 }
 
+.fotochart {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .texts {
     color: white;
     font-size: large;
