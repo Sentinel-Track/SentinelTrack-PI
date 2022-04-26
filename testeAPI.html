@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Calor</title>
+
+    <script src="webgl-heatmap.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var canvas = document.getElementsByTagName('canvas')[0]; //definindo o canvas
+            var heatmap = createWebGLHeatmap({
+                canvas: canvas,
+                intensityToAlpha: true
+            }); //criando o mapa de calor
+
+            //definindo os pontos do mapa de calor
+            heatmap.addPoint(840, 450, 120, 1000 / 1000); 
+            heatmap.addPoint(450, 165, 80, 800 / 1000);
+            heatmap.addPoint(210, 310, 150, 1000 / 1000); 
+            
+            heatmap.adjustSize();  //ajustando o tamanho do mapa de calor
+            heatmap.update(); //atualizando o mapa de calor
+            heatmap.multiply(1); //multiplicando o mapa de calor
+            heatmap.display(); //exibindo o mapa de calor
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+    <canvas style="width: 1000px; height: 600px; background-image: url('./imagens/backMapa.png'); background-size: cover;">
+        
+    </canvas>
+
+</body>
+
+</html>
