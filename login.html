@@ -45,13 +45,14 @@
 
                 <div class="label">
                     <label>Email: </label>
-                    <input type="email" id="email" placeholder="seu@email.com.br" onchange="validar()">
+                    <input type="email" id="ipt_email" placeholder="seu@email.com.br" onchange="validar()">
+                    <span class="msg_validacao" id="msgEmail"></span>
                 </div>
 
                 <div class="label">
                     <label>Senha: </label>
                     <input type="password" id="senha" placeholder="********">
-                    <span id="msg_validacao"></span>
+                    <span class="msg_validacao" id="msgSenha"></span>
                 </div>
 
                 <div class="label">
@@ -73,14 +74,24 @@
 <script>
 
     function validar() {
-        
+        var email = ipt_email.value;
+        var temArroba = (email.indexOf('@') != -1)
+        var temEspaco = (email.indexOf(' ') == -1)
+        var posicao = email.indexOf('@') ;
+        var temChar = posicao - 1 != null && posicao + 1 != null;
+        var temPonto = email.indexOf('.', posicao) != -1;
+        var posicaoPonto = email.indexOf('.', posicao);
+        var temCharPonto =  posicaoPonto - 1 != null && posicaoPonto + 1 != null;
+
+        console.log(temArroba + ' ' + temEspaco + ' ' + temChar + ' ' + temCharPonto + ' ' + temPonto)
+               
     }
     function entrar() {
         if(email.value == 'sptech@sptech.school' && senha.value == '123'){
             alert('Login efetuado com sucesso!');
             window.location.href = 'dashboard.html';
         }else{
-            .innerHTML = `Login ou senha incorretos!`;
+            msgSenha.innerHTML = `Login ou senha incorretos!`;
         }
     }
 </script>
