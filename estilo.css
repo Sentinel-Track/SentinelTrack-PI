@@ -304,9 +304,8 @@ button {
 .dash {
     display: flex;
     background-color: #021b33;
-    height: 100vh;
     align-items: center;
-    
+    height: 120vh;
 
 
 }
@@ -316,6 +315,7 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 
 }
 
@@ -359,6 +359,7 @@ button {
     border-radius: 20px;
     font-size: smaller;
     cursor: pointer;
+   
 }
 
 .kpis{
@@ -367,7 +368,7 @@ button {
     width: 50vw;
     align-items: center;
     justify-content: space-evenly;
-    margin-bottom: 40px;
+    
 }
 
 .kpi{
@@ -413,4 +414,13 @@ button {
 .btnEntrar {
     cursor: pointer;
     width: 200px;
+}
+
+.escolheGrafico{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+   margin-bottom: 20px;
 }

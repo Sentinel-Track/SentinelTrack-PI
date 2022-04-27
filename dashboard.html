@@ -10,6 +10,32 @@
     <link rel="stylesheet" href="estilo.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <script src="webgl-heatmap.js"></script>
+    <script type="text/javascript">
+        function posicao(elemento, e) {
+            var el = this;
+            var coordenadas = elemento.getBoundingClientRect();
+            var res =
+                console.log('posição x', coordenadas.left, 'posição y', coordenadas.top)
+        }
+        window.onload = function () {
+
+        }
+
+        var x = null;
+        var y = null;
+
+        document.addEventListener('mousemove', onMouseUpdate, false);
+        document.addEventListener('mouseenter', onMouseUpdate, false);
+
+        function onMouseUpdate(e) {
+            x = e.pageX;
+            y = e.pageY;
+            console.log(x + " " + y);
+        }
+    </script>
+
+
 </head>
 
 
@@ -38,34 +64,44 @@
     <div class="dash">
         <div class="fold">
             <h3 class="texts">Opções de visualização:</h3>
-            <button class="botao" onclick="mostrarBarra()">Diário</button>
-            <button class="botao" onclick="mostrarLinha()">Semanal</button>
+            <button class="botao" id='btnDiario' onclick="mostrarLinha()">Diário</button>
+            <button class="botao" id='btnSemanal' onclick="mostrarBarra()">Semanal</button>
         </div>
-<div id="chartmg" class="fotochart"><img src="imagens/barra.gif"></div>
-       
+        <div id="chartmg" class="fotochart"><img src="imagens/barra.gif"></div>
+
         <div class="grafico" id="grafico">
             <h2 style="color: aliceblue;">Movimentação de pessoas</h2>
             <div class="kpis">
-                
+
                 <div class="kpi">
                     <span class="nmr">397M</span>
                     <span class="title">Último mês</span>
                 </div>
                 <div class="kpi">
                     <span class="nmr">19M</span>
-                    <span class="title">última semana</span>
+                    <span class="title">Última semana</span>
                 </div>
                 <div class="kpi">
                     <span class="nmr">1M</span>
                     <span class="title">Último dia</span>
                 </div>
+
+            </div>
+            <div class="escolheGrafico">
+                <button class="botao" id="convencional" onclick="mapaConvencional()">Convencional</button>
+                <button class="botao" id='calor' onclick="mapaCalor()">Mapa de Calor</button>
             </div>
             <div class="chart" id="diario" style="display: none;">
                 <canvas id="barra"></canvas>
             </div>
             <div class="chart" id="semanal" style="display: none;">
                 <canvas id="linha"></canvas>
+            </div>
+            <div id="calorDiario" style="display: none; height: 550px; width: 90%; margin-bottom: 50px; ">
+                <canvas id="canvaCalorDiario" onclick="posicao(document.getElementById('canvaCalorDiario'),event)"
+                    style="width: 100%; height: 100%; background-image: url('./imagens/backMapa.png'); background-size: cover;">
 
+                </canvas>
             </div>
         </div>
     </div>
@@ -143,11 +179,22 @@
     );
 </script>
 <script>
+    var qualGrafico = '';
+    var tipoGrafico = '';
+
     function mostrarBarra() {
         diario.style.display = 'none'
         grafico.style.display = 'flex'
         semanal.style.display = 'block'
         chartmg.style.display = 'none'
+        tipoGrafico = 'semanal';
+
+        btnSemanal.style.border = 'solid 3px #D71B22';
+        btnSemanal.style.fontWeight = 'bold';
+
+        btnDiario.style.border = 'none';
+        btnDiario.style.fontWeight = 'normal';
+
     }
 
     function mostrarLinha() {
@@ -156,5 +203,69 @@
         grafico.style.display = 'flex'
         diario.style.display = 'block'
         chartmg.style.display = 'none'
+        tipoGrafico = 'diario';
+        btnDiario.style.border = 'solid 3px #D71B22';
+        btnDiario.style.fontWeight = 'bold';
+
+        btnSemanal.style.border = 'none';
+        btnSemanal.style.fontWeight = 'normal';
+
+
+
+    }
+
+    function mapaConvencional() {
+
+        if (tipoGrafico == 'semanal') {
+            console.log('é semanal!!!')
+        } else {
+            console.log('é diario!!!')
+        }
+
+    }
+
+    function mapaCalor() {
+
+        if (tipoGrafico == 'semanal') {
+            console.log('é semanal!!!')
+        } else {
+            calorDiario.style.display = 'block'
+            diario.style.display = 'none'
+            var canvas = document.getElementById('canvaCalorDiario'); //definindo o canvas
+            var heatmap = createWebGLHeatmap({
+                canvas: canvas,
+                intensityToAlpha: true
+            }); //criando o mapa de calor
+
+            //definindo os pontos do mapa de calor
+
+            // heatmap.addPoint(x, y, raidus, intensidade); //1
+
+            heatmap.addPoint(110, 222, 60, 12 / 10); //1
+            heatmap.addPoint(270, 392, 40, 12 / 10); //1
+            heatmap.addPoint(250, 335, 40, 10 / 10); //1
+            heatmap.addPoint(310, 375, 40, 10 / 10); //1
+            heatmap.addPoint(480, 430, 30, 12 / 10); //1
+            heatmap.addPoint(510, 450, 20, 12 / 10); //1
+            heatmap.addPoint(550, 430, 60, 8 / 10); //1
+            heatmap.addPoint(205, 187, 40, 8.5 / 10); //1
+            heatmap.addPoint(490, 325, 40, 9 / 10); //1
+            heatmap.addPoint(490, 245, 30, 9.8 / 10); //1
+            heatmap.addPoint(420, 245, 40, 11 / 10); //1
+            
+
+            
+            heatmap.addPoint(600, 195, 50, 12 / 10); //1
+            heatmap.addPoint(750, 195, 40, 13 / 10); //1
+            heatmap.addPoint(845, 260, 60, 13 / 10); //1
+            heatmap.addPoint(880, 380, 45, 9 / 10); //1
+            
+            heatmap.adjustSize(); //ajustando o tamanho do mapa de calor
+            heatmap.update(); //atualizando o mapa de calor
+            heatmap.multiply(1); //multiplicando o mapa de calor
+            heatmap.display(); //exibindo o mapa de calor
+
+        }
+
     }
 </script>
