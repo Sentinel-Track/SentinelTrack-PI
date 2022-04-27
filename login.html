@@ -45,12 +45,12 @@
 
                 <div class="label">
                     <label>Email: </label>
-                    <input type="email" placeholder="seu@email.com.br">
+                    <input type="email" id="email" placeholder="seu@email.com.br">
                 </div>
 
                 <div class="label">
                     <label>Senha: </label>
-                    <input type="password" placeholder="********">
+                    <input type="password" id="senha" placeholder="********">
                 </div>
 
                 <div class="label">
@@ -71,6 +71,11 @@
 </html>
 <script>
     function entrar() {
-        location.href = './dashboard.html'
+        if(email.value == 'sptech@sptech.school' && senha.value == '123'){
+            alert('Login efetuado com sucesso!');
+            window.location.href = 'dashboard.html';
+        }else{
+            alert('Login ou senha incorretos!');
+        }
     }
 </script>
