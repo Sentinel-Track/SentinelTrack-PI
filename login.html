@@ -45,13 +45,13 @@
 
                 <div class="label">
                     <label>Email: </label>
-                    <input type="email" id="ipt_email" placeholder="seu@email.com.br" onchange="validar()">
+                    <input type="email" id="ipt_email" placeholder="seu@email.com.br" onchange="validarEmail()">
                     <span class="msg_validacao" id="msgEmail"></span>
                 </div>
 
                 <div class="label">
                     <label>Senha: </label>
-                    <input type="password" id="senha" placeholder="********">
+                    <input type="password" id="ipt_senha" placeholder="********">
                     <span class="msg_validacao" id="msgSenha"></span>
                 </div>
 
@@ -72,8 +72,9 @@
 
 </html>
 <script>
+    var emailValido = false;
 
-    function validar() {
+    function validarEmail() {
         var email = ipt_email.value;
         var temArroba = (email.indexOf('@') != -1)
         var temEspaco = (email.indexOf(' ') >= 0)
@@ -81,7 +82,7 @@
         var temChar = posicao - 1 != null && posicao + 1 != null;
         var temPonto = email.indexOf('.', posicao) != -1;
         var posicaoPonto = email.indexOf('.', posicao);
-        var temCharPonto =  posicaoPonto - 1 != null && posicaoPonto + 1 != null;
+        var temCharPonto = email[posicaoPonto + 1] != undefined;
 
                
         if (temArroba) {
@@ -90,6 +91,7 @@
                     if(temCharPonto){
                         if(temPonto){
                              msgEmail.innerHTML = '';
+                             emailValido = true;
                         }else{
                             msgEmail.innerHTML = `Email inválido! O email inserido não contém ponto após o @ `
                         }
@@ -107,12 +109,21 @@
             msgEmail.innerHTML = `Email inválido! É necessário que haja @ `
         }
     }
+
     function entrar() {
-        if(email.value == 'sptech@sptech.school' && senha.value == '123'){
-            alert('Login efetuado com sucesso!');
-            window.location.href = 'dashboard.html';
-        }else{
-            msgSenha.innerHTML = `Login ou senha incorretos!`;
+        validarEmail();
+        var senha = ipt_senha.value;
+        var charMin = senha.length < 6;
+     
+        if(!charMin && emailValido && ipt_email.value == 'sptech@sptech.school' && senha == '12345678'){
+            alert('Login realizado com Sucesso!')
+            window.location = './dashboard.html'
+        }else if(charMin){
+        msgSenha.innerHTML = `A senha não tem o tamanho mínimo (6 caracteres)`
+        }else {
+            msgSenha.innerHTML = `Senha incorreta`
         }
+
+
     }
 </script>
