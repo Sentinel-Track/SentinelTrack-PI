@@ -206,6 +206,11 @@ color: red;
     font-size: 22px;
 }
 
+#msgSenha{
+color: red;
+font-size: 60%;
+
+}
 .label {
     display: flex;
     flex-direction: column;

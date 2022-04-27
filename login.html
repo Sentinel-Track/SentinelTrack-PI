@@ -45,12 +45,13 @@
 
                 <div class="label">
                     <label>Email: </label>
-                    <input type="email" id="email" placeholder="seu@email.com.br">
+                    <input type="email" id="email" placeholder="seu@email.com.br" onchange="validar()">
                 </div>
 
                 <div class="label">
                     <label>Senha: </label>
                     <input type="password" id="senha" placeholder="********">
+                    <span id="msg_validacao"></span>
                 </div>
 
                 <div class="label">
@@ -70,12 +71,16 @@
 
 </html>
 <script>
+
+    function validar() {
+        
+    }
     function entrar() {
         if(email.value == 'sptech@sptech.school' && senha.value == '123'){
             alert('Login efetuado com sucesso!');
             window.location.href = 'dashboard.html';
         }else{
-            alert('Login ou senha incorretos!');
+            .innerHTML = `Login ou senha incorretos!`;
         }
     }
 </script>
