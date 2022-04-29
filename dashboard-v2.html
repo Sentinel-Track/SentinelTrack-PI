@@ -1,310 +1,348 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-
-<style>
+  <style>
     #bolinha {
-        height: 20px;
-        width: 20px;
-        background-color: red;
-        cursor: pointer;
-        border-radius: 100%;
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      cursor: pointer;
+      border-radius: 100%;
     }
-</style>
+  </style>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="shortcut icon" href="imagens/Logo_Temporaria.png" />
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="webgl-heatmap.js"></script>
-    <script type="text/javascript">
-        function posicao(elemento, e) {
-            var el = this;
-            var coordenadas = elemento.getBoundingClientRect();
-            var res =
-                console.log('posição x', coordenadas.left, 'posição y', coordenadas.top)
-        }
-        window.onload = function () {
+   
+  </head>
 
-        }
-
-        var x = null;
-        var y = null;
-
-        document.addEventListener('mousemove', onMouseUpdate, false);
-        document.addEventListener('mouseenter', onMouseUpdate, false);
-
-        function onMouseUpdate(e) {
-            x = e.pageX;
-            y = e.pageY;
-            console.log(x + " " + y);
-        }
-    </script>
-
-
-</head>
-
-
-<body>
-
+  <body>
     <div class="bg_header">
-        <div class="header">
-            <div class="container">
+      <div class="header">
+        <div class="container">
+          <div class="titulo">
+            <img src="imagens/Logo_Temporaria.png" alt="Logo" />
+            <h1>Sentinel Track</h1>
+          </div>
 
-                <div class="titulo">
-                    <img src="imagens/Logo_Temporaria.png" alt="Logo">
-                    <h1>Sentinel Track</h1>
-                </div>
-
-                <div class="urls">
-                    <ul>
-                        <li>
-                            <a href="./index.html">Home</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+          <div class="urls">
+            <ul>
+              <li>
+                <a href="./index.html">Home</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="dash">
-        <div class="fold">
-            <h3 class="texts">Opções de visualização:</h3>
-            <button class="botao" id='btnDiario' onclick="mostrarLinha()">Diário</button>
-            <button class="botao" id='btnSemanal' onclick="mostrarBarra()">Semanal</button>
+      <div class="fold">
+        <h3 class="texts">Opções de visualização:</h3>
+        <button class="botao" id="btnDiario" onclick="mostrarLinha()">
+          Diário
+        </button>
+        <button class="botao" id="btnSemanal" onclick="mostrarBarra()">
+          Semanal
+        </button>
+      </div>
+      <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
+
+      <div class="grafico" id="grafico">
+        <h2 style="color: aliceblue">Movimentação de pessoas</h2>
+        <div class="kpis">
+          <div class="kpi">
+            <span class="nmr">397M</span>
+            <span class="title">Último mês</span>
+          </div>
+          <div class="kpi">
+            <span class="nmr">19M</span>
+            <span class="title">Última semana</span>
+          </div>
+          <div class="kpi">
+            <span class="nmr">1M</span>
+            <span class="title">Último dia</span>
+          </div>
         </div>
-        <div id="chartmg" class="fotochart"><img src="imagens/barra.gif"></div>
-
-        <div class="grafico" id="grafico">
-            <h2 style="color: aliceblue;">Movimentação de pessoas</h2>
-            <div class="kpis">
-
-                <div class="kpi">
-                    <span class="nmr">397M</span>
-                    <span class="title">Último mês</span>
-                </div>
-                <div class="kpi">
-                    <span class="nmr">19M</span>
-                    <span class="title">Última semana</span>
-                </div>
-                <div class="kpi">
-                    <span class="nmr">1M</span>
-                    <span class="title">Último dia</span>
-                </div>
-
-            </div>
-            <div class="escolheGrafico">
-                <button class="botao" id="convencional" onclick="mapaConvencional()">Convencional</button>
-                <button class="botao" id='calor' onclick="mapaCalor()">Mapa de Calor</button>
-            </div>
-            <div class="chart" id="diario" style="display: none;">
-                <canvas id="barra"></canvas>
-            </div>
-            <div class="chart" id="semanal" style="display: none;">
-                <canvas id="linha"></canvas>
-            </div>
-            <div id='calorDiario'
-                style='display: none; position:relative; top:0px; left:0px; height: 400px; width: 792px; margin-bottom: 50px;'>
-                <img src='imagens/mapa.png' style="width: 100%; height: 100%;" border=0>
-
-                <div style='position:absolute; top:0; left: 0; color: white;' id="">0</div>
-                <div style='position:absolute; top:100px; left: 0; color: white;' id="">100</div>
-                <div style='position:absolute; top:200px; left: 0; color: white;' id="">200</div>
-                <div style='position:absolute; top:300px; left: 0; color: white;' id="">300</div>
-                <div style='position:absolute; top:400px; left: 0; color: white;' id="">400</div>
-
-
-                <div style='position:absolute; top:0; left: 0;     color: white;' id="">0</div>
-                <div style='position:absolute; top:0; left: 100px; color: white;' id="">100</div>
-                <div style='position:absolute; top:0; left: 200px; color: white;' id="">200</div>
-                <div style='position:absolute; top:0; left: 300px; color: white;' id="">300</div>
-                <div style='position:absolute; top:0; left: 400px; color: white;' id="">400</div>
-                <div style='position:absolute; top:0; left: 500px; color: white;' id="">500</div>
-                <div style='position:absolute; top:0; left: 600px; color: white;' id="">600</div>
-                <div style='position:absolute; top:0; left: 700px; color: white;' id="">700</div>
-                <div style='position:absolute; top:0; left: 800px; color: white;' id="">800</div>
-                
-                <div style='position:absolute; top:158px; left: 100px;' id="bolinha"></div>
-                <div style='position:absolute; top:140px; left: 190px;' id="bolinha"></div>
-                <div style='position:absolute; top:277px; left: 290px;' id="bolinha"></div>
-                <div style='position:absolute; top:237px; left: 220px;' id="bolinha"></div>
-                <div style='position:absolute; top:305px; left: 230px;' id="bolinha"></div>
-                <div style='position:absolute; top:310px; left: 390px;' id="bolinha"></div>
-                <div style='position:absolute; top:310px; left: 450px;' id="bolinha"></div>
-                <div style='position:absolute; top:275px; left: 421px;' id="bolinha"></div>
-            
-            </div>
+        <div class="escolheGrafico">
+          <button class="botao" id="convencional" onclick="mapaConvencional()">
+            Convencional
+          </button>
+          <button class="botao" id="calor" onclick="mapaCalor()">
+            Mapa de Calor
+          </button>
         </div>
+        <div class="chart" id="diario" style="display: none">
+          <canvas id="barra"></canvas>
+        </div>
+        <div class="chart" id="semanal" style="display: none">
+          <canvas id="linha"></canvas>
+        </div>
+        <div
+          id="calorDiario"
+          style="
+            display: none;
+            position: relative;
+            top: 0px;
+            left: 0px;
+            height: 400px;
+            width: 792px;
+            margin-bottom: 50px;
+          "
+        >
+          <img
+            src="imagens/mapa.png"
+            style="width: 100%; height: 100%"
+            border="0"
+          />
+
+          <div style="position: absolute; top: 0; left: 0; color: white" id="">
+            0
+          </div>
+          <div
+            style="position: absolute; top: 100px; left: 0; color: white"
+            id=""
+          >
+            100
+          </div>
+          <div
+            style="position: absolute; top: 200px; left: 0; color: white"
+            id=""
+          >
+            200
+          </div>
+          <div
+            style="position: absolute; top: 300px; left: 0; color: white"
+            id=""
+          >
+            300
+          </div>
+          <div
+            style="position: absolute; top: 400px; left: 0; color: white"
+            id=""
+          >
+            400
+          </div>
+
+          <div style="position: absolute; top: 0; left: 0; color: white" id="">
+            0
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 100px; color: white"
+            id=""
+          >
+            100
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 200px; color: white"
+            id=""
+          >
+            200
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 300px; color: white"
+            id=""
+          >
+            300
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 400px; color: white"
+            id=""
+          >
+            400
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 500px; color: white"
+            id=""
+          >
+            500
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 600px; color: white"
+            id=""
+          >
+            600
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 700px; color: white"
+            id=""
+          >
+            700
+          </div>
+          <div
+            style="position: absolute; top: 0; left: 800px; color: white"
+            id=""
+          >
+            800
+          </div>
+
+          <div
+            style="position: absolute; top: 158px; left: 100px"
+            id="bolinha1"
+          ></div>
+          <div
+            style="position: absolute; top: 140px; left: 190px"
+            id="bolinha2"
+          ></div>
+          <div
+            style="position: absolute; top: 277px; left: 290px"
+            id="bolinha3"
+          ></div>
+          <div
+            style="position: absolute; top: 237px; left: 220px"
+            id="bolinha4"
+          ></div>
+          <div
+            style="position: absolute; top: 305px; left: 230px"
+            id="bolinha5"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 390px"
+            id="bolinha6"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 450px"
+            id="bolinha7"
+          ></div>
+          <div
+            style="position: absolute; top: 275px; left: 421px"
+            id="bolinha8"
+          ></div>
+        </div>
+      </div>
     </div>
 
     <div class="footerbar">
-        <p>
-            &copy; Feito pela equipe Sentinel Track &copy;
-        </p>
+      <p>&copy; Feito pela equipe Sentinel Track &copy;</p>
     </div>
-</body>
-
+  </body>
 </html>
 <script>
-    const dia = [
-        'Segunda',
-        'Terça',
-        'Quarta',
-        'Quinta',
-        'Sexta',
-        'Sábado',
-        'Domingo',
-    ];
+  const dia = [
+    "Segunda",
+    "Terça",
+    "Quarta",
+    "Quinta",
+    "Sexta",
+    "Sábado",
+    "Domingo",
+  ];
 
-    const fluxo = {
-        labels: dia,
-        datasets: [{
-            label: 'Quantidade de pessoas no dia',
-            backgroundColor: 'rgb(215, 38, 61)',
-            borderColor: 'rgb(215, 38, 61)',
-            data: [460000, 400000, 500000, 500000, 900000, 1200000, 1000000],
-        }]
-    };
+  const fluxo = {
+    labels: dia,
+    datasets: [
+      {
+        label: "Quantidade de pessoas no dia",
+        backgroundColor: "rgb(215, 38, 61)",
+        borderColor: "rgb(215, 38, 61)",
+        data: [460000, 400000, 500000, 500000, 900000, 1200000, 1000000],
+      },
+    ],
+  };
 
-    const config = {
-        type: 'bar',
-        data: fluxo,
-        options: {}
-    };
+  const config = {
+    type: "bar",
+    data: fluxo,
+    options: {},
+  };
 
-    const semana = [
-        '1º Semana',
-        '2º Semana',
-        '3º Semana',
-        '4º Semana',
-        '5º Semana',
-        '6º Semana',
-        '7º Semana',
-    ];
+  const semana = [
+    "1º Semana",
+    "2º Semana",
+    "3º Semana",
+    "4º Semana",
+    "5º Semana",
+    "6º Semana",
+    "7º Semana",
+  ];
 
-    const qtdPessoas = {
-        labels: semana,
-        datasets: [{
-            label: 'Quantidade de pessoas na semana',
-            backgroundColor: 'rgb(215, 38, 61)',
-            borderColor: 'rgb(215, 38, 61)',
-            data: [5960000, 6620000, 6650000, 9470000, 9950000, 12900000, 19290000],
-        }]
-    };
+  const qtdPessoas = {
+    labels: semana,
+    datasets: [
+      {
+        label: "Quantidade de pessoas na semana",
+        backgroundColor: "rgb(215, 38, 61)",
+        borderColor: "rgb(215, 38, 61)",
+        data: [5960000, 6620000, 6650000, 9470000, 9950000, 12900000, 19290000],
+      },
+    ],
+  };
 
-    const config2 = {
-        type: 'line',
-        data: qtdPessoas,
-        options: {}
-    };
+  const config2 = {
+    type: "line",
+    data: qtdPessoas,
+    options: {},
+  };
 </script>
 <script>
-    const barra = new Chart(
-        document.getElementById('barra'),
-        config
-    );
+  const barra = new Chart(document.getElementById("barra"), config);
 
-    const linha = new Chart(
-        document.getElementById('linha'),
-        config2
-    );
+  const linha = new Chart(document.getElementById("linha"), config2);
 </script>
 <script>
-    var qualGrafico = '';
-    var tipoGrafico = '';
+  var qualGrafico = "";
+  var tipoGrafico = "";
 
-    function mostrarBarra() {
-        diario.style.display = 'none'
-        grafico.style.display = 'flex'
-        semanal.style.display = 'block'
-        chartmg.style.display = 'none'
-        calorDiario.style.display = 'none'
-        tipoGrafico = 'semanal';
+  function mostrarBarra() {
+    diario.style.display = "none";
+    grafico.style.display = "flex";
+    semanal.style.display = "block";
+    chartmg.style.display = "none";
+    calorDiario.style.display = "none";
+    tipoGrafico = "semanal";
 
-        btnSemanal.style.border = 'solid 3px #D71B22';
-        btnSemanal.style.fontWeight = 'bold';
+    btnSemanal.style.border = "solid 3px #D71B22";
+    btnSemanal.style.fontWeight = "bold";
 
-        btnDiario.style.border = 'none';
-        btnDiario.style.fontWeight = 'normal';
+    btnDiario.style.border = "none";
+    btnDiario.style.fontWeight = "normal";
+  }
 
+  function mostrarLinha() {
+    semanal.style.display = "none";
+    grafico.style.display = "flex";
+    diario.style.display = "block";
+    chartmg.style.display = "none";
+    tipoGrafico = "diario";
+    btnDiario.style.border = "solid 3px #D71B22";
+    btnDiario.style.fontWeight = "bold";
+    calorDiario.style.display = "none";
+    btnSemanal.style.border = "none";
+    btnSemanal.style.fontWeight = "normal";
+  }
+
+  function mapaConvencional() {
+    if (tipoGrafico == "semanal") {
+      console.log("é semanal!!!");
+    } else {
+      mostrarLinha();
+      calorDiario.style.display = "none";
     }
+  }
 
-    function mostrarLinha() {
-
-        semanal.style.display = 'none'
-        grafico.style.display = 'flex'
-        diario.style.display = 'block'
-        chartmg.style.display = 'none'
-        tipoGrafico = 'diario';
-        btnDiario.style.border = 'solid 3px #D71B22';
-        btnDiario.style.fontWeight = 'bold';
-        calorDiario.style.display = 'none';
-        btnSemanal.style.border = 'none';
-        btnSemanal.style.fontWeight = 'normal';
-
-
-
+  function mapaCalor() {
+    if (tipoGrafico == "semanal") {
+      console.log("é semanal!!!");
+    } else {
+      calorDiario.style.display = "block";
+      diario.style.display = "none";
+      for (var i = 1; i <= 7; i++) {
+        var idBola = 'bolinha'+i;
+        var value = Math.random() * (1 - 0.1) + 0.1;
+        var h = (1.0 - value) * 240
+        var bola = document.getElementById(idBola);
+        console.log(bola)
+        bola.style.background = "hsl(" + h + ", 100%, 50%)";
+        bola.style.width = '25px';
+        bola.style.height = '25px';
+        bola.style.borderRadius = '100%'
+      }
     }
-
-    function mapaConvencional() {
-
-        if (tipoGrafico == 'semanal') {
-            console.log('é semanal!!!')
-        } else {
-            mostrarLinha();
-            calorDiario.style.display = 'none'
-
-        }
-
-    }
-
-    function mapaCalor() {
-
-        if (tipoGrafico == 'semanal') {
-            console.log('é semanal!!!')
-        } else {
-            calorDiario.style.display = 'block'
-            diario.style.display = 'none'
-            var canvas = document.getElementById('canvaCalorDiario'); //definindo o canvas
-            var heatmap = createWebGLHeatmap({
-                canvas: canvas,
-                intensityToAlpha: true
-            }); //criando o mapa de calor
-
-            //definindo os pontos do mapa de calor
-
-            // heatmap.addPoint(x, y, raidus, intensidade); //1
-
-            heatmap.addPoint(110, 222, 60, 12 / 10); //1
-            heatmap.addPoint(270, 392, 40, 12 / 10); //1
-            heatmap.addPoint(250, 335, 40, 10 / 10); //1
-            heatmap.addPoint(310, 375, 40, 10 / 10); //1
-            heatmap.addPoint(480, 430, 30, 12 / 10); //1
-            heatmap.addPoint(510, 450, 20, 12 / 10); //1
-            heatmap.addPoint(550, 430, 60, 8 / 10); //1
-            heatmap.addPoint(205, 187, 40, 8.5 / 10); //1
-            heatmap.addPoint(490, 325, 40, 9 / 10); //1
-            heatmap.addPoint(490, 245, 30, 9.8 / 10); //1
-            heatmap.addPoint(420, 245, 40, 11 / 10); //1
-
-
-
-            heatmap.addPoint(600, 195, 50, 12 / 10); //1
-            heatmap.addPoint(750, 195, 40, 13 / 10); //1
-            heatmap.addPoint(845, 260, 60, 13 / 10); //1
-            heatmap.addPoint(880, 380, 45, 9 / 10); //1
-
-            heatmap.adjustSize(); //ajustando o tamanho do mapa de calor
-            heatmap.update(); //atualizando o mapa de calor
-            heatmap.multiply(1); //multiplicando o mapa de calor
-            heatmap.display(); //exibindo o mapa de calor
-
-        }
-
-    }
+  }
 </script>
