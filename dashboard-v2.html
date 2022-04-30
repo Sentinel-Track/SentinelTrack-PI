@@ -45,11 +45,14 @@
     <div class="dash">
       <div class="fold">
         <h3 class="texts">Opções de visualização:</h3>
-        <button class="botao" id="btnDiario" onclick="mostrarLinha()">
+        <button class="botao" id="btnDiario" onclick="mostrarDiario()">
           Diário
         </button>
-        <button class="botao" id="btnSemanal" onclick="mostrarBarra()">
+        <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
           Semanal
+        </button>
+        <button class="botao" id="btnAnual" onclick="mostrarAnual()">
+          Anual
         </button>
       </div>
       <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
@@ -79,10 +82,13 @@
           </button>
         </div>
         <div class="chart" id="diario" style="display: none">
-          <canvas id="barra"></canvas>
+          <canvas id="dia"></canvas>
         </div>
         <div class="chart" id="semanal" style="display: none">
-          <canvas id="linha"></canvas>
+          <canvas id="semana"></canvas>
+        </div>
+        <div class="chart" id="anual" style="display: none">
+          <canvas id="ano"></canvas>
         </div>
         <div
           id="calorDiario"
@@ -279,19 +285,49 @@
     data: qtdPessoas,
     options: {},
   };
+
+  const ano = [
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+  ];
+
+  const fluxoAnual = {
+    labels: ano,
+    datasets: [
+      {
+        label: "Quantidade de pessoas no ano",
+        backgroundColor: "rgb(215, 38, 61)",
+        borderColor: "rgb(215, 38, 61)",
+        data: [2600000000, 2900000000, 2100000000, 1800000000, 4500000000],
+      },
+    ],
+  };
+
+  const config3 = {
+    type: "line",
+    data: fluxoAnual,
+    options: {},
+  };
+
 </script>
 <script>
-  const barra = new Chart(document.getElementById("barra"), config);
+  const c_diario = new Chart(document.getElementById("dia"), config);
 
-  const linha = new Chart(document.getElementById("linha"), config2);
+  const c_semanal = new Chart(document.getElementById("semana"), config2);
+
+  const c_anual = new Chart(document.getElementById("ano"), config3);
 </script>
 <script>
   var qualGrafico = "";
   var tipoGrafico = "";
 
-  function mostrarBarra() {
+  function mostrarSemanal() {
     diario.style.display = "none";
     grafico.style.display = "flex";
+    anual.style.display = "none";
     semanal.style.display = "block";
     chartmg.style.display = "none";
     calorDiario.style.display = "none";
@@ -302,26 +338,63 @@
 
     btnDiario.style.border = "none";
     btnDiario.style.fontWeight = "normal";
+
+    btnAnual.style.border = "none";
+    btnAnual.style.fontWeight = "normal";
+
+    calor.style.display = "block";
+    convencional.style.display = "block";
   }
 
-  function mostrarLinha() {
+  function mostrarDiario() {
     semanal.style.display = "none";
     grafico.style.display = "flex";
+    anual.style.display = "none";
     diario.style.display = "block";
     chartmg.style.display = "none";
     tipoGrafico = "diario";
+
     btnDiario.style.border = "solid 3px #D71B22";
     btnDiario.style.fontWeight = "bold";
     calorDiario.style.display = "none";
+
     btnSemanal.style.border = "none";
     btnSemanal.style.fontWeight = "normal";
+
+    btnAnual.style.border = "none";
+    btnAnual.style.fontWeight = "normal";
+
+    calor.style.display = "block";
+    convencional.style.display = "block";
+  }
+
+  function mostrarAnual() {
+    semanal.style.display = "none";
+    grafico.style.display = "flex";
+    diario.style.display = "none";
+    anual.style.display = "block";
+    chartmg.style.display = "none";
+    tipoGrafico = "anual";
+
+    btnAnual.style.border = "solid 3px #D71B22";
+    btnAnual.style.fontWeight = "bold";
+    calorDiario.style.display = "none";
+
+    btnSemanal.style.border = "none";
+    btnSemanal.style.fontWeight = "normal";
+
+    btnDiario.style.border = "none";
+    btnDiario.style.fontWeight = "normal";
+
+    calor.style.display = "none";
+    convencional.style.display = "none";
   }
 
   function mapaConvencional() {
     if (tipoGrafico == "semanal") {
       console.log("é semanal!!!");
     } else {
-      mostrarLinha();
+      mostrarDiario();
       calorDiario.style.display = "none";
     }
   }
