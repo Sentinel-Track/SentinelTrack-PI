@@ -54,6 +54,9 @@
         <button class="botao" id="btnAnual" onclick="mostrarAnual()">
           Anual
         </button>
+        <button class="botao" id="btnHora" onclick="mostrarHora()">
+          Hora
+        </button>
       </div>
       <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
 
@@ -89,6 +92,9 @@
         </div>
         <div class="chart" id="anual" style="display: none">
           <canvas id="ano"></canvas>
+        </div>
+        <div class="chart" id="horario" style="display: none;">
+          <canvas id="hora"></canvas>
         </div>
         <div
           id="calorDiario"
@@ -312,6 +318,42 @@
     options: {},
   };
 
+  const hora = [
+    "10h",
+    "11h",
+    "12h",
+    "13h",
+    "14h",
+    "15h",
+    "16h",
+    "17h",
+    "18h",
+    "19h",
+    "20h",
+    "21h",
+    "22h",
+  ];
+
+  const fluxoHora = {
+    labels: hora,
+    datasets: [
+      {
+        label: "Quantidade de pessoas por hora",
+        backgroundColor: "rgb(215, 38, 61)",
+        borderColor: "rgb(215, 38, 61)",
+        data: [10000, 65000, 60000, 40000, 90000, 30000, 50000, 30000, 20000, 30000, 29000, 15000, 3000 ],
+      },
+    ],
+  };
+
+  const config4 = {
+    type: "bar",
+    data: fluxoHora,
+    options: {},
+  };
+
+
+
 </script>
 <script>
   const c_diario = new Chart(document.getElementById("dia"), config);
@@ -319,6 +361,8 @@
   const c_semanal = new Chart(document.getElementById("semana"), config2);
 
   const c_anual = new Chart(document.getElementById("ano"), config3);
+
+  const c_hora = new Chart(document.getElementById("hora"), config4);
 </script>
 <script>
   var qualGrafico = "";
@@ -329,6 +373,7 @@
     grafico.style.display = "flex";
     anual.style.display = "none";
     semanal.style.display = "block";
+    horario.style.display = "none"
     chartmg.style.display = "none";
     calorDiario.style.display = "none";
     tipoGrafico = "semanal";
@@ -342,6 +387,9 @@
     btnAnual.style.border = "none";
     btnAnual.style.fontWeight = "normal";
 
+    btnHora.style.border = "none"
+    btnHora.style.fontWeight = "normal"
+
     calor.style.display = "block";
     convencional.style.display = "block";
   }
@@ -351,6 +399,7 @@
     grafico.style.display = "flex";
     anual.style.display = "none";
     diario.style.display = "block";
+    horario.style.display = "none"
     chartmg.style.display = "none";
     tipoGrafico = "diario";
 
@@ -364,6 +413,9 @@
     btnAnual.style.border = "none";
     btnAnual.style.fontWeight = "normal";
 
+    btnHora.style.border = "none"
+    btnHora.style.fontWeight = "normal"
+
     calor.style.display = "block";
     convencional.style.display = "block";
   }
@@ -373,6 +425,7 @@
     grafico.style.display = "flex";
     diario.style.display = "none";
     anual.style.display = "block";
+    horario.style.display = "none"
     chartmg.style.display = "none";
     tipoGrafico = "anual";
 
@@ -385,6 +438,35 @@
 
     btnDiario.style.border = "none";
     btnDiario.style.fontWeight = "normal";
+
+    btnHora.style.border = "none"
+    btnHora.style.fontWeight = "normal"
+
+    calor.style.display = "none";
+    convencional.style.display = "none";
+  }
+
+  function mostrarHora() {
+    semanal.style.display = "none";
+    grafico.style.display = "flex";
+    diario.style.display = "none";
+    anual.style.display = "none";
+    horario.style.display = "block"
+    chartmg.style.display = "none";
+    tipoGrafico = "horario";
+
+    btnAnual.style.border = "none";
+    btnAnual.style.fontWeight = "none";
+    calorDiario.style.display = "none";
+
+    btnSemanal.style.border = "none";
+    btnSemanal.style.fontWeight = "normal";
+
+    btnDiario.style.border = "none";
+    btnDiario.style.fontWeight = "normal";
+
+    btnHora.style.border = "solid 3px #D71B22"
+    btnHora.style.fontWeight = "normal"
 
     calor.style.display = "none";
     convencional.style.display = "none";
