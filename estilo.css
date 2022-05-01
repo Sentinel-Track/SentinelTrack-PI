@@ -164,10 +164,12 @@ body {
     padding: 10px;
     margin: 0;
 }
+
 .destaque {
-font-weight: bold;
-color: red;
+    font-weight: bold;
+    color: red;
 }
+
 /* Fim boxes */
 
 /* Começo login */
@@ -206,11 +208,12 @@ color: red;
     font-size: 22px;
 }
 
-.msg_validacao{
-color: red;
-font-size: 60%;
+.msg_validacao {
+    color: red;
+    font-size: 60%;
 
 }
+
 .label {
     display: flex;
     flex-direction: column;
@@ -310,18 +313,15 @@ button {
     display: flex;
     background-color: #021b33;
     align-items: center;
-    height: 130vh;
-
-
+    height: 100vh;
 }
-.grafico{
-    width: 100%;
+
+.grafico {
+    width: 75vw;
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-
 }
 
 .chart {
@@ -329,22 +329,17 @@ button {
     height: 50vh;
     width: 50vw;
     display: none;
-   
-
 }
 
 .fold {
     background-color: #082845;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
     width: 20vw;
     height: 100%;
     border-top-right-radius: 20px;
-    justify-content: center;
-    padding-left: 10px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
 
 .fotochart {
@@ -354,8 +349,35 @@ button {
 
 .texts {
     color: white;
-    font-size: large;
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
+.fold button {
+    width: 90%;
+    height: 50px;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 10%;
+    border-radius: 1px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+
+.fold .voltar {
+    text-align: right;
+    position: fixed;
+    width: 16vw;
+    bottom: 20px;
+}
+
+.voltar a {
+    font-size: 25px;
+    text-decoration: none;
+    color: white;
 }
 
 .botao {
@@ -364,19 +386,17 @@ button {
     border-radius: 20px;
     font-size: smaller;
     cursor: pointer;
-   
 }
 
-.kpis{
+.kpis {
     display: flex;
     flex-direction: row;
     width: 50vw;
     align-items: center;
     justify-content: space-evenly;
-    
 }
 
-.kpi{
+.kpi {
     width: 100px;
     height: 100px;
     border: solid 3px #D7263D;
@@ -387,20 +407,21 @@ button {
     align-content: center;
     margin: 10px;
 }
-.nmr{
+
+.nmr {
     font-size: 25px;
     color: white;
 }
 
-.title{
+.title {
     font-size: 15px;
     color: white;
     margin: 5px;
     width: min-content;
     align-self: center;
     text-align: center;
-
 }
+
 /* Começo footerbar */
 
 .footerbar {
@@ -421,11 +442,11 @@ button {
     width: 200px;
 }
 
-.escolheGrafico{
+.escolheGrafico {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     width: 40%;
-   margin-bottom: 20px;
+    margin-bottom: 20px;
 }
