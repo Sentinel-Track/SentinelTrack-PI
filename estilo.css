@@ -334,7 +334,7 @@ button {
 .fold {
     background-color: #082845;
     width: 20vw;
-    height: 100%;
+    height: 100vh;
     border-top-right-radius: 20px;
     display: flex;
     flex-direction: column;
