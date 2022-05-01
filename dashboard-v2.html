@@ -202,7 +202,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [460000, 400000, 500000, 500000, 900000, 1200000, 1000000],
-        },],
+        }, ],
     };
 
     const config = {
@@ -228,7 +228,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [5960000, 6620000, 6650000, 7110000, 7020000, 7300000, 7200000],
-        },],
+        }, ],
     };
 
     const config2 = {
@@ -252,7 +252,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [534960000, 663420000, 663450000, 553210007, 99430001],
-        },],
+        }, ],
     };
 
     const config5 = {
@@ -276,7 +276,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [2600000000, 2500000000, 101000000, 1500000000, 2200000000],
-        },],
+        }, ],
     };
 
     const config3 = {
@@ -310,7 +310,7 @@
             data: [10000, 20000, 80000, 30000, 60000, 32000, 50000, 30000, 20000, 70000, 90000, 15000,
                 3000
             ],
-        },],
+        }, ],
     };
 
     const config4 = {
@@ -411,7 +411,7 @@
         btnSemanal.style.fontWeight = "normal";
 
         btnMensal.style.border = "solid 3px #D71B22"
-        btnMensal.style.fontWeight = "normal"
+        btnMensal.style.fontWeight = "bold"
 
         btnAnual.style.border = "none";
         btnAnual.style.fontWeight = "normal";
@@ -477,7 +477,7 @@
         btnDiario.style.fontWeight = "normal";
 
         btnHora.style.border = "solid 3px #D71B22"
-        btnHora.style.fontWeight = "normal"
+        btnHora.style.fontWeight = "bold"
 
         calor.style.display = "block";
         convencional.style.display = "block";
@@ -543,6 +543,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
+                bola.style.opacity = '0.7';
             }
 
 
@@ -591,6 +592,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
+                bola.style.opacity = '0.7';
 
             }
 
@@ -641,11 +643,12 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
+                bola.style.opacity = '0.7';
 
             }
 
 
-        } else {
+        } else if (tipoGrafico == "horario") {
             calorDiario.style.display = "block";
             horario.style.display = "none";
 
@@ -690,9 +693,59 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
+                bola.style.opacity = '0.7';
 
             }
 
+
+        } else {
+            calorDiario.style.display = "block";
+            mensal.style.display = "none";
+
+            //numero aleatorio entre 6000000 e 19290000
+            var minimo = 10000;
+            var quartil1 = 20000;
+            var media = 39909.1;
+            var mediana = 30000;
+            var quartil3 = 60000;
+            var maximo = 90000;
+
+            for (var i = 1; i <= 17; i++) {
+                var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+
+                var idBola = 'bolinha' + i;
+                var bola = document.getElementById(idBola);
+                if (numero < quartil1) {
+                    //bola azul #9AC1E8
+                    bola.style.background = "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
+                } else if (numero < media) {
+                    //bola amarela #FFFE00
+                    bola.style.background = "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
+
+                } else if (numero < mediana) {
+                    //bola verde #91D150
+                    bola.style.background = "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
+
+                } else if (numero < quartil3) {
+                    //bola verde escura #00AF54
+                    bola.style.background = "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
+
+                } else if (numero < maximo) {
+                    //bola laranja #FDC100
+                    bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
+
+                } else {
+                    //bola vermelha #FE0001
+                    bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
+
+                }
+
+                bola.style.width = '25px';
+                bola.style.height = '25px';
+                bola.style.borderRadius = '100%'
+                bola.style.opacity = '0.7';
+
+            }
 
         }
     }
