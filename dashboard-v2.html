@@ -51,15 +51,15 @@
         <div class="grafico" id="grafico">
             <h2 style="color: aliceblue">Movimentação de pessoas</h2>
             <div class="kpis">
-                <div class="kpi">
+                <div class="kpi" >
                     <span class="nmr">397M</span>
                     <span class="title">Último mês</span>
                 </div>
-                <div class="kpi">
+                <div class="kpi" style="background-color: red">
                     <span class="nmr">19M</span>
                     <span class="title">Última semana</span>
                 </div>
-                <div class="kpi">
+                <div class="kpi" style="background-color: orangered">
                     <span class="nmr">1M</span>
                     <span class="title">Último dia</span>
                 </div>
@@ -672,7 +672,7 @@
             var mediana = 30000;
             var quartil3 = 60000;
             var maximo = 90000;
-
+            console.log('mensal')
             for (var i = 1; i <= 17; i++) {
                 var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
 
