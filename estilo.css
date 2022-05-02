@@ -317,7 +317,8 @@ button {
 }
 
 .grafico {
-    width: 75vw;
+    margin-left: 300px;
+    width: 100%;
     display: none;
     justify-content: center;
     align-items: center;
@@ -333,13 +334,15 @@ button {
 
 .fold {
     background-color: #082845;
-    width: 20vw;
-    height: 100vh;
+    width: 300px;
+    height: 100%;
     border-top-right-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    position: fixed;
+
 }
 
 .fotochart {
@@ -349,7 +352,7 @@ button {
 
 .texts {
     color: white;
-    font-size: 30px;
+    font-size: 25px;
     margin: 0;
     text-align: center;
     margin-top: 15px;
@@ -368,10 +371,9 @@ button {
 }
 
 .fold .voltar {
-    text-align: right;
-    position: fixed;
-    width: 16vw;
+    position: absolute;
     bottom: 20px;
+    left: 65%;
 }
 
 .voltar a {
