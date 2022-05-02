@@ -73,10 +73,11 @@
 <script>
     function calcular() {
         var qtdPessoas = document.getElementById("qtdPessoasINP").value;
+        var totalPessoas = qtdPessoas * 0.6;
         var valorAluguel = document.getElementById("valorAluguelINP").value;
         var resultado = valorAluguel * 1.2
         result.innerHTML =
-            `Tendo como premissa que <b>60%</b> das pessoas que entram no shopping, ou seja <b>${qtdPessoas * 0.6}</b> pessoas, passe na frente de pelo menos <b>4</b> lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até <b>20%</b>.
+            `Tendo como premissa que <b>60%</b> das pessoas que entram no shopping, ou seja <b>${totalPessoas.toFixed(0)}</b> pessoas, passe na frente de pelo menos <b>4</b> lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até <b>20%</b>.
             <br><br>O valor do aluguel das lojas mais vistas será de <b>R$${resultado.toFixed(2)}</b>`;
     }
 </script>

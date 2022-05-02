@@ -1,5 +1,9 @@
 /* Começo globais */
 
+.corpo_i {
+    background-color: #EBEBEB;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -356,7 +360,7 @@ button {
     margin: 0;
     text-align: center;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 }
 
 .fold button {
