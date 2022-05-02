@@ -43,9 +43,7 @@
                 Hora
             </button>
             <div class="voltar">
-                <div>
-                    <a href="index.html">Voltar</a>
-                </div>
+                <a href="index.html">Voltar</a>
             </div>
         </div>
         <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
@@ -53,17 +51,21 @@
         <div class="grafico" id="grafico">
             <h2 style="color: aliceblue">Movimentação de pessoas</h2>
             <div class="kpis">
-                <div class="kpi">
-                    <span class="nmr">397M</span>
+                <div class="kpi" style="border-color: #00AF54">
+                    <span class="nmr">125M</span>
                     <span class="title">Último mês</span>
+                    <span  style="color: #00AF54" class="title">Boa</span>
+
                 </div>
-                <div class="kpi" style="background-color: red">
+                <div class="kpi">
                     <span class="nmr">19M</span>
                     <span class="title">Última semana</span>
+                    <span  style="color: #D7263D" class="title">Altíssima</span>
                 </div>
-                <div class="kpi" style="background-color: orangered">
-                    <span class="nmr">1M</span>
+                <div class="kpi" style="border-color: #9AC1E8">
+                    <span class="nmr">120K</span>
                     <span class="title">Último dia</span>
+                    <span  style="color: #9AC1E8" class="title">Baixíssima</span>
                 </div>
             </div>
             <div class="escolheGrafico">
@@ -142,7 +144,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [460000, 400000, 500000, 500000, 900000, 1200000, 1000000],
-        },],
+        }, ],
     };
 
     const config = {
@@ -168,7 +170,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [5960000, 6620000, 6650000, 7110000, 7020000, 7300000, 7200000],
-        },],
+        }, ],
     };
 
     const config2 = {
@@ -192,7 +194,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [534960000, 663420000, 663450000, 553210007, 99430001],
-        },],
+        }, ],
     };
 
     const config5 = {
@@ -216,7 +218,7 @@
             backgroundColor: "rgb(215, 38, 61)",
             borderColor: "rgb(215, 38, 61)",
             data: [2600000000, 2500000000, 101000000, 1500000000, 2200000000],
-        },],
+        }, ],
     };
 
     const config3 = {
@@ -250,7 +252,7 @@
             data: [10000, 20000, 80000, 30000, 60000, 32000, 50000, 30000, 20000, 70000, 90000, 15000,
                 3000
             ],
-        },],
+        }, ],
     };
 
     const config4 = {
@@ -467,17 +469,17 @@
         if (tipoGrafico == "semanal") {
             calorDiario.style.display = "block";
             semanal.style.display = "none";
-
-            //numero aleatorio entre 6000000 e 19290000
+           
+            //metricas
             var minimo = 6000000;
             var quartil1 = 6650000;
             var media = 9871000;
             var mediana = 9470000;
             var quartil3 = 11000000;
             var maximo = 19290000;
-
+            
             for (var i = 1; i <= 17; i++) {
-                var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+                var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo; //numero aleatorio - não decimal
 
                 var idBola = 'bolinha' + i;
                 var bola = document.getElementById(idBola);
@@ -508,7 +510,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
-                bola.style.opacity = '0.7';
+                bola.style.opacity = '0.9';
             }
 
 
@@ -557,7 +559,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
-                bola.style.opacity = '0.7';
+                bola.style.opacity = '0.9';
 
             }
 
@@ -608,7 +610,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
-                bola.style.opacity = '0.7';
+                bola.style.opacity = '0.9';
 
             }
 
@@ -658,7 +660,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
-                bola.style.opacity = '0.7';
+                bola.style.opacity = '0.9';
 
             }
 
@@ -708,7 +710,7 @@
                 bola.style.width = '25px';
                 bola.style.height = '25px';
                 bola.style.borderRadius = '100%'
-                bola.style.opacity = '0.7';
+                bola.style.opacity = '0.9';
 
             }
 
