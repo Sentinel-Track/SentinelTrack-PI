@@ -67,7 +67,7 @@
                    
                    
                 </div>
-                <button class="btnEntrar">Cadastre-se</button>
+                <button class="btnEntrar" onclick='cadastrar()'>Cadastre-se</button>
             </div>
             
         </div>
@@ -81,3 +81,10 @@
 </body>
 
 </html>
+<script>
+    function cadastrar() {
+        var nome = document.getElementById("nome").value;
+        alert('O usuário ' + nome + ' foi cadastrado com sucesso!');
+        window.location.href = "login.html";
+    }
+</script>
