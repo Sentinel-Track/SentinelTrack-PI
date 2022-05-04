@@ -257,6 +257,10 @@ button {
     height: 70px;
 }
 
+.msg_validacao{
+    text-align: center;
+}
+
 /* Fim login */
 
 /* Começo Simulador */
