@@ -215,7 +215,7 @@ body {
 .msg_validacao {
     color: red;
     font-size: 60%;
-
+    text-align: center;
 }
 
 .label {
@@ -255,10 +255,6 @@ button {
 
 .login img {
     height: 70px;
-}
-
-.msg_validacao{
-    text-align: center;
 }
 
 /* Fim login */
