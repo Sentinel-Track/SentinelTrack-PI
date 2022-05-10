@@ -41,31 +41,19 @@ create table tbUsuario
 
 create table tbSensor
 	(
-    fkEmpresa int,
-    foreign key(fkEmpresa) references tbEmpresa(idEmpresa),
-    idSensor int,
-    primary key(fkEmpresa, idSensor),
-    localSensor varchar(100)
-    )
-;
-
-create table tbSensor
-	(
     idSensor int primary key auto_increment,
-    localSensor varchar(100)
+    localSensor varchar(100),
     fkEmpresa int,
-    foreign key(fkEmpresa) references tbEmpresa(idEmpresa),
-    )
-;
+    foreign key(fkEmpresa) references tbEmpresa(idEmpresa)
+    );
 
 create table tbMovimentacao
 	(
     idMovimentacao int primary key auto_increment,
-    dataHora datetime
+    dataHora datetime,
     fkSensor int,
-    foreign key(fkSensor) references tbSensor(idSensor),
-    )
-;
+    foreign key(fkSensor) references tbSensor(idSensor)
+    );
 
 insert into tbEndereco
 	(cep, logradouro, numero, bairro, cidade, complemento)
@@ -76,8 +64,7 @@ values
 	('04707000', 'Avenida Roque Petroni Júnior', '1089', 'Santo Amaro', 'São Paulo', ''),
 	('02307120', 'R. Paulo de Faria', '222', 'Tucuruvi', 'São Paulo', ''),
 	('04795000', 'Av. das Nações Unidas', '22540', 'Jurubatuba', 'São Paulo', ''),
-	('05777001', 'Estr. do Campo Limpo', '459', 'Vila Prel', 'São Paulo', '')
-;
+	('05777001', 'Estr. do Campo Limpo', '459', 'Vila Prel', 'São Paulo', '');
 
 insert into tbEmpresa
 	(nomeLocal, cnpj, email, telefone_c, telefone_f, fkEndereco)
@@ -88,8 +75,7 @@ values
 	('Shopping Center Morumbi', '00360924000107', 'morunbicenter@gmail.com', '1191913620', '1148111322', 4),
 	('Shopping Metrô Tucuruvi', '87585220000102', 'tucuruvishopping@gmail.com', '11968465320', '1148412522', 5),
 	('Shopping Sp Market', '12527511000145', 'spmarket@gmail.com', '11961935255', '1148545422', 6),
-	('Shopping Campo Limpo', '93157149000160', 'campolimpo@gmail.com', '11961935870', '1148741421', 7)
-;
+	('Shopping Campo Limpo', '93157149000160', 'campolimpo@gmail.com', '11961935870', '1148741421', 7);
 
 insert into tbUsuario
 	(nome, cargo, login, senha, fkEmpresa)
