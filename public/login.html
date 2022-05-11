@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Sentinel Track</title>
-
+    <script src="./js/funcoes.js"></script>
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css">
 </head>
@@ -55,11 +55,13 @@
                     <input type="password" id="ipt_senha" placeholder="********">
                     <span class="msg_validacao" id="msgSenha"></span>
                 </div>
-
+                <div id="div_aguardar" style="margin-top: 10px; display: none;" >
+                    <img style=" width: 42px; height: 40px;" src="./imagens/carregamento.gif"  alt="">
+                </div>
                 <div class="label">
-                   <span style="font-size: 18px;">Não possui cadastro?</span>  <a href="cadastro.html"> Clique aqui</a>
                     <button class="btnEntrar" onclick="entrar()">Entrar</button>
                 </div>
+               
             </div>
         </div>
     </div>
@@ -113,12 +115,13 @@
 
     function entrar() {
         validarEmail();
+        aguardar();
         var senhaVar = ipt_senha.value;
         var charMin = senhaVar.length < 6;
         var emailVar = ipt_email.value;
       
         if(!charMin && emailValido){
-        
+            
             console.log("FORM LOGIN: ", emailVar);
             console.log("FORM SENHA: ", senhaVar);
 
@@ -146,6 +149,7 @@
                         sessionStorage.ID_USUARIO = json.id;
 
                         setTimeout(function () {
+                            finalizarAguardar();
                             window.location = "./dashboard.html";
                         }, 1000); // apenas para exibir o loading
 
