@@ -10,6 +10,7 @@ create table tbEndereco
     numero varchar(10),
     bairro varchar(100),
     cidade varchar(100),
+	UF char(2),
     complemento varchar(60)    
     )
 ;
@@ -31,8 +32,9 @@ create table tbUsuario
 	(
     idUsuario int primary key auto_increment,
     nome varchar(100),
+	sobrenome varchar(100),
     cargo varchar(100),
-    login varchar(100) unique,
+    usuario varchar(100) unique,
     senha varchar(100),
     fkEmpresa int,
     foreign key(fkEmpresa) references tbEmpresa(idEmpresa)
@@ -45,7 +47,8 @@ create table tbSensor
     localSensor varchar(100),
     fkEmpresa int,
     foreign key(fkEmpresa) references tbEmpresa(idEmpresa)
-    );
+    )
+;
 
 create table tbMovimentacao
 	(
@@ -53,18 +56,19 @@ create table tbMovimentacao
     dataHora datetime,
     fkSensor int,
     foreign key(fkSensor) references tbSensor(idSensor)
-    );
+    )
+;
 
 insert into tbEndereco
-	(cep, logradouro, numero, bairro, cidade, complemento)
+	(cep, logradouro, numero, bairro, cidade, UF, complemento)
 values
-	('09531190', 'Alameda Terracota', '545', 'Espaço Cerâmica', 'São Caetano do Sul', ''),
-	('01310928', 'Avenida Paulista', '2064', 'Cerqueira César', 'São Paulo', ''),
-	('09080510', 'Av. Industrial', '600', 'Centro', 'Santo André', ''),
-	('04707000', 'Avenida Roque Petroni Júnior', '1089', 'Santo Amaro', 'São Paulo', ''),
-	('02307120', 'R. Paulo de Faria', '222', 'Tucuruvi', 'São Paulo', ''),
-	('04795000', 'Av. das Nações Unidas', '22540', 'Jurubatuba', 'São Paulo', ''),
-	('05777001', 'Estr. do Campo Limpo', '459', 'Vila Prel', 'São Paulo', '');
+	('09531190', 'Alameda Terracota', '545', 'Espaço Cerâmica', 'SP', 'São Caetano do Sul', ''),
+	('01310928', 'Avenida Paulista', '2064', 'Cerqueira César', 'SP', 'São Paulo', ''),
+	('09080510', 'Av. Industrial', '600', 'Centro', 'Santo André', 'SP', ''),
+	('04707000', 'Avenida Roque Petroni Júnior', '1089', 'Santo Amaro', 'SP', 'São Paulo', ''),
+	('02307120', 'R. Paulo de Faria', '222', 'Tucuruvi', 'São Paulo', 'SP', ''),
+	('04795000', 'Av. das Nações Unidas', '22540', 'Jurubatuba', 'São Paulo', 'SP', ''),
+	('05777001', 'Estr. do Campo Limpo', '459', 'Vila Prel', 'São Paulo', 'SP', '');
 
 insert into tbEmpresa
 	(nomeLocal, cnpj, email, telefone_c, telefone_f, fkEndereco)
@@ -78,25 +82,25 @@ values
 	('Shopping Campo Limpo', '93157149000160', 'campolimpo@gmail.com', '11961935870', '1148741421', 7);
 
 insert into tbUsuario
-	(nome, cargo, login, senha, fkEmpresa)
+	(nome, sobrenome, cargo, login, senha, fkEmpresa)
 values
-	('Ana Julia', 'Suporte TI', 'anajulia', 'dasd', 1),
-	('Pedro Augusto', 'Gerente de infra', 'pedoraugusto', '15615', 1),
+	('Ana', 'Julia', 'Suporte TI', 'anajulia', 'dasd', 1),
+	('Pedro', 'Augusto', 'Gerente de infra', 'pedoraugusto', '15615', 1),
     
-	('Adalberto Marthins', 'RH', 'adalbertomarthins', 'senha', 2),
-	('Enando Golçaves', 'Suporte TI', 'enandogoncalves', '8461', 2),
+	('Adalberto', 'Marthins', 'RH', 'adalbertomarthins', 'senha', 2),
+	('Enando', 'Golçaves', 'Suporte TI', 'enandogoncalves', '8461', 2),
     
-	('Gustavo Almeida', 'Gerente de infra', 'gustavoalmeida', '3152', 3),
-	('Bruno Piaza', 'Suporte TI', 'brunopiaza', '565646', 3),
-	('Renato Jesus', 'Suporte TI', 'renatojesus', '56516', 3),
+	('Gustavo', 'Almeida', 'Gerente de infra', 'gustavoalmeida', '3152', 3),
+	('Bruno', 'Piaza', 'Suporte TI', 'brunopiaza', '565646', 3),
+	('Renato', 'Jesus', 'Suporte TI', 'renatojesus', '56516', 3),
     
-	('Michel Thomas', 'Gerente de infra', 'michelthomas', '32315', 4),
-	('Jair Alves', 'RH', 'jairalves', 'hdh516', 4),
+	('Michel', 'Thomas', 'Gerente de infra', 'michelthomas', '32315', 4),
+	('Jair', 'Alves', 'RH', 'jairalves', 'hdh516', 4),
     
-	('Luis Vendovello', 'RH', 'luisvendovello', '1r166', 5),
-	('Gabriel Salviati', 'Gerente de infra', 'gabrielsalviati', 'r161', 5),
+	('Luis', 'Vendovello', 'RH', 'luisvendovello', '1r166', 5),
+	('Gabriel', 'Salviati', 'Gerente de infra', 'gabrielsalviati', 'r161', 5),
     
-	('Rafael Calegari', 'RH', 'rafaelcalegari', 'r5165', 6)
+	('Rafael', 'Calegari', 'RH', 'rafaelcalegari', 'r5165', 6)
 ;
 
 insert into tbSensor
