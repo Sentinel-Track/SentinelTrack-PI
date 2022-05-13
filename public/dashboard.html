@@ -26,24 +26,34 @@
 
     <div class="dash">
         <div class="fold">
-            <h3 class="texts">Dashboard <br> Sentinel Track</h3>
-            <button class="botao" id="btnDiario" onclick="mostrarDiario()">
-                Diário
-            </button>
-            <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
-                Semanal
-            </button>
-            <button class="botao" id="btnMensal" onclick="mostrarMensal()">
-                Mensal
-            </button>
-            <button class="botao" id="btnAnual" onclick="mostrarAnual()">
-                Anual
-            </button>
-            <button class="botao" id="btnHora" onclick="mostrarHora()">
-                Hora
-            </button>
-            <div class="voltar">
-                <a href="index.html">Voltar</a>
+
+            <div class="titulo_nav">
+                <img src="assets/icon/Logo_Temporaria.png" height="50px">
+                <h3 class="texts">Dashboard</h3>
+            </div>
+            <div class="usuario_nav">
+                <span class="texts">User</span>
+            </div>
+            <div class="botoes_nav">
+                <button class="botao" id="btnHora" onclick="mostrarHora()">
+                    Hora
+                </button>
+                <button class="botao" id="btnDiario" onclick="mostrarDiario()">
+                    Diário
+                </button>
+                <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
+                    Semanal
+                </button>
+                <button class="botao" id="btnMensal" onclick="mostrarMensal()">
+                    Mensal
+                </button>
+                <button class="botao" id="btnAnual" onclick="mostrarAnual()">
+                    Anual
+                </button>
+            </div>
+            <div class="opcoes_nav">
+                <a href="configuracoes.html">Configurações</a>
+                <a href="index.html">Sair</a>
             </div>
         </div>
         <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
@@ -54,18 +64,18 @@
                 <div class="kpi" style="border-color: #00AF54">
                     <span class="nmr">125M</span>
                     <span class="title">Último mês</span>
-                    <span  style="color: #00AF54" class="title">Boa</span>
+                    <span style="color: #00AF54" class="title">Boa</span>
 
                 </div>
                 <div class="kpi">
                     <span class="nmr">19M</span>
                     <span class="title">Última semana</span>
-                    <span  style="color: #D7263D" class="title">Altíssima</span>
+                    <span style="color: #D7263D" class="title">Altíssima</span>
                 </div>
                 <div class="kpi" style="border-color: #9AC1E8">
                     <span class="nmr">120K</span>
                     <span class="title">Último dia</span>
-                    <span  style="color: #9AC1E8" class="title">Baixíssima</span>
+                    <span style="color: #9AC1E8" class="title">Baixíssima</span>
                 </div>
             </div>
             <div class="escolheGrafico">
@@ -469,7 +479,7 @@
         if (tipoGrafico == "semanal") {
             calorDiario.style.display = "block";
             semanal.style.display = "none";
-           
+
             //metricas
             var minimo = 6000000;
             var quartil1 = 6650000;
@@ -477,9 +487,10 @@
             var mediana = 9470000;
             var quartil3 = 11000000;
             var maximo = 19290000;
-            
+
             for (var i = 1; i <= 17; i++) {
-                var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo; //numero aleatorio - não decimal
+                var numero = Math.floor(Math.random() * (maximo - minimo + 1)) +
+                    minimo; //numero aleatorio - não decimal
 
                 var idBola = 'bolinha' + i;
                 var bola = document.getElementById(idBola);

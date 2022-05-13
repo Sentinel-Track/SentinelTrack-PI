@@ -321,7 +321,7 @@ button {
 }
 
 .grafico {
-    margin-left: 240px;
+    margin-left: 250px;
     width: 100%;
     display: none;
     justify-content: center;
@@ -338,7 +338,7 @@ button {
 
 .fold {
     background-color: #082845;
-    width: 240px;
+    width: 250px;
     height: 100%;
     border-top-right-radius: 20px;
     display: flex;
@@ -346,12 +346,21 @@ button {
     justify-content: start;
     align-items: center;
     position: fixed;
-
 }
 
 .fotochart {
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    margin-left: 250px;
+    width: 100%;
+}
+
+.titulo_nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 12vh;
+    width: 95%;
 }
 
 .texts {
@@ -360,11 +369,27 @@ button {
     margin: 0;
     text-align: center;
     margin-top: 15px;
-    margin-bottom: 35px;
+    margin-bottom: 15px;
 }
 
-.fold button {
+.usuario_nav{
+    height: 8vh;
     width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: #D7263D 2px solid;
+}
+
+.botoes_nav{
+    width: 90%;
+    height: 68vh;
+    border-bottom: #D7263D 2px solid;
+    border-top: #D7263D 2px solid;
+}
+
+.botoes_nav button {
+    width: 100%;
     height: 50px;
     font-size: 20px;
     text-align: left;
@@ -374,16 +399,19 @@ button {
     background-color: transparent;
 }
 
-.fold .voltar {
-    position: absolute;
-    bottom: 20px;
-    left: 55%;
+.opcoes_nav {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 80%;
+    height: 12vh;
 }
 
-.voltar a {
-    font-size: 25px;
+.opcoes_nav a {
+    font-size: 18px;
     text-decoration: none;
     color: white;
+    width: fit-content;
 }
 
 .botao {
