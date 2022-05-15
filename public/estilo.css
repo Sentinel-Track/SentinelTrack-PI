@@ -313,11 +313,14 @@ button {
 /* Fim Simulador */
 
 /* Começo da Dashboard */
+
 .dash {
     display: flex;
     background-color: #021b33;
     align-items: center;
     height: 100vh;
+    flex-direction: row;
+    width: 100%;
 }
 
 .grafico {
@@ -334,6 +337,11 @@ button {
     height: 50vh;
     width: 50vw;
     display: none;
+}
+
+.fold_mask {
+    width: 250px;
+    height: 100%;
 }
 
 .fold {
@@ -372,7 +380,7 @@ button {
     margin-bottom: 15px;
 }
 
-.usuario_nav{
+.usuario_nav {
     height: 8vh;
     width: 90%;
     display: flex;
@@ -381,7 +389,7 @@ button {
     border-top: #D7263D 2px solid;
 }
 
-.botoes_nav{
+.botoes_nav {
     width: 90%;
     height: 68vh;
     border-bottom: #D7263D 2px solid;
@@ -456,21 +464,6 @@ button {
     text-align: center;
 }
 
-/* Começo footerbar */
-
-.footerbar {
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    color: white;
-    border-top: 3px solid #D7263D;
-    border-top-right-radius: 300px;
-    background-color: #010e1a;
-
-}
-
-/* Fim footerbar */
-
 .btnEntrar {
     cursor: pointer;
     width: 200px;
@@ -484,3 +477,201 @@ button {
     width: 40%;
     margin-bottom: 20px;
 }
+
+/* Fim Dashboard */
+
+/* Começo Configurações */
+
+#botaoselecionado {
+    border-bottom: solid 3px #D71B22;
+    font-weight: bold;
+    background-color: #023f79;
+}
+
+.corpo_config {
+    margin-left: 280px;
+    height: 95%;
+    color: white;
+}
+
+.tab_info {
+    margin-left: 30px;
+    font-size: 25px;
+}
+
+.tab_info td {
+    width: 320px;
+}
+
+.tab_info input {
+    background-color: #023f79;
+    font-size: 25px;
+    width: 300px;
+}
+
+.botao_config {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.botao_config button {
+    font-size: 20px;
+    color: black;
+    background-color: #8fabe7;
+    border-radius: 10px;
+    cursor: pointer;
+    width: fit-content;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.senha {
+    display: flex;
+    align-items: center;
+}
+
+.senha button {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    margin-left: -35px;
+    margin-top: 10px;
+    width: fit-content;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.tab_info select {
+    background-color: #023f79;
+    font-size: 25px;
+    width: 99%;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    padding: 7px;
+    margin-top: 5px;
+}
+
+.funcionario {
+    height: 92%;
+    color: white;
+    display: flex;
+    width: 900px;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.lista {
+    background-color: #8fabe7;
+    border-radius: 5px;
+    color: black;
+}
+
+.lista ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lista_head li {
+    width: 225px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.lista_item {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #c6c7ff;
+    border-radius: 0px 0px 5px 5px;
+    flex-direction: row;
+}
+
+.lista_campo {
+    display: flex;
+    margin-left: 10px;
+}
+
+.lista_campo li {
+    width: 225px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.botoes_lista {
+    display: flex;
+    width: 215px;
+    justify-content: space-evenly;
+}
+
+.botoes_lista button {
+    border: none;
+    margin-top: 0;
+    font-size: 18px;
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.excluir {
+    background-color: #D7263D;
+}
+
+.busca {
+    display: flex;
+    flex-direction: row;
+}
+
+.busca button {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    margin-left: -35px;
+    margin-top: 5px;
+    width: fit-content;
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.busca input {
+    background-color: transparent;
+    padding: 10px;
+    margin: 0;
+    margin-top: 0;
+    width: fit-content;
+    cursor: pointer;
+    border-radius: 0;
+    color: black;
+}
+
+.lista_head {
+    font-size: 20px;
+}
+
+.lista_head li {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Fim Configurações */
+
+/* Começo footerbar */
+
+.footerbar {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    color: white;
+    border-top: 3px solid #D7263D;
+    border-top-right-radius: 300px;
+    background-color: #010e1a;
+}
+
+/* Fim footerbar */
