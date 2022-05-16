@@ -77,24 +77,17 @@
                     <td><input type="text"></td>
                 </tr>
                 <tr>
-                    <td>Senha Atual:</td>
+                    <td>Senha:</td>
                     <td class="senha">
-                        <input type="password" id="atual_senha">
-                        <button onclick="senha()"><img src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nova Senha:</td>
-                    <td class="senha">
-                        <input type="password" id="nova_senha">
-                        <button onclick="senha()"><img src="imagens/olho_d.png" height="30px"></button>
+                        <input id="b1" type="password" id="senha">
+                        <button onclick="mostrarSenha(1)"><img id="i1" src="imagens/olho_d.png" height="30px"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>Confirmar Senha:</td>
                     <td class="senha">
-                        <input type="password" id="confirmar_senha">
-                        <button onclick="senha()"><img src="imagens/olho_d.png" height="30px"></button>
+                        <input id="b2" type="password" id="confirmar_senha">
+                        <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
                     </td>
                 </tr>
             </table>
@@ -111,9 +104,31 @@
 
 <script>
 
-    function senha() {
-    
+    function mostrarSenha(campo) {
 
+        if (campo == 1) {
+
+            if (b1.type == 'password') {
+
+                b1.type = 'text';
+                i1.src = 'imagens/olho_a.png';
+            } else {
+
+                b1.type = 'password';
+                i1.src = 'imagens/olho_d.png';
+            }
+        } else if (campo == 2) {
+
+            if (b2.type == 'password') {
+
+                b2.type = 'text';
+                i2.src = 'imagens/olho_a.png';
+            } else {
+
+                b2.type = 'password';
+                i2.src = 'imagens/olho_d.png';
+            }
+        }
     }
 
 </script>
