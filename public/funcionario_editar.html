@@ -1,112 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<style>
-    #bolinha {
-        height: 20px;
-        width: 20px;
-        background-color: red;
-        cursor: pointer;
-        border-radius: 100%;
-    }
-</style>
+    <style>
+        #bolinha {
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            cursor: pointer;
+            border-radius: 100%;
+        }
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
-    <link rel="stylesheet" href="estilo.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </style>
 
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Dashboard</title>
+        <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png"/>
+        <link rel="stylesheet" href="estilo.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="./js/funcoes.js"></script>
 
-</head>
+    </head>
 
-<body>
+    <body onload="validarSessao()">
 
-    <div class="dash">
-        <div class="fold">
-            <div class="titulo_nav">
-                <img src="assets/icon/Logo_Temporaria.png" height="50px">
-                <h3 class="texts">Configurações</h3>
+        <div class="dash">
+            <div class="fold">
+                <div class="titulo_nav">
+                    <img src="assets/icon/Logo_Temporaria.png" height="50px">
+                    <h3 class="texts">Configurações</h3>
+                </div>
+                <div class="usuario_nav">
+                    <span class="texts" id="b_usuario"></span>
+                </div>
+                <div class="botoes_nav">
+                    <a href="usuario.html">
+                        <button class="botao">
+                            Usuário
+                        </button>
+                    </a>
+                    <a href="empresa.html" id="empresaA">
+                        <button class="botao">
+                            Empresa
+                        </button>
+                    </a>
+                    <a href="funcionario.html" id="funcionarioA">
+                        <button class="botao" id="botaoselecionado">
+                            Funcionarios
+                        </button>
+                    </a>
+                </div>
+                <div class="opcoes_nav">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="index.html">Sair</a>
+                </div>
             </div>
-            <div class="usuario_nav">
-                <span class="texts">User</span>
+
+            <div class="corpo_config">
+                <h1>Meu Usuário:</h1>
+
+                <table class="tab_info">
+                    <tr>
+                        <td>Nome:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Sobrenome:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Cargo:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Usuário:</td>
+                        <td><input type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Senha Atual:</td>
+                        <td class="senha">
+                            <input id="b1" type="password" id="atual_senha">
+                            <button onclick="mostrarSenha(1)"><img id="i1" src="imagens/olho_d.png" height="30px"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nova Senha:</td>
+                        <td class="senha">
+                            <input id="b2" type="password" id="nova_senha">
+                            <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Confirmar Senha:</td>
+                        <td class="senha">
+                            <input id="b3" type="password" id="confirmar_senha">
+                            <button onclick="mostrarSenha(3)"><img id="i3" src="imagens/olho_d.png" height="30px"></button>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <div class="botao_config">
+                    <a href="funcionario.html">
+                        <button>Salvar Alterações</button>
+                    </a>
+                </div>
             </div>
-            <div class="botoes_nav">
-                <a href="usuario.html">
-                    <button class="botao">
-                        Usuário
-                    </button>
-                </a>
-                <a href="empresa.html">
-                    <button class="botao">
-                        Empresa
-                    </button>
-                </a>
-                <a href="funcionario.html">
-                    <button class="botao" id="botaoselecionado">
-                        Funcionarios
-                    </button>
-                </a>
-            </div>
-            <div class="opcoes_nav">
-                <a href="dashboard.html">Dashboard</a>
-                <a href="index.html">Sair</a>
-            </div>
+
         </div>
-
-        <div class="corpo_config">
-            <h1>Meu Usuário:</h1>
-
-            <table class="tab_info">
-                <tr>
-                    <td>Nome:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Sobrenome:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Cargo:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Usuário:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Senha Atual:</td>
-                    <td class="senha">
-                        <input id="b1" type="password" id="atual_senha">
-                        <button onclick="mostrarSenha(1)"><img id="i1" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nova Senha:</td>
-                    <td class="senha">
-                        <input id="b2" type="password" id="nova_senha">
-                        <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Confirmar Senha:</td>
-                    <td class="senha">
-                        <input id="b3" type="password" id="confirmar_senha">
-                        <button onclick="mostrarSenha(3)"><img id="i3" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-
-            </table>
-
-            <div class="botao_config">
-                <a href="funcionario.html"><button>Salvar Alterações</button></a>
-            </div>
-        </div>
-
-    </div>
-</body>
+    </body>
 
 </html>
 <script>

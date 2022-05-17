@@ -12,20 +12,29 @@ function listar() {
 function entrar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `
-        SELECT * FROM tbUsuario WHERE login = '${email}' AND senha = '${senha}';
+        SELECT * FROM tbUsuario WHERE usuario = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrar(nome, email, senha, cpf, celular) {
+function cadastrar(nome, sobrenome, cargo, usuario, senha,fkEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha,cpf);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO tbUusuario (nome, email, senha, cpf, celular) VALUES ('${nome}', '${email}', '${senha}', '${cpf}', '${celular}');
+        INSERT INTO tbUsuario (nome, sobrenome, cargo , usuario, senha, fkEmpresa) VALUES ('${nome}', '${sobrenome}', '${cargo}', '${usuario}', '${senha}','${fkEmpresa}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function alterar(nome, sobrenome, cargo, email, senha){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar():", nome, sobrenome, cargo, email, senha);
+    var instrucao = `
+        UPDATE tbUsuario SET nome = '${nome}', sobrenome = '${sobrenome}', cargo = '${cargo}', usuario = '${email}', senha = '${senha}' WHERE usuario = '${email}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -35,4 +44,5 @@ module.exports = {
     entrar,
     cadastrar,
     listar,
+    alterar
 };

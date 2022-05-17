@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Sentinel Track</title>
-    <script src="./js/funcoes.js"></script>
+    <script src="./js/login.js"></script>
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css">
 </head>
@@ -112,75 +112,10 @@
             msgEmail.innerHTML = `Email inválido! É necessário que haja @ `
         }
     }
-
+/*
     function entrar() {
         validarEmail();
         aguardar();
-        var senhaVar = ipt_senha.value;
-        var charMin = senhaVar.length < 6;
-        var emailVar = ipt_email.value;
-      
-        if(!charMin && emailValido){
-            
-            console.log("FORM LOGIN: ", emailVar);
-            console.log("FORM SENHA: ", senhaVar);
-
-            fetch("/usuarios/autenticar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
-                })
-            }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!")
-
-                if (resposta.ok) {
-                    console.log(resposta);
-
-                    resposta.json().then(json => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.ID_USUARIO = json.id;
-
-                        setTimeout(function () {
-                            finalizarAguardar();
-                            window.location = "./dashboard.html";
-                        }, 1000); // apenas para exibir o loading
-
-                    });
-
-                } else {
-
-                    console.log("Houve um erro ao tentar realizar o login!");
-
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                        finalizarAguardar(texto);
-                    });
-                }
-
-            }).catch(function (erro) {
-                console.log(erro);
-            })
-
-            return false;       
-            
-            alert('Login realizado com Sucesso!')
-            window.location = './dashboard.html'
-        
-        
-        }else if(charMin){
-        msgSenha.innerHTML = `A senha não tem o tamanho mínimo <br> (6 caracteres)`
-        }else {
-            msgSenha.innerHTML = `Senha incorreta`
-        }
-
-
-    }
+       
+    }*/
 </script>

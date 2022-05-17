@@ -18,11 +18,11 @@
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="./js/funcoes.js"></script>
 
 </head>
 
-<body>
+<body onload="dadosUsuario()">
 
     <div class="dash">
         <div class="fold">
@@ -31,7 +31,7 @@
                 <h3 class="texts">Configurações</h3>
             </div>
             <div class="usuario_nav">
-                <span class="texts">User</span>
+                <span class="texts" id="b_usuario"></span>
             </div>
             <div class="botoes_nav">
                 <a href="usuario.html">
@@ -39,12 +39,12 @@
                         Usuário
                     </button>
                 </a>
-                <a href="empresa.html">
-                    <button class="botao">
+                <a href="empresa.html" id="empresaA">
+                    <button class="botao" >
                         Empresa
                     </button>
                 </a>
-                <a href="funcionario.html">
+                <a href="funcionario.html" id="funcionarioA">
                     <button class="botao">
                         Funcionarios
                     </button>
@@ -62,31 +62,31 @@
             <table class="tab_info">
                 <tr>
                     <td>Nome:</td>
-                    <td><input type="text" value="nome"></td>
+                    <td><input type="text" id="nomeUsuario" value="nome"></td>
                 </tr>
                 <tr>
                     <td>Sobrenome:</td>
-                    <td><input type="text" value="sorenome"></td>
+                    <td><input type="text"  id="sobrenomeUsuario" value="sorenome"></td>
                 </tr>
                 <tr>
                     <td>Cargo:</td>
-                    <td><input type="text" value="administrador"></td>
+                    <td><input type="text" id="cargoUsuario" value="administrador"></td>
                 </tr>
                 <tr>
                     <td>Usuário:</td>
-                    <td><input type="text" value="usuario"></td>
+                    <td><input type="text" id="usuario" value="usuario"></td>
                 </tr>
                 <tr>
                     <td>Senha Atual:</td>
                     <td class="senha">
-                        <input id="b1" type="password" id="atual_senha">
+                        <input  type="password"  >
                         <button onclick="mostrarSenha(1)"><img id="i1" src="imagens/olho_d.png" height="30px"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>Nova Senha:</td>
                     <td class="senha">
-                        <input id="b2" type="password" id="nova_senha">
+                        <input  type="password" id="nova_senha">
                         <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
                     </td>
                 </tr>
@@ -100,7 +100,7 @@
             </table>
 
             <div class="botao_config">
-                <a href="usuario.html"><button>Salvar Alterações</button></a>
+               <button onclick="salvarAlteracoes()">Salvar Alterações</button>
             </div>
         </div>
 
@@ -110,6 +110,56 @@
 </html>
 
 <script>
+    function salvarAlteracoes(){
+
+        fetch("/usuarios/alterar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nomeUsuario.value,
+                sobrenomeServer: sobrenomeUsuario.value,
+                cargoServer: cargoUsuario.value,
+                emailServer: usuario.value,
+                senhaServer: nova_senha.value
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO alterar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/cards.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
 
     function mostrarSenha(campo) {
 

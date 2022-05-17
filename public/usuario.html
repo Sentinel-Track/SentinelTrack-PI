@@ -18,11 +18,11 @@
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="./js/funcoes.js"></script>
 
 </head>
 
-<body>
+<body onload="dadosUsuario()">
 
     <div class="dash">
         <div class="fold">
@@ -31,7 +31,7 @@
                 <h3 class="texts">Configurações</h3>
             </div>
             <div class="usuario_nav">
-                <span class="texts">User</span>
+                <span class="texts" id="b_usuario"></span>
             </div>
             <div class="botoes_nav">
                 <a href="usuario.html">
@@ -39,12 +39,12 @@
                         Usuário
                     </button>
                 </a>
-                <a href="empresa.html">
-                    <button class="botao">
+                <a href="empresa.html" id="empresaA">
+                    <button class="botao" >
                         Empresa
                     </button>
                 </a>
-                <a href="funcionario.html">
+                <a href="funcionario.html" id="funcionarioA">
                     <button class="botao">
                         Funcionarios
                     </button>
@@ -62,23 +62,23 @@
             <table class="tab_info">
                 <tr>
                     <td>Nome:</td>
-                    <td><input type="text" value="nome" disabled></td>
+                    <td><input type="text" id="nomeUsuario"  value="nome" disabled></td>
                 </tr>
                 <tr>
                     <td>Sobrenome:</td>
-                    <td><input type="text" value="sorenome" disabled></td>
+                    <td><input type="text" value="sorenome" id="sobrenomeUsuario" disabled></td>
                 </tr>
                 <tr>
                     <td>Cargo:</td>
-                    <td><input type="text" value="administrador" disabled></td>
+                    <td><input type="text" value="administrador" id="cargoUsuario" disabled></td>
                 </tr>
                 <tr>
                     <td>Usuário:</td>
-                    <td><input type="text" value="usuario" disabled></td>
+                    <td><input type="text" value="usuario" id="usuario" disabled></td>
                 </tr>
                 <tr>
                     <td>Senha:</td>
-                    <td><input type="password" value="123456" disabled></td>
+                    <td><input type="password" value="123456" id="senhaUsuario" disabled></td>
                 </tr>
             </table>
 

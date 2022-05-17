@@ -18,11 +18,11 @@
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="./js/funcoes.js"></script>
 
 </head>
 
-<body>
+<body onload="validarSessao()">
 
     <div class="dash">
         <div class="fold_mask">
@@ -31,21 +31,21 @@
                     <img src="assets/icon/Logo_Temporaria.png" height="50px">
                     <h3 class="texts">Configurações</h3>
                 </div>
-                <div class="usuario_nav">
-                    <span class="texts">User</span>
-                </div>
+                 <div class="usuario_nav">
+                <span class="texts" id="b_usuario"></span>
+            </div>
                 <div class="botoes_nav">
                     <a href="usuario.html">
                         <button class="botao">
                             Usuário
                         </button>
                     </a>
-                    <a href="empresa.html">
-                        <button class="botao">
+                    <a href="empresa.html" id="empresaA">
+                        <button class="botao" >
                             Empresa
                         </button>
                     </a>
-                    <a href="funcionario.html">
+                    <a href="funcionario.html" id="funcionarioA">
                         <button class="botao" id="botaoselecionado">
                             Funcionarios
                         </button>

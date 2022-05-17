@@ -15,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <script src="./js/funcoes.js"></script>
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,7 +23,7 @@
 
 </head>
 
-<body>
+<body onload="validarSessao()">
 
     <div class="dash">
         <div class="fold">
@@ -31,7 +32,7 @@
                 <h3 class="texts">Configurações</h3>
             </div>
             <div class="usuario_nav">
-                <span class="texts">User</span>
+                <span class="texts" id="b_usuario"></span>
             </div>
             <div class="botoes_nav">
                 <a href="usuario.html">
@@ -39,12 +40,12 @@
                         Usuário
                     </button>
                 </a>
-                <a href="empresa.html">
+                <a href="empresa.html" id="empresaA">
                     <button class="botao" id="botaoselecionado">
                         Empresa
                     </button>
                 </a>
-                <a href="funcionario.html">
+                <a href="funcionario.html" id="funcionarioA">
                     <button class="botao">
                         Funcionarios
                     </button>
