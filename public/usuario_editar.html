@@ -131,27 +131,37 @@
     var campoSenha = nova_senha.value;
     var senhaconf = confirmar_senha.value;
     var novaSenha = "";
-    var nomeVazio = nomeUsuario.value != '';
-    var sobrenomeVazio = sobrenomeUsuario.value!= '';
-    var cargoVazio = cargoUsuario.value != '';
-    var usuarioVazio = usuario.value != '';
+    var nomeVazio = nomeUsuario.value != "";
+    var sobrenomeVazio = sobrenomeUsuario.value != "";
+    var cargoVazio = cargoUsuario.value != "";
+    var usuarioVazio = usuario.value != "";
     var valida = false;
-    if(campoSenha == ''){
+    if (campoSenha == "") {
       novaSenha = dadosUsuario.senha;
       valida = true;
-    }else if(senhaconf != campoSenha){
+    } else if (senhaconf != campoSenha) {
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "As senhas não coincidem!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return false;
+    }else if(novaSenha.length < 5){
         Swal.fire({
             title: "Erro!",
             background: "#212121",
             color: "#fff",
-            text: "As senhas não coincidem!",
+            text: "A senha deve conter no mínimo 6 caracteres!",
             icon: "error",
             confirmButtonText: "Ok",
         });
         return false;
-    }else{
-        novaSenha = campoSenha;
-        valida = true;
+    } else {
+      novaSenha = campoSenha;
+      valida = true;
     }
     if (nomeVazio && sobrenomeVazio && cargoVazio && usuarioVazio && valida) {
       fetch("/usuarios/alterar", {
@@ -160,59 +170,63 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-        id: dadosUsuario.idUsuario,
+          id: dadosUsuario.idUsuario,
           nomeServer: nomeUsuario.value,
           sobrenomeServer: sobrenomeUsuario.value,
           cargoServer: cargoUsuario.value,
           emailServer: usuario.value,
-          senhaServer: novaSenha
+          senhaServer: novaSenha,
         }),
       })
         .then(function (resposta) {
           console.log("ESTOU NO THEN DO alterar()!");
-            console.log(resposta)
+          console.log(resposta);
           if (resposta.ok) {
             console.log(resposta);
             resposta.json().then((json) => {
-             // console.log(json);
+              // console.log(json);
               console.log(JSON.stringify(json));
 
-              
-              var atualizado = {'idUsuario': 11, 'nome':nomeUsuario.value, 'sobrenome': sobrenomeUsuario.value, 'cargo': cargoUsuario.value, 'usuario': usuario.value, 'senha': novaSenha, 'fkEmpresa': dadosUsuario.fkEmpresa};
+              var atualizado = {
+                idUsuario: 11,
+                nome: nomeUsuario.value,
+                sobrenome: sobrenomeUsuario.value,
+                cargo: cargoUsuario.value,
+                usuario: usuario.value,
+                senha: novaSenha,
+                fkEmpresa: dadosUsuario.fkEmpresa,
+              };
               var nome = sessionStorage.NOME_USUARIO;
               sessionStorage.USUARIO = JSON.stringify(atualizado);
-                var sobrenome = sessionStorage.SOBRENOME_USUARIO;
-                var cargo = sessionStorage.CARGO_USUARIO;
-                var email = sessionStorage.EMAIL_USUARIO;
-                var senha = sessionStorage.SENHA_USUARIO;
-                Swal.fire({
+              var sobrenome = sessionStorage.SOBRENOME_USUARIO;
+              var cargo = sessionStorage.CARGO_USUARIO;
+              var email = sessionStorage.EMAIL_USUARIO;
+              var senha = sessionStorage.SENHA_USUARIO;
+              Swal.fire({
                 title: "Sucesso!",
                 background: "#212121",
                 color: "#fff",
                 text: "Usuário alterado com sucesso!",
                 icon: "success",
-                willClose: ()=>{
-                location.href = './usuario.html'
-                 } ,
+                willClose: () => {
+                  location.href = "./usuario.html";
+                },
                 confirmButtonText: "Ok",
-            });
-              
+              });
             });
           } else {
             Swal.fire({
-                title: "Erro!",
-                background: "#212121",
-                color: "#fff",
-                text: "Houve um erro ao tentar realizar a alteração!",
-                icon: "error",
-                confirmButtonText: "Ok",
-                
+              title: "Erro!",
+              background: "#212121",
+              color: "#fff",
+              text: "Houve um erro ao tentar realizar a alteração!",
+              icon: "error",
+              confirmButtonText: "Ok",
             });
             console.log("Houve um erro ao tentar realizar a alteração!");
 
             resposta.text().then((texto) => {
               console.error(texto);
-              
             });
           }
         })

@@ -6,16 +6,8 @@ function validarSessao() {
     console.log(usuarioSession)
     var dadosUsuario = JSON.parse(usuarioSession)
     console.log(dadosUsuario.nome)
-    var nome = sessionStorage.NOME_USUARIO;
-    var sobrenome = sessionStorage.SOBRENOME_USUARIO;
-    var cargo = sessionStorage.CARGO_USUARIO;
-    var email = sessionStorage.EMAIL_USUARIO;
-    var senha = sessionStorage.SENHA_USUARIO;
-    var empresa = sessionStorage.EMPRESA_USUARIO;
-    if (dadosUsuario.cargo != "Administrador") {
-        empresaA.style.display = "none";
-        funcionarioA.style.display = 'none'
-    }
+   
+    
     var h1LoginUsuario = document.getElementById("h1_login_usuario");
     /* nomeUsuario.value = nome;
      sobrenomeUsuario.value = sobrenome;
@@ -43,7 +35,8 @@ function dadosUsuario() {
     
     if (dadosUsuario.cargo != "Administrador") {
         empresaA.style.display = "none";
-        funcionarioA.style.display = 'none'
+        funcionarioA.style.display = 'none';
+        document.getElementById('cargoUsuario').setAttribute('disabled', 'disabled');
     }
     var h1LoginUsuario = document.getElementById("h1_login_usuario");
     nomeUsuario.value = dadosUsuario.nome;

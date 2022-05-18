@@ -33,16 +33,16 @@ function executar(instrucao) {
                 return sql.query(instrucao);
             }).then(function (resultados) {
                 console.log(resultados);
-                if(resultados.recordset == undefined){
-                    if(resultados.rowsAffected == 1) {
-                    resolve(resultados.rowsAffected)
-                    }else{
+                if (resultados.recordset == undefined) {
+                    if (resultados.rowsAffected == 1) {
+                        resolve(resultados.rowsAffected)
+                    } else {
                         resolve(resultados.recordset)
                     }
 
                 }
-               else resolve(resultados.recordset);
-                
+                else resolve(resultados.recordset);
+
             }).catch(function (erro) {
                 reject(erro);
                 console.log('ERRO: ', erro);
