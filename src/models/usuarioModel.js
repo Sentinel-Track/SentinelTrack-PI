@@ -31,10 +31,11 @@ function cadastrar(nome, sobrenome, cargo, usuario, senha,fkEmpresa) {
     return database.executar(instrucao);
 }
 
-function alterar(nome, sobrenome, cargo, email, senha){
+function alterar(nome, sobrenome, cargo, email, senha,id){
+    //todo - cripto senha
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar():", nome, sobrenome, cargo, email, senha);
     var instrucao = `
-        UPDATE tbUsuario SET nome = '${nome}', sobrenome = '${sobrenome}', cargo = '${cargo}', usuario = '${email}', senha = '${senha}' WHERE usuario = '${email}';
+        UPDATE tbUsuario SET nome = '${nome}', sobrenome = '${sobrenome}', cargo = '${cargo}', usuario = '${email}', senha = '${senha}' WHERE idUsuario = '${id}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

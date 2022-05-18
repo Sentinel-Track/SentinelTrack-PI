@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<style>
+  <style>
     #bolinha {
-        height: 20px;
-        width: 20px;
-        background-color: red;
-        cursor: pointer;
-        border-radius: 100%;
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      cursor: pointer;
+      border-radius: 100%;
     }
-</style>
+  </style>
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,177 +19,245 @@
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/funcoes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Include the Dark theme -->
 
-</head>
+    <!-- Include the Dark theme -->
+    <link rel="text/css" href="@sweetalert2/theme-dark/dark.css" />
+  </head>
 
-<body onload="dadosUsuario()">
-
+  <body onload="dadosUsuario()">
     <div class="dash">
-        <div class="fold">
-            <div class="titulo_nav">
-                <img src="assets/icon/Logo_Temporaria.png" height="50px">
-                <h3 class="texts">Configurações</h3>
-            </div>
-            <div class="usuario_nav">
-                <span class="texts" id="b_usuario"></span>
-            </div>
-            <div class="botoes_nav">
-                <a href="usuario.html">
-                    <button class="botao" id="botaoselecionado">
-                        Usuário
-                    </button>
-                </a>
-                <a href="empresa.html" id="empresaA">
-                    <button class="botao" >
-                        Empresa
-                    </button>
-                </a>
-                <a href="funcionario.html" id="funcionarioA">
-                    <button class="botao">
-                        Funcionarios
-                    </button>
-                </a>
-            </div>
-            <div class="opcoes_nav">
-                <a href="dashboard.html">Dashboard</a>
-                <a href="index.html">Sair</a>
-            </div>
+      <div class="fold">
+        <div class="titulo_nav">
+          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+          <h3 class="texts">Configurações</h3>
         </div>
-
-        <div class="corpo_config">
-            <h1>Meu Usuário:</h1>
-
-            <table class="tab_info">
-                <tr>
-                    <td>Nome:</td>
-                    <td><input type="text" id="nomeUsuario" value="nome"></td>
-                </tr>
-                <tr>
-                    <td>Sobrenome:</td>
-                    <td><input type="text"  id="sobrenomeUsuario" value="sorenome"></td>
-                </tr>
-                <tr>
-                    <td>Cargo:</td>
-                    <td><input type="text" id="cargoUsuario" value="administrador"></td>
-                </tr>
-                <tr>
-                    <td>Usuário:</td>
-                    <td><input type="text" id="usuario" value="usuario"></td>
-                </tr>
-                
-                <tr>
-                    <td>Nova Senha:</td>
-                    <td class="senha">
-                        <input  type="password" id="nova_senha">
-                        <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Confirmar Senha:</td>
-                    <td class="senha">
-                        <input id="b3" type="password" id="confirmar_senha">
-                        <button onclick="mostrarSenha(3)"><img id="i3" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-            </table>
-
-            <div class="botao_config">
-               <button onclick="salvarAlteracoes()">Salvar Alterações</button>
-            </div>
+        <div class="usuario_nav">
+          <span class="texts" id="b_usuario"></span>
         </div>
+        <div class="botoes_nav">
+          <a href="usuario.html">
+            <button class="botao" id="botaoselecionado">Usuário</button>
+          </a>
+          <a href="empresa.html" id="empresaA">
+            <button class="botao">Empresa</button>
+          </a>
+          <a href="funcionario.html" id="funcionarioA">
+            <button class="botao">Funcionarios</button>
+          </a>
+        </div>
+        <div class="opcoes_nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="index.html">Sair</a>
+        </div>
+      </div>
 
+      <div class="corpo_config">
+        <h1>Meu Usuário:</h1>
+
+        <table class="tab_info">
+          <tr>
+            <td>Nome:</td>
+            <td><input type="text" id="nomeUsuario" value="nome" /></td>
+          </tr>
+          <tr>
+            <td>Sobrenome:</td>
+            <td>
+              <input type="text" id="sobrenomeUsuario" value="sorenome" />
+            </td>
+          </tr>
+          <tr>
+            <td>Cargo:</td>
+            <td>
+              <input type="text" id="cargoUsuario" value="administrador" />
+            </td>
+          </tr>
+          <tr>
+            <td>Usuário:</td>
+            <td><input type="text" id="usuario" value="usuario" /></td>
+          </tr>
+
+          <tr>
+            <td>Nova Senha:</td>
+            <td class="senha">
+              <input type="password" id="nova_senha" />
+              <button onclick="mostrarSenha(2)">
+                <img id="i2" src="imagens/olho_d.png" height="30px" />
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Confirmar Senha:</td>
+            <td class="senha">
+              <input xtype="password" id="confirmar_senha" />
+              <button onclick="mostrarSenha(3)">
+                <img id="i3" src="imagens/olho_d.png" height="30px" />
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <div class="botao_config">
+          <button onclick="salvarAlteracoes()">Salvar Alterações</button>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
 
 <script>
-    function salvarAlteracoes(){
+  function validarSenha() {
+    var senha = nova_senha.value;
+    var senhaconf = confirmar_senha.value;
+    if (senha != senhaconf) {
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "As senhas não coincidem!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return false;
+    } else {
+      return true;
+    }
+  }
 
-        fetch("/usuarios/alterar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                nomeServer: nomeUsuario.value,
-                sobrenomeServer: sobrenomeUsuario.value,
-                cargoServer: cargoUsuario.value,
-                emailServer: usuario.value,
-                senhaServer: nova_senha.value
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO alterar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
+  function salvarAlteracoes() {
+    var usuarioSession = sessionStorage.USUARIO;
+    var dadosUsuario = JSON.parse(usuarioSession);
+    var campoSenha = nova_senha.value;
+    var senhaconf = confirmar_senha.value;
+    var novaSenha = "";
+    var nomeVazio = nomeUsuario.value != '';
+    var sobrenomeVazio = sobrenomeUsuario.value!= '';
+    var cargoVazio = cargoUsuario.value != '';
+    var usuarioVazio = usuario.value != '';
+    var valida = false;
+    if(campoSenha == ''){
+      novaSenha = dadosUsuario.senha;
+      valida = true;
+    }else if(senhaconf != campoSenha){
+        Swal.fire({
+            title: "Erro!",
+            background: "#212121",
+            color: "#fff",
+            text: "As senhas não coincidem!",
+            icon: "error",
+            confirmButtonText: "Ok",
+        });
         return false;
+    }else{
+        novaSenha = campoSenha;
+        valida = true;
     }
+    if (nomeVazio && sobrenomeVazio && cargoVazio && usuarioVazio && valida) {
+      fetch("/usuarios/alterar", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+        id: dadosUsuario.idUsuario,
+          nomeServer: nomeUsuario.value,
+          sobrenomeServer: sobrenomeUsuario.value,
+          cargoServer: cargoUsuario.value,
+          emailServer: usuario.value,
+          senhaServer: novaSenha
+        }),
+      })
+        .then(function (resposta) {
+          console.log("ESTOU NO THEN DO alterar()!");
+            console.log(resposta)
+          if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((json) => {
+             // console.log(json);
+              console.log(JSON.stringify(json));
 
-    function mostrarSenha(campo) {
+              
+              var atualizado = {'idUsuario': 11, 'nome':nomeUsuario.value, 'sobrenome': sobrenomeUsuario.value, 'cargo': cargoUsuario.value, 'usuario': usuario.value, 'senha': novaSenha, 'fkEmpresa': dadosUsuario.fkEmpresa};
+              var nome = sessionStorage.NOME_USUARIO;
+              sessionStorage.USUARIO = JSON.stringify(atualizado);
+                var sobrenome = sessionStorage.SOBRENOME_USUARIO;
+                var cargo = sessionStorage.CARGO_USUARIO;
+                var email = sessionStorage.EMAIL_USUARIO;
+                var senha = sessionStorage.SENHA_USUARIO;
+                Swal.fire({
+                title: "Sucesso!",
+                background: "#212121",
+                color: "#fff",
+                text: "Usuário alterado com sucesso!",
+                icon: "success",
+                willClose: ()=>{
+                location.href = './usuario.html'
+                 } ,
+                confirmButtonText: "Ok",
+            });
+              
+            });
+          } else {
+            Swal.fire({
+                title: "Erro!",
+                background: "#212121",
+                color: "#fff",
+                text: "Houve um erro ao tentar realizar a alteração!",
+                icon: "error",
+                confirmButtonText: "Ok",
+                
+            });
+            console.log("Houve um erro ao tentar realizar a alteração!");
 
-        if (campo == 1) {
+            resposta.text().then((texto) => {
+              console.error(texto);
+              
+            });
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
 
-            if (b1.type == 'password') {
-
-                b1.type = 'text';
-                i1.src = 'imagens/olho_a.png';
-            } else {
-
-                b1.type = 'password';
-                i1.src = 'imagens/olho_d.png';
-            }
-        } else if (campo == 2) {
-
-            if (b2.type == 'password') {
-
-                b2.type = 'text';
-                i2.src = 'imagens/olho_a.png';
-            } else {
-
-                b2.type = 'password';
-                i2.src = 'imagens/olho_d.png';
-            }
-        } else if (campo == 3) {
-
-            if (b3.type == 'password') {
-
-                b3.type = 'text';
-                i3.src = 'imagens/olho_a.png';
-            } else {
-
-                b3.type = 'password';
-                i3.src = 'imagens/olho_d.png';
-            }
-        }
+      return false;
+    } else {
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "Preencha todos os campos!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
+  }
+
+  function mostrarSenha(campo) {
+    if (campo == 1) {
+      if (b1.type == "password") {
+        b1.type = "text";
+        i1.src = "imagens/olho_a.png";
+      } else {
+        b1.type = "password";
+        i1.src = "imagens/olho_d.png";
+      }
+    } else if (campo == 2) {
+      if (b2.type == "password") {
+        b2.type = "text";
+        i2.src = "imagens/olho_a.png";
+      } else {
+        b2.type = "password";
+        i2.src = "imagens/olho_d.png";
+      }
+    } else if (campo == 3) {
+      if (b3.type == "password") {
+        b3.type = "text";
+        i3.src = "imagens/olho_a.png";
+      } else {
+        b3.type = "password";
+        i3.src = "imagens/olho_d.png";
+      }
+    }
+  }
 </script>

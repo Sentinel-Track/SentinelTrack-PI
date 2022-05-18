@@ -18,9 +18,15 @@ router.post("/cadastrar", function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
-
+/*
 router.post("/alterar", function (req, res) {
     usuarioController.alterar(req, res);
 });
+*/
+
+router.patch('/alterar', function (req, res) {
+    usuarioController.alterar(req, res);
+});
+//patch - alterar - param: id 
 
 module.exports = router;

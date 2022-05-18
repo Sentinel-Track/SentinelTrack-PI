@@ -99,12 +99,13 @@ function cadastrar(req, res) {
 }
 
 function alterar(req, res){
+    var id = req.body.id;
     var nome = req.body.nomeServer;
     var sobrenome = req.body.sobrenomeServer;
     var cargo = req.body.cargoServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    
+    console.log(req.body);
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (sobrenome == undefined) {
@@ -117,10 +118,12 @@ function alterar(req, res){
         res.status(400).send("Sua senha está undefined!");
     }else {
         
-        usuarioModel.alterar(nome, sobrenome, cargo, email, senha)
+        usuarioModel.alterar(nome, sobrenome, cargo, email, senha,id)
             .then(
                 function (resultado) {
+                    console.log(resultado)
                     res.json(resultado);
+            
                 }
             ).catch(
                 function (erro) {
