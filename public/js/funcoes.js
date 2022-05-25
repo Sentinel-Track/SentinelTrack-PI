@@ -114,3 +114,7 @@ function dadosEmpresa(){
     cidade.value = dadosEndereco[0].cidade;
     uf.value = dadosEndereco[0].UF;
 }
+
+function obterDadosUltimaHora(idSensor){
+    
+}
