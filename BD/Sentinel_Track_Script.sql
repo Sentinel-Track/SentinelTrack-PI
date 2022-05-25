@@ -62,10 +62,10 @@ create table tbMovimentacao
 insert into tbEndereco
 	(cep, logradouro, numero, bairro, cidade, UF, complemento)
 values
-	('09531190', 'Alameda Terracota', '545', 'Espaço Cerâmica', 'SP', 'São Caetano do Sul', ''),
-	('01310928', 'Avenida Paulista', '2064', 'Cerqueira César', 'SP', 'São Paulo', ''),
+	('09531190', 'Alameda Terracota', '545', 'Espaço Cerâmica', 'São Caetano do Sul', 'SP', ''),
+	('01310928', 'Avenida Paulista', '2064', 'Cerqueira César', 'São Paulo', 'SP', ''),
 	('09080510', 'Av. Industrial', '600', 'Centro', 'Santo André', 'SP', ''),
-	('04707000', 'Avenida Roque Petroni Júnior', '1089', 'Santo Amaro', 'SP', 'São Paulo', ''),
+	('04707000', 'Avenida Roque Petroni Júnior', '1089', 'Santo Amaro', 'São Paulo', 'SP', ''),
 	('02307120', 'R. Paulo de Faria', '222', 'Tucuruvi', 'São Paulo', 'SP', ''),
 	('04795000', 'Av. das Nações Unidas', '22540', 'Jurubatuba', 'São Paulo', 'SP', ''),
 	('05777001', 'Estr. do Campo Limpo', '459', 'Vila Prel', 'São Paulo', 'SP', '');
@@ -82,7 +82,7 @@ values
 	('Shopping Campo Limpo', '93157149000160', 'campolimpo@gmail.com', '11961935870', '1148741421', 7);
 
 insert into tbUsuario
-	(nome, sobrenome, cargo, login, senha, fkEmpresa)
+	(nome, sobrenome, cargo, usuario, senha, fkEmpresa)
 values
 	('Ana', 'Julia', 'Suporte TI', 'anajulia', 'dasd', 1),
 	('Pedro', 'Augusto', 'Gerente de infra', 'pedoraugusto', '15615', 1),
