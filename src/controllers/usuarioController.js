@@ -137,11 +137,53 @@ function alterar(req, res){
             );
     }
 }
-
+function empresaDados(req, res){
+    var empresaId = req.body.fkEmpresa;
+    usuarioModel.empresaDados(empresaId)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+            console.log(resultado)
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                erro.sqlMessage
+            );
+            
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+function empresaEndereco(req, res){
+    var enderecoId = req.body.idEndereco;
+    console.log(enderecoId + ' controller')
+    usuarioModel.empresaEndereco(enderecoId)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+            console.log(resultado)
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                erro.sqlMessage
+            );
+            
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
 module.exports = {
     entrar,
     cadastrar,
     listar,
     testar,
-    alterar
+    alterar,
+    empresaDados,
+    empresaEndereco
 }
