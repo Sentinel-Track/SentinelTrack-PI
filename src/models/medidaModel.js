@@ -14,7 +14,7 @@ function buscarUltimasMedidas(idEmpresa) {
     instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(HOUR, m.dataHora) as 'hora' from tbMovimentacao m
                     JOIN tbSensor s ON s.idSensor = m.fkSensor
                         JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-                            WHERE e.idEmpresa = ${idEmpresa}
+                            WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(DAY, dataHora) = DATEPART(DAY, DATEADD(DAY, 0, GETDATE()))
                         GROUP BY DATEPART(HOUR, dataHora) ORDER BY DATEPART(HOUR, dataHora) DESC;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
