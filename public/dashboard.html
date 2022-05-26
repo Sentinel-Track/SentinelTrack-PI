@@ -59,17 +59,17 @@
         <h2 style="color: aliceblue">Movimentação de pessoas</h2>
         <div class="kpis">
           <div class="kpi" style="border-color: #00af54">
-            <span class="nmr">125M</span>
+            <span class="nmr" id="nmrMes">125M</span>
             <span class="title">Último mês</span>
             <span style="color: #00af54" class="title">Boa</span>
           </div>
           <div class="kpi">
-            <span class="nmr">19M</span>
+            <span class="nmr" id="nmrSem">19M</span>
             <span class="title">Última semana</span>
             <span style="color: #d7263d" class="title">Altíssima</span>
           </div>
           <div class="kpi" style="border-color: #9ac1e8">
-            <span class="nmr">120K</span>
+            <span class="nmr" id="nmrDia">120K</span>
             <span class="title">Último dia</span>
             <span style="color: #9ac1e8" class="title">Baixíssima</span>
           </div>
@@ -189,41 +189,133 @@
   </body>
 </html>
 <script>
- window.onload = obterDadosGrafico(1), validarSessao();
-function obterDadosGrafico(id) {
-   
-     
+  var dados = JSON.parse(sessionStorage.USUARIO);
 
-        fetch(`/medidas/ultimas/${id}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+  var fkEmpresa = dados.fkEmpresa;
+  window.onload = obterDadosGrafico(fkEmpresa), validarSessao(), obterDadosKPI(fkEmpresa);
 
-                    plotarGraficoHora(resposta, id);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+  function obterDadosGrafico(id) {
+    fetch(`/medidas/ultimas/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.reverse();
+
+              plotarGraficoHora(resposta, id);
+            })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
             });
-    }
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
 
 
+
+
+  }
+
+  function obterDadosKPI(id){
+
+    fetch(`/medidas/kpiMes/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.reverse();
+              console.log(resposta[0].mov)
+              nmrMes.innerHTML = resposta[0].mov;
+              
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+
+      fetch(`/medidas/kpiDia/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.reverse();
+              console.log(resposta[0].mov)
+              nmrDia.innerHTML = resposta[0].mov;
+              
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+
+      fetch(`/medidas/kpiSem/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.reverse();
+              console.log(resposta[0].mov)
+              nmrSem.innerHTML = resposta[0].mov;
+              
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+
+  }
+  
   function plotarGraficoHora(resposta, idAquario) {
-    const hora = [
-    ];
-    const dados =[];
+    const hora = [];
+    const dados = [];
 
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
-     hora.push(registro.hora+'h');
+      hora.push(registro.hora + "h");
       dados.push(registro.mov);
     }
-    
-   
 
     const fluxoHora = {
       labels: hora,
@@ -241,15 +333,13 @@ function obterDadosGrafico(id) {
       type: "bar",
       data: fluxoHora,
       options: {},
-    };''
-
-    
+    };
+    ("");
 
     console.log(JSON.stringify(dados));
 
     const c_hora = new Chart(document.getElementById("hora"), config4);
-   //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-
+    //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
   }
 
   const dia = [
@@ -355,8 +445,6 @@ function obterDadosGrafico(id) {
   const c_mensal = new Chart(document.getElementById("mes"), config5);
 
   const c_anual = new Chart(document.getElementById("ano"), config3);
-
-
 </script>
 
 <script>
