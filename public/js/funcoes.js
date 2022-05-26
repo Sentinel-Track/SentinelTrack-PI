@@ -1,7 +1,7 @@
 // sessão
 function validarSessao() {
     // aguardar();
-
+  
     var usuarioSession = sessionStorage.USUARIO;
     console.log(usuarioSession)
     var dadosUsuario = JSON.parse(usuarioSession)
@@ -15,7 +15,7 @@ function validarSessao() {
      cargoUsuario.value = cargo;
      usuario.value = email;
      senhaUsuario.value = senha;*/
-
+    console.log(dadosUsuario.nome)
     if (dadosUsuario.usuario != null && dadosUsuario.nome != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         if (h1LoginUsuario != undefined) {

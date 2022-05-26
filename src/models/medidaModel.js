@@ -8,7 +8,14 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                     from medida
                     where fk_aquario = ${idAquario}
-                    order by id desc limit ${limite_linhas}`;*/
+                    order by id desc limit ${limite_linhas}`;
+                    
+                    SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(HOUR, m.dataHora) as 'hora' from tbMovimentacao m
+	JOIN tbSensor s ON s.idSensor = m.fkSensor
+		JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+			WHERE e.idEmpresa = 12
+		GROUP BY DATEPART(HOUR, dataHora)
+                    */
                     instrucaoSql = `SELECT COUNT(idMovimentacao) as 'mov', DATEPART(HOUR, dataHora) as 'hora' from tbMovimentacao WHERE DATEPART(HOUR, dataHora) >= 00 AND DATEPART(HOUR, dataHora) <=24 GROUP BY DATEPART(HOUR, dataHora) ORDER BY hora DESC;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
