@@ -30,6 +30,14 @@ router.post("/empresaEndereco",function(req,res){
 router.patch('/alterar', function (req, res) {
     usuarioController.alterar(req, res);
 });
+
+router.patch('/alterarEmpresa', function (req, res) {
+    usuarioController.empresaEditar(req, res);
+});
+
+router.patch('/alterarEnderecoEmpresa', function (req, res) {
+    usuarioController.alterarEnderecoEmpresa(req, res);
+});
 //patch - alterar - param: id 
 
 module.exports = router;

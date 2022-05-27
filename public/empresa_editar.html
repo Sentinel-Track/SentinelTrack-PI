@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<style>
+  <style>
     #bolinha {
-        height: 20px;
-        width: 20px;
-        background-color: red;
-        cursor: pointer;
-        border-radius: 100%;
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      cursor: pointer;
+      border-radius: 100%;
     }
-</style>
+  </style>
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,106 +19,260 @@
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
 
-
-</head>
-
-<body onload="dadosEmpresa()">
-
+  <body onload="dadosEmpresa()">
     <div class="dash">
-        <div class="fold">
-            <div class="titulo_nav">
-                <img src="assets/icon/Logo_Temporaria.png" height="50px">
-                <h3 class="texts">Configurações</h3>
-            </div>
-            <div class="usuario_nav">
-                <span class="texts" id="b_usuario"></span>
-            </div>
-            <div class="botoes_nav">
-                <a href="usuario.html">
-                    <button class="botao">
-                        Usuário
-                    </button>
-                </a>
-                <a href="empresa.html" id="empresaA">
-                    <button class="botao" id="botaoselecionado">
-                        Empresa
-                    </button>
-                </a>
-                <a href="funcionario.html" id="funcionarioA">
-                    <button class="botao">
-                        Funcionarios
-                    </button>
-                </a>
-            </div>
-            <div class="opcoes_nav">
-                <a href="dashboard.html">Dashboard</a>
-                <a href="index.html">Sair</a>
-            </div>
+      <div class="fold">
+        <div class="titulo_nav">
+          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+          <h3 class="texts">Configurações</h3>
         </div>
-
-        <div class="corpo_config">
-            <h1>Meu Usuário:</h1>
-
-            <table class="tab_info">
-                <tr>
-                    <td>Nome da Empresa:</td>
-                    <td><input type="text" id="nomeEmpresa" ></td>
-                </tr>
-                <tr>
-                    <td>CNPJ:</td>
-                    <td><input type="text" id="cnpjEmpresa"   ></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="text" id="emailEmpresa"  ></td>
-                </tr>
-                <tr>
-                    <td>Telefone Celular:</td>
-                    <td><input type="text" id="telCel"  ></td>
-                </tr>
-                <tr>
-                    <td>Telefone Fixo:</td>
-                    <td><input type="text" id="telFix"  ></td>
-                </tr>
-                <tr>
-                    <td>CEP:</td>
-                    <td><input type="text" id="cep"  ></td>
-                </tr>
-                <tr>
-                    <td>Logradouro (rua):</td>
-                    <td><input type="text" id="logradouro" ></td>
-                </tr>
-                <tr>
-                    <td>Número:</td>
-                    <td><input type="text" id="num"></td>
-                </tr>
-                <tr>
-                    <td>Complemento:</td>
-                    <td><input type="text" id="complemento" ></td>
-                </tr>
-                <tr>
-                    <td>Bairro:</td>
-                    <td><input type="text" id="bairro" ></td>
-                </tr>
-                <tr>
-                    <td>Cidade:</td>
-                    <td><input type="text" id="cidade" ></td>
-                </tr>
-                <tr>
-                    <td>UF:</td>
-                    <td>
-                        <input type="text" id="uf">
-                    </td>
-                </tr>
-            </table>
-
-            <div class="botao_config">
-                <a href="empresa.html"><button>Salvar Alterações</button></a>
-            </div>
+        <div class="usuario_nav">
+          <span class="texts" id="b_usuario"></span>
         </div>
+        <div class="botoes_nav">
+          <a href="usuario.html">
+            <button class="botao">Usuário</button>
+          </a>
+          <a href="empresa.html" id="empresaA">
+            <button class="botao" id="botaoselecionado">Empresa</button>
+          </a>
+          <a href="funcionario.html" id="funcionarioA">
+            <button class="botao">Funcionarios</button>
+          </a>
+        </div>
+        <div class="opcoes_nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="index.html">Sair</a>
+        </div>
+      </div>
 
+      <div class="corpo_config">
+        <h1>Meu Usuário:</h1>
+
+        <table class="tab_info">
+          <tr>
+            <td>Nome da Empresa:</td>
+            <td><input type="text" id="nomeEmpresa" /></td>
+          </tr>
+          <tr>
+            <td>CNPJ:</td>
+            <td><input type="text" id="cnpjEmpresa" /></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><input type="text" id="emailEmpresa" /></td>
+          </tr>
+          <tr>
+            <td>Telefone Celular:</td>
+            <td><input type="text" id="telCel" /></td>
+          </tr>
+          <tr>
+            <td>Telefone Fixo:</td>
+            <td><input type="text" id="telFix" /></td>
+          </tr>
+          <tr>
+            <td>CEP:</td>
+            <td><input type="text" id="cep" /></td>
+          </tr>
+          <tr>
+            <td>Logradouro (rua):</td>
+            <td><input type="text" id="logradouro" /></td>
+          </tr>
+          <tr>
+            <td>Número:</td>
+            <td><input type="text" id="num" /></td>
+          </tr>
+          <tr>
+            <td>Complemento:</td>
+            <td><input type="text" id="complemento" /></td>
+          </tr>
+          <tr>
+            <td>Bairro:</td>
+            <td><input type="text" id="bairro" /></td>
+          </tr>
+          <tr>
+            <td>Cidade:</td>
+            <td><input type="text" id="cidade" /></td>
+          </tr>
+          <tr>
+            <td>UF:</td>
+            <td>
+              <input type="text" id="uf" />
+            </td>
+          </tr>
+        </table>
+
+        <div class="botao_config">
+          <button onclick="salvarAlteracoes()">Salvar Alterações</button>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+  //sessionStorage.EMPRESA
+  //ENDERECO
+  function salvarAlteracoes() {
+    var empresaSession = sessionStorage.EMPRESA;
+    var dadosEmpresa = JSON.parse(empresaSession);
+    var enderecoSession = sessionStorage.ENDERECO;
+    var dadosEndereco = JSON.parse(enderecoSession);
+    console.log(dadosEmpresa);
+
+    var nomeEmpresa = document.getElementById("nomeEmpresa").value;
+    var cnpjEmpresa = document.getElementById("cnpjEmpresa").value;
+    var emailEmpresa = document.getElementById("emailEmpresa").value;
+    var telCel = document.getElementById("telCel").value;
+    var telFix = document.getElementById("telFix").value;
+    var cep = document.getElementById("cep").value;
+    var logradouro = document.getElementById("logradouro").value;
+    var num = document.getElementById("num").value;
+    var complemento = document.getElementById("complemento").value;
+    var bairro = document.getElementById("bairro").value;
+    var cidade = document.getElementById("cidade").value;
+    var uf = document.getElementById("uf").value;
+    var idEmpresaI = dadosEmpresa[0].idEmpresa;
+
+    if (
+      nomeEmpresa != "" &&
+      cnpjEmpresa != "" &&
+      emailEmpresa != "" &&
+      telCel != "" &&
+      telFix != "" &&
+      cep != "" &&
+      logradouro != "" &&
+      num != "" &&
+      bairro != "" &&
+      cidade != "" &&
+      uf != ""
+    ) {
+      fetch("/usuarios/alterarEmpresa", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idEmpresa: idEmpresaI,
+          nomeEmpresa: nomeEmpresa,
+          cnpjEmpresa: cnpjEmpresa,
+          emailEmpresa: emailEmpresa,
+          telCel: telCel,
+          telFix: telFix,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("ESTOU NO THEN DO alterar()!");
+          console.log(resposta);
+          if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((json) => {
+              // console.log(json);
+              console.log(JSON.stringify(json));
+              alert("to estressado");
+              var atualizado = {
+                idEmpresa: dadosEmpresa.idEmpresa,
+                nomeLocal: nomeEmpresa,
+                cnpj: cnpjEmpresa,
+                email: emailEmpresa,
+                telefone_c: telCel,
+                telefone_f: telFix,
+                fkEndereco: dadosEmpresa.fkEndereco,
+              };
+              sessionStorage.EMPRESA = JSON.stringify(atualizado);
+              fetch("/usuarios/alterarEnderecoEmpresa", {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idEndereco: dadosEndereco[0].idEndereco,
+                    UF: uf,
+                    bairro: bairro,
+                    cep: cep,
+                    cidade: cidade,
+                    complemento: complemento,
+                    logradouro: logradouro,
+                    numero: num
+
+                }),
+              })
+                .then(function (resposta) {
+                  console.log("ESTOU NO THEN DO alterar()!");
+                  console.log(resposta);
+                  if (resposta.ok) {
+                    console.log(resposta);
+                    alert('foi o endereco')
+                    resposta.json().then((json) => {
+                      // console.log(json);
+                      console.log(JSON.stringify(json));
+                      alert("to estressado");
+                      var atualizado = {
+                        idEndereco: dadosEndereco[0].idEndereco,
+                    UF: uf,
+                    bairro: bairro,
+                    cep: cep,
+                    cidade: cidade,
+                    complemento: complemento,
+                    logradouro: logradouro,
+                    numero: num
+                      };
+                      sessionStorage.ENDERECO = JSON.stringify(atualizado);
+                    });
+                  } else {
+                    Swal.fire({
+                      title: "Erro!",
+                      background: "#212121",
+                      color: "#fff",
+                      text: "Houve um erro ao tentar realizar a alteração do endereço!",
+                      icon: "error",
+                      confirmButtonText: "Ok",
+                    });
+                    console.log(
+                      "Houve um erro ao tentar realizar a alteração!"
+                    );
+
+                    resposta.text().then((texto) => {
+                      console.error(texto);
+                    });
+                  }
+                })
+                .catch(function (erro) {
+                  console.log(erro);
+                });
+            });
+          } else {
+            Swal.fire({
+              title: "Erro!",
+              background: "#212121",
+              color: "#fff",
+              text: "Houve um erro ao tentar realizar a alteração!",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            console.log("Houve um erro ao tentar realizar a alteração!");
+
+            resposta.text().then((texto) => {
+              console.error(texto);
+            });
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
+
+      return false;
+    } else {
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "Preencha todos os campos!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+  }
+</script>

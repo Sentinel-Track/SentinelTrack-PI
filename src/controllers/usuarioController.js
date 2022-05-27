@@ -178,6 +178,66 @@ function empresaEndereco(req, res){
         }
     );
 }
+
+function empresaEditar(req, res){
+    var empresaId = req.body.idEmpresa;
+    var nomeEmpresa = req.body.nomeEmpresa;
+    var cnpjEmpresa = req.body.cnpjEmpresa;
+    var emailEmpresa = req.body.emailEmpresa;
+    var telCel = req.body.telCel;
+    var telFix = req.body.telFix;
+    console.log(' controller da empresa')
+    usuarioModel.empresaEditar(empresaId, nomeEmpresa, cnpjEmpresa, emailEmpresa, telCel, telFix)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+            console.log(resultado)
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                erro.sqlMessage
+            );
+            
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+function alterarEnderecoEmpresa(req, res){
+    var enderecoId = req.body.idEndereco;
+    var cep = req.body.cep;
+    var logradouro = req.body.logradouro;
+    var numero = req.body.numero;
+    var bairro = req.body.bairro;
+    var cidade = req.body.cidade;
+    var UF = req.body.UF;
+    var complemento = req.body.complemento;
+
+    console.log(enderecoId + ' controller da empresa')
+    usuarioModel.empresaEnderecoEditar(UF, bairro, cep, cidade, complemento,logradouro,numero, enderecoId)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+            console.log(resultado)
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                erro.sqlMessage
+            );
+            
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
@@ -185,5 +245,7 @@ module.exports = {
     testar,
     alterar,
     empresaDados,
-    empresaEndereco
+    empresaEndereco,
+    empresaEditar,
+    alterarEnderecoEmpresa
 }
