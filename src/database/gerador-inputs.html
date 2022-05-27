@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <button onclick="aa()">aa</button>
+
+    <div id="aaa">INSERT INTO [dbo].[tbMovimentacao] (dataHora, fkSensor) values </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function aa() {
+
+        var movimentacao = 900,
+            ano = 2022,
+            mes = 12,
+            dia = 0,
+            hora = 0,
+            minuto = 0,
+            segundo = 0,
+            sensor = 0;
+
+        // for (var y = 2018; ano >= y; y++) {
+
+            // for (var x = 1; mes >= x; x++) {
+
+                for (var i = 0; movimentacao > i; i++) {
+
+                    dia = Math.random() * (26 - 19) + 19;
+                    hora = Math.random() * (22 - 10) + 10;
+                    minuto = Math.random() * (59 - 1) + 1;
+                    segundo = Math.random() * (59 - 1) + 1;
+                    sensor = Math.random() * (12 - 10) + 10;
+
+                    // aaa.innerHTML += `<br>(null, '${y}-${x}-${dia.toFixed(0)} ${hora.toFixed(0)}:${minuto.toFixed(0)}:${segundo.toFixed(0)}', ${sensor.toFixed(0)}),`;
+
+                    aaa.innerHTML += `<br>('2022-5-${dia.toFixed(0)} ${hora.toFixed(0)}:${minuto.toFixed(0)}:${segundo.toFixed(0)}', ${sensor.toFixed(0)}),`;
+                }
+            }
+        // }
+    // }
+
+</script>
