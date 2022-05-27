@@ -137,6 +137,7 @@ function alterar(req, res){
             );
     }
 }
+
 function empresaDados(req, res){
     var empresaId = req.body.fkEmpresa;
     usuarioModel.empresaDados(empresaId)
@@ -157,6 +158,7 @@ function empresaDados(req, res){
         }
     );
 }
+
 function empresaEndereco(req, res){
     var enderecoId = req.body.idEndereco;
     console.log(enderecoId + ' controller')

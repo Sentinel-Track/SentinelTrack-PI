@@ -48,10 +48,7 @@ function entrar() {
                     sessionStorage.EMAIL_USUARIO = json.usuario;
                     sessionStorage.SENHA_USUARIO = json.senha;
                     sessionStorage.EMPRESA_USUARIO = json.fkEmpresa;
-                   
-
                 });
-
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
@@ -65,8 +62,6 @@ function entrar() {
         }).catch(function (erro) {
             console.log(erro);
         })
-
-
 
         fetch("/usuarios/empresaDados", {
             method: "POST",
@@ -114,8 +109,7 @@ function entrar() {
                                     finalizarAguardar();
                                     window.location = "./dashboard.html";
                                 }, 1000); // apenas para exibir o loading
-                            });
-            
+                            });    
                         } else {
             
                             console.log("Houve um erro ao tentar pegar os dados da empresa!");
@@ -124,15 +118,11 @@ function entrar() {
                                 console.log(texto);
                                 finalizarAguardar(texto);
                             });
-                        }
-            
+                        }         
                     }).catch(function (erro) {
                         console.log(erro);
                         alert(erro)
                     })
-
-
-
                 });
 
             } else {
@@ -149,11 +139,6 @@ function entrar() {
             console.log(erro);
             alert(erro)
         })
-    
-      
-        
-   
-    
     
     }else if(charMin){
     msgSenha.innerHTML = `A senha não tem o tamanho mínimo <br> (6 caracteres)`

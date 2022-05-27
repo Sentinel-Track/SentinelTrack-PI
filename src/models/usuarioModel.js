@@ -80,7 +80,7 @@ module.exports = {
     cadastrar,
     listar,
     alterar,
-    empresaDados,
+    empresaDados,   
     empresaEndereco,
     empresaEditar,
     empresaEnderecoEditar
