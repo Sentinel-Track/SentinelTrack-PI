@@ -143,7 +143,7 @@ function empresaDados(req, res){
     usuarioModel.empresaDados(empresaId)
     .then(
         function (resultado) {
-            res.json(resultado);
+            res.json(resultado[0]);
             console.log(resultado)
         }
     ).catch(
@@ -165,7 +165,7 @@ function empresaEndereco(req, res){
     usuarioModel.empresaEndereco(enderecoId)
     .then(
         function (resultado) {
-            res.json(resultado);
+            res.json(resultado[0]);
             console.log(resultado)
         }
     ).catch(

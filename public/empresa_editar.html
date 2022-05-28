@@ -134,7 +134,9 @@
     var bairro = document.getElementById("bairro").value;
     var cidade = document.getElementById("cidade").value;
     var uf = document.getElementById("uf").value;
-    var idEmpresaI = dadosEmpresa[0].idEmpresa;
+    var idEmpresaI = dadosEmpresa.idEmpresa;
+  
+    console.log(idEmpresaI +  'dddd')
 
     if (
       nomeEmpresa != "" &&
@@ -171,9 +173,8 @@
             resposta.json().then((json) => {
               // console.log(json);
               console.log(JSON.stringify(json));
-              alert("to estressado");
-              var atualizado = {
-                idEmpresa: dadosEmpresa.idEmpresa,
+             var atualizado = {
+                idEmpresa: idEmpresaI,
                 nomeLocal: nomeEmpresa,
                 cnpj: cnpjEmpresa,
                 email: emailEmpresa,
@@ -188,7 +189,7 @@
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    idEndereco: dadosEndereco[0].idEndereco,
+                    idEndereco: dadosEndereco.idEndereco,
                     UF: uf,
                     bairro: bairro,
                     cep: cep,
@@ -208,9 +209,8 @@
                     resposta.json().then((json) => {
                       // console.log(json);
                       console.log(JSON.stringify(json));
-                      alert("to estressado");
                       var atualizado = {
-                        idEndereco: dadosEndereco[0].idEndereco,
+                        idEndereco: dadosEndereco.idEndereco,
                     UF: uf,
                     bairro: bairro,
                     cep: cep,
@@ -220,6 +220,18 @@
                     numero: num
                       };
                       sessionStorage.ENDERECO = JSON.stringify(atualizado);
+                     
+                      Swal.fire({
+                title: "Sucesso!",
+                background: "#212121",
+                color: "#fff",
+                text: "Usuário alterado com sucesso!",
+                icon: "success",
+                willClose: () => {
+                  location.href = "./empresa.html"
+                },
+                confirmButtonText: "Ok",
+              });
                     });
                   } else {
                     Swal.fire({

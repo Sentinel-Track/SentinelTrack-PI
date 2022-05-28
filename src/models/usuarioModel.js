@@ -68,7 +68,7 @@ function empresaEditar(empresaId, nomeEmpresa, cnpjEmpresa, emailEmpresa, telCel
 }
 
 function empresaEnderecoEditar(uf, bairro, cep, cidade, complemento,logradouro,numero, enderecoId){
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar():", empresaId, nomeEmpresa, cnpjEmpresa, emailEmpresa, telCel, telFix);
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar():");
     var instrucao = `UPDATE tbEndereco SET UF = '${uf}', bairro = '${bairro}', cep = '${cep}', cidade = '${cidade}', complemento = '${complemento}', logradouro = '${logradouro}', numero = '${numero}' WHERE idEndereco = ${enderecoId};
      `;
     console.log("Executando a instrução SQL: \n" + instrucao);

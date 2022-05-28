@@ -49,6 +49,84 @@ function entrar() {
                     sessionStorage.SENHA_USUARIO = json.senha;
                     sessionStorage.EMPRESA_USUARIO = json.fkEmpresa;
                 });
+                var empresaID = sessionStorage.EMPRESA_USUARIO;
+                fetch("/usuarios/empresaDados", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        fkEmpresa: empresaID,
+                       
+                    })
+                }).then(function (resposta) {
+                    console.log("ESTOU NO THEN DO que pega dados da empresa!")
+        
+                    if (resposta.ok) {
+                        console.log(resposta);
+        
+                        resposta.json().then(json => {
+                            console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMPRESA = JSON.stringify(json);
+                            var empresaSession = sessionStorage.EMPRESA 
+                            var dadosEmpresa = JSON.parse(empresaSession)
+                            var end = (dadosEmpresa.fkEndereco)
+                            console.log(dadosEmpresa.fkEndereco + ' ddddddd aqui a fk')
+                            fetch("/usuarios/empresaEndereco", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    idEndereco: end,
+                                   
+                                })
+                            }).then(function (resposta) {
+                                console.log("ESTOU NO THEN DO que pega dados do endereco da empresa!")
+                    
+                                if (resposta.ok) {
+                                    console.log(resposta);
+                    
+                                    resposta.json().then(json => {
+                                        console.log(json);
+                                        console.log(JSON.stringify(json));
+                                        sessionStorage.ENDERECO = JSON.stringify(json);
+                                        setTimeout(function () {
+                                            finalizarAguardar();
+                                            window.location = "./dashboard.html";
+                                        }, 1000); // apenas para exibir o loading
+                                    });    
+                                } else {
+                    
+                                    console.log("Houve um erro ao tentar pegar os dados da empresa!");
+                    
+                                    resposta.text().then(texto => {
+                                        console.log(texto);
+                                        finalizarAguardar(texto);
+                                    });
+                                }         
+                            }).catch(function (erro) {
+                                console.log(erro);
+                                alert(erro)
+                            })
+                        });
+        
+                    } else {
+        
+                        console.log("Houve um erro ao tentar pegar os dados da empresa!");
+        
+                        resposta.text().then(texto => {
+                            console.log(texto);
+                            finalizarAguardar(texto);
+                        });
+                    }
+        
+                }).catch(function (erro) {
+                    console.log(erro);
+                    alert(erro)
+                })
+            
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
@@ -63,83 +141,7 @@ function entrar() {
             console.log(erro);
         })
 
-        fetch("/usuarios/empresaDados", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                fkEmpresa:  sessionStorage.EMPRESA_USUARIO,
-               
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO que pega dados da empresa!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMPRESA = JSON.stringify(json);
-                    var empresaSession = sessionStorage.EMPRESA 
-                    var dadosEmpresa = JSON.parse(empresaSession)
-                    var end = (dadosEmpresa[0].fkEndereco)
-                    console.log(end)
-                    fetch("/usuarios/empresaEndereco", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            idEndereco: end,
-                           
-                        })
-                    }).then(function (resposta) {
-                        console.log("ESTOU NO THEN DO que pega dados do endereco da empresa!")
-            
-                        if (resposta.ok) {
-                            console.log(resposta);
-            
-                            resposta.json().then(json => {
-                                console.log(json);
-                                console.log(JSON.stringify(json));
-                                sessionStorage.ENDERECO = JSON.stringify(json);
-                                setTimeout(function () {
-                                    finalizarAguardar();
-                                    window.location = "./dashboard.html";
-                                }, 1000); // apenas para exibir o loading
-                            });    
-                        } else {
-            
-                            console.log("Houve um erro ao tentar pegar os dados da empresa!");
-            
-                            resposta.text().then(texto => {
-                                console.log(texto);
-                                finalizarAguardar(texto);
-                            });
-                        }         
-                    }).catch(function (erro) {
-                        console.log(erro);
-                        alert(erro)
-                    })
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar pegar os dados da empresa!");
-
-                resposta.text().then(texto => {
-                    console.log(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-            alert(erro)
-        })
-    
+       
     }else if(charMin){
     msgSenha.innerHTML = `A senha não tem o tamanho mínimo <br> (6 caracteres)`
     }else {
