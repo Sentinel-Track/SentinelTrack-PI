@@ -78,6 +78,7 @@ function dadosEmpresa(){
     var dadosUsuario = JSON.parse(usuarioSession)
     var empresaSession = sessionStorage.EMPRESA 
     var dadosEmpresa = JSON.parse(empresaSession)
+    console.log(dadosEmpresa)
     var enderecoSession = sessionStorage.ENDERECO
     var dadosEndereco = JSON.parse(enderecoSession)
 
@@ -99,20 +100,20 @@ function dadosEmpresa(){
        // window.location = "../login.html";
     }
 
-    console.log(dadosEndereco[0])
-    console.log(dadosEmpresa[0])
-    nomeEmpresa.value = dadosEmpresa[0].nomeLocal;
-    cnpjEmpresa.value = dadosEmpresa[0].cnpj;
-    emailEmpresa.value = dadosEmpresa[0].email;
-    telCel.value = dadosEmpresa[0].telefone_c;
-    telFix.value = dadosEmpresa[0].telefone_f;   
-    cep.value = dadosEndereco[0].cep;
-    logradouro.value = dadosEndereco[0].logradouro;
-    num.value = dadosEndereco[0].numero;
-    complemento.value = dadosEndereco[0].complemento;
-    bairro.value = dadosEndereco[0].bairro;
-    cidade.value = dadosEndereco[0].cidade;
-    uf.value = dadosEndereco[0].UF;
+    console.log(dadosEndereco)
+    console.log(dadosEmpresa)
+    nomeEmpresa.value = dadosEmpresa.nomeLocal;
+    cnpjEmpresa.value = dadosEmpresa.cnpj;
+    emailEmpresa.value = dadosEmpresa.email;
+    telCel.value = dadosEmpresa.telefone_c;
+    telFix.value = dadosEmpresa.telefone_f;   
+    cep.value = dadosEndereco.cep;
+    logradouro.value = dadosEndereco.logradouro;
+    num.value = dadosEndereco.numero;
+    complemento.value = dadosEndereco.complemento;
+    bairro.value = dadosEndereco.bairro;
+    cidade.value = dadosEndereco.cidade;
+    uf.value = dadosEndereco.UF;
 }
 
 function obterDadosUltimaHora(idSensor){
