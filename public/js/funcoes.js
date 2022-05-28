@@ -121,6 +121,30 @@ function obterDadosUltimaHora(idSensor){
 
 function chamar() {
     chartmg.style.display = "none";
-    chamado.style.display = "block";
+    chamado.style.display = "flex";
     grafico.style.display = "none";
+
+    btnHora.style.borderBottom = "none";
+    btnHora.style.fontWeight = "normal";
+    btnHora.style.backgroundColor = "transparent";
+
+    btnDiario.style.borderBottom = "none";
+    btnDiario.style.fontWeight = "normal";
+    btnDiario.style.backgroundColor = "transparent";
+
+    btnSemanal.style.borderBottom = "none";
+    btnSemanal.style.fontWeight = "normal";
+    btnSemanal.style.backgroundColor = "transparent";
+
+    btnMensal.style.borderBottom = "none";
+    btnMensal.style.fontWeight = "normal";
+    btnMensal.style.backgroundColor = "transparent";
+
+    btnAnual.style.borderBottom = "none";
+    btnAnual.style.fontWeight = "normal";
+    btnAnual.style.backgroundColor = "transparent";
+
+    btnChamado.style.borderBottom = "solid 3px #D71B22";
+    btnChamado.style.fontWeight = "bold";
+    btnChamado.style.backgroundColor = "#023f79";
 }
