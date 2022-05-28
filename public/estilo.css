@@ -478,6 +478,32 @@ button {
     margin-bottom: 20px;
 }
 
+.chamado {
+    margin-left: 40%;
+    display: none;
+    height: 70%;
+    width: 30%;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.centro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+.frame {
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: #D71B22 2px solid;
+    height: 100%;
+    width: 100%;
+}
+
 /* Fim Dashboard */
 
 /* Começo Configurações */
