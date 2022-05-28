@@ -118,3 +118,9 @@ function dadosEmpresa(){
 function obterDadosUltimaHora(idSensor){
     
 }
+
+function chamar() {
+    chartmg.style.display = "none";
+    chamado.style.display = "block";
+    grafico.style.display = "none";
+}
