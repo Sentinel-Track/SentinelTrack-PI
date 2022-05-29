@@ -526,6 +526,10 @@ button {
     width: 100%;
 }
 
+.sair{
+    cursor: pointer;
+}
+
 /* Fim Dashboard */
 
 /* Começo Configurações */

@@ -19,10 +19,12 @@
     <link rel="stylesheet" href="estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/funcoes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/login.js"></script>
 
 </head>
 
-<body onload="validarSessao(), atualizacaoPeriodica()">
+<body>
 
     <div class="dash">
         <div class="fold">
@@ -57,7 +59,7 @@
 
             <div class="opcoes_nav">
                 <a href="dashboard.html">Dashboard</a>
-                <a onclick="sair()">Sair</a>
+                <a class="sair" onclick="sair()">Sair</a>
             </div>
         </div>
 
@@ -73,38 +75,44 @@
             <table class="tab_info">
                 <tr>
                     <td>Nome:</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" id="ipt_nome"></td>
                 </tr>
                 <tr>
                     <td>Sobrenome:</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" id="ipt_sobrenome"></td>
                 </tr>
                 <tr>
                     <td>Cargo:</td>
-                    <td><input type="text"></td>
+                    <td>
+                        <select id="sel_cargo">
+                            <option value="" selected disabled></option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Funcionário">Funcionário</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Usuário:</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" id="ipt_usuario"></td>
                 </tr>
                 <tr>
                     <td>Senha:</td>
                     <td class="senha">
-                        <input id="b1" type="password" id="senha">
+                        <input id="ipt_senha" type="password" id="senha">
                         <button onclick="mostrarSenha(1)"><img id="i1" src="imagens/olho_d.png" height="30px"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>Confirmar Senha:</td>
                     <td class="senha">
-                        <input id="b2" type="password" id="confirmar_senha">
+                        <input id="ipt_con_senha" type="password" id="confirmar_senha">
                         <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
                     </td>
                 </tr>
             </table>
 
             <div class="botao_config">
-                <a href="funcionario.html"><button>Cadastrar</button></a>
+                <button onclick="cadastrar()">Cadastrar</button>
             </div>
         </div>
 
@@ -115,31 +123,83 @@
 
 <script>
 
-    function mostrarSenha(campo) {
+    function cadastrar() {
 
-        if (campo == 1) {
+        var empresaSession = sessionStorage.EMPRESA;
+        var dadosEmpresa = JSON.parse(empresaSession);
 
-            if (b1.type == 'password') {
+        var idEmpresaI = dadosEmpresa.idEmpresa;
 
-                b1.type = 'text';
-                i1.src = 'imagens/olho_a.png';
-            } else {
+        console.log(dadosEmpresa);
+        console.log(idEmpresaI);
 
-                b1.type = 'password';
-                i1.src = 'imagens/olho_d.png';
-            }
-        } else if (campo == 2) {
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_nome.value;
+        var sobrenomeVar = ipt_sobrenome.value;
+        var cargoVar = sel_cargo.value;
+        var usuarioVar = ipt_usuario.value;
+        var senhaVar = ipt_senha.value;
+        var confirmacaoSenhaVar = ipt_con_senha.value;
 
-            if (b2.type == 'password') {
+        console.log(nomeVar);
+        console.log(sobrenomeVar);
+        console.log(cargoVar);
+        console.log(usuarioVar);
+        console.log(senhaVar);
+        console.log(confirmacaoSenhaVar);
 
-                b2.type = 'text';
-                i2.src = 'imagens/olho_a.png';
-            } else {
-
-                b2.type = 'password';
-                i2.src = 'imagens/olho_d.png';
-            }
+        if (nomeVar == "" || sobrenomeVar == "" || cargoVar == "" || usuarioVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            
+            console.log('Preencha todos os campos');
+            return false;
         }
+
+        if (usuarioVar.indexOf("@") == -1 || usuarioVar.indexOf(".com") == -1) {
+            
+            console.log('Preencha o email corretamente');
+            return false;
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+            
+            console.log('As senhas não conferem');
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                empresaServer: idEmpresaI,
+                nomeServer: nomeVar,
+                sobrenomeServer: sobrenomeVar,
+                cargoServer: cargoVar,
+                usuarioServer: usuarioVar,
+                senhaServer: senhaVar
+
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                console.log("Cadastrado com sucesso");
+                window.location = "funcionario.html";
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
     }
 
 </script>

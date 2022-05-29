@@ -33,7 +33,7 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        
+
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
@@ -62,25 +62,28 @@ function entrar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var empresaId = req.body.empresaServer;
     var nome = req.body.nomeServer;
-    var cpf = req.body.cpfServer;
-    var email = req.body.emailServer;
+    var sobrenome = req.body.sobrenomeServer;
+    var cargo = req.body.cargoServer;
+    var usuario = req.body.usuarioServer;
     var senha = req.body.senhaServer;
-    var celular = req.body.celularServer;
-    
+
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+    } else if (sobrenome == undefined) {
+        res.status(400).send("Seu sobrenome está undefined!");
+    } else if (cargo == undefined) {
+        res.status(400).send("Sua cargo está undefined!");
+    } else if (usuario == undefined) {
+        res.status(400).send("Seu usuario está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if(cpf == undefined){
-        res.status(400).send("Seu CPF está undefined!");
-    }else if(celular == undefined){
-        res.status(400).send("Seu celular está undefined!");
-    }else {
-        
-        usuarioModel.cadastrar(nome, email, senha, cpf, celular)
+        res.status(400).send("Seu senha está undefined!");
+    } else if (empresaId == undefined) {
+        res.status(400).send("Seu empresaId está undefined!");
+    } else {
+
+        usuarioModel.cadastrar(nome, sobrenome, cargo, usuario, senha, empresaId)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -98,7 +101,7 @@ function cadastrar(req, res) {
     }
 }
 
-function alterar(req, res){
+function alterar(req, res) {
     var id = req.body.id;
     var nome = req.body.nomeServer;
     var sobrenome = req.body.sobrenomeServer;
@@ -112,18 +115,18 @@ function alterar(req, res){
         res.status(400).send("Seu sobrenome está undefined!");
     } else if (cargo == undefined) {
         res.status(400).send("Seu cargo está undefined!");
-    } else if(email == undefined){
+    } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    }else if(senha == undefined){
+    } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }else {
-        
-        usuarioModel.alterar(nome, sobrenome, cargo, email, senha,id)
+    } else {
+
+        usuarioModel.alterar(nome, sobrenome, cargo, email, senha, id)
             .then(
                 function (resultado) {
                     console.log(resultado)
                     res.json(resultado);
-            
+
                 }
             ).catch(
                 function (erro) {
@@ -138,50 +141,50 @@ function alterar(req, res){
     }
 }
 
-function empresaDados(req, res){
+function empresaDados(req, res) {
     var empresaId = req.body.fkEmpresa;
     usuarioModel.empresaDados(empresaId)
-    .then(
-        function (resultado) {
-            res.json(resultado[0]);
-            console.log(resultado)
-        }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log(
-                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
-                erro.sqlMessage
-            );
-            
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+        .then(
+            function (resultado) {
+                res.json(resultado[0]);
+                console.log(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                    erro.sqlMessage
+                );
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
 
-function empresaEndereco(req, res){
+function empresaEndereco(req, res) {
     var enderecoId = req.body.idEndereco;
     console.log(enderecoId + ' controller')
     usuarioModel.empresaEndereco(enderecoId)
-    .then(
-        function (resultado) {
-            res.json(resultado[0]);
-            console.log(resultado)
-        }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log(
-                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
-                erro.sqlMessage
-            );
-            
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+        .then(
+            function (resultado) {
+                res.json(resultado[0]);
+                console.log(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                    erro.sqlMessage
+                );
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 }
 
-function empresaEditar(req, res){
+function empresaEditar(req, res) {
     var empresaId = req.body.idEmpresa;
     var nomeEmpresa = req.body.nomeEmpresa;
     var cnpjEmpresa = req.body.cnpjEmpresa;
@@ -190,25 +193,25 @@ function empresaEditar(req, res){
     var telFix = req.body.telFix;
     console.log(' controller da empresa')
     usuarioModel.empresaEditar(empresaId, nomeEmpresa, cnpjEmpresa, emailEmpresa, telCel, telFix)
-    .then(
-        function (resultado) {
-            res.json(resultado);
-            console.log(resultado)
-        }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log(
-                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
-                erro.sqlMessage
-            );
-            
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+        .then(
+            function (resultado) {
+                res.json(resultado);
+                console.log(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                    erro.sqlMessage
+                );
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 
 }
-function alterarEnderecoEmpresa(req, res){
+function alterarEnderecoEmpresa(req, res) {
     var enderecoId = req.body.idEndereco;
     var cep = req.body.cep;
     var logradouro = req.body.logradouro;
@@ -219,23 +222,23 @@ function alterarEnderecoEmpresa(req, res){
     var complemento = req.body.complemento;
 
     console.log(enderecoId + ' controller da empresa')
-    usuarioModel.empresaEnderecoEditar(UF, bairro, cep, cidade, complemento,logradouro,numero, enderecoId)
-    .then(
-        function (resultado) {
-            res.json(resultado);
-            console.log(resultado)
-        }
-    ).catch(
-        function (erro) {
-            console.log(erro);
-            console.log(
-                "\nHouve um erro ao buscar os dados da empresa! Erro: ",
-                erro.sqlMessage
-            );
-            
-            res.status(500).json(erro.sqlMessage);
-        }
-    );
+    usuarioModel.empresaEnderecoEditar(UF, bairro, cep, cidade, complemento, logradouro, numero, enderecoId)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+                console.log(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                    erro.sqlMessage
+                );
+
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
 
 }
 
