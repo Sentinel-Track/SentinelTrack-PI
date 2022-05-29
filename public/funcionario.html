@@ -31,9 +31,9 @@
                     <img src="assets/icon/Logo_Temporaria.png" height="50px">
                     <h3 class="texts">Configurações</h3>
                 </div>
-                 <div class="usuario_nav">
-                <span class="texts" id="b_usuario"></span>
-            </div>
+                <div class="usuario_nav">
+                    <span class="texts" id="b_usuario"></span>
+                </div>
                 <div class="botoes_nav">
                     <a href="usuario.html">
                         <button class="botao">
@@ -41,7 +41,7 @@
                         </button>
                     </a>
                     <a href="empresa.html" id="empresaA">
-                        <button class="botao" >
+                        <button class="botao">
                             Empresa
                         </button>
                     </a>
@@ -51,6 +51,11 @@
                         </button>
                     </a>
                 </div>
+
+                <div class="chamado_nav">
+                    <button id="btnChamado" onclick="chamar_func()">Chamado</button>
+                </div>
+
                 <div class="opcoes_nav">
                     <a href="dashboard.html">Dashboard</a>
                     <a onclick="sair()">Sair</a>
@@ -58,8 +63,15 @@
             </div>
         </div>
 
+        <div id="func">
+            <div class="chamado" id="chamado">
+                <div class="centro">
+                    <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
 
-        <div class="funcionario">
+        <div class="funcionario" id="corpo_config">
             <h1>Funcionários:</h1>
 
             <div class="lista">

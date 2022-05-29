@@ -505,6 +505,16 @@ button {
     align-items: center;
 }
 
+#func{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#func .chamado {
+    margin-left: 0;
+}
+
 .centro {
     height: 100%;
     width: 100%;

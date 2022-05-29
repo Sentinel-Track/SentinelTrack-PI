@@ -51,39 +51,50 @@
                     </button>
                 </a>
             </div>
+
+            <div class="chamado_nav">
+                <button id="btnChamado" onclick="chamar_config()">Chamado</button>
+            </div>
+
             <div class="opcoes_nav">
                 <a href="dashboard.html">Dashboard</a>
                 <a onclick="sair()">Sair</a>
             </div>
         </div>
 
-        <div class="corpo_config">
+        <div class="chamado" id="chamado">
+            <div class="centro">
+                <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div id="corpo_config" class="corpo_config">
             <h1>Meu Usuário:</h1>
 
             <table class="tab_info">
                 <tr>
                     <td>Nome da Empresa:</td>
-                    <td><input type="text"   id="nomeEmpresa" disabled></td>
+                    <td><input type="text" id="nomeEmpresa" disabled></td>
                 </tr>
                 <tr>
                     <td>CNPJ:</td>
-                    <td><input type="text"  id="cnpjEmpresa"   disabled></td>
+                    <td><input type="text" id="cnpjEmpresa" disabled></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="text"  id="emailEmpresa"  disabled></td>
+                    <td><input type="text" id="emailEmpresa" disabled></td>
                 </tr>
                 <tr>
                     <td>Telefone Celular:</td>
-                    <td><input type="text"  id="telCel"  disabled></td>
+                    <td><input type="text" id="telCel" disabled></td>
                 </tr>
                 <tr>
                     <td>Telefone Fixo:</td>
-                    <td><input type="text"  id="telFix"  disabled></td>
+                    <td><input type="text" id="telFix" disabled></td>
                 </tr>
                 <tr>
                     <td>CEP:</td>
-                    <td><input type="text" id="cep"  disabled></td>
+                    <td><input type="text" id="cep" disabled></td>
                 </tr>
                 <tr>
                     <td>Logradouro (rua):</td>
@@ -91,7 +102,7 @@
                 </tr>
                 <tr>
                     <td>Número:</td>
-                    <td><input type="text" id="num"disabled></td>
+                    <td><input type="text" id="num" disabled></td>
                 </tr>
                 <tr>
                     <td>Complemento:</td>
@@ -108,7 +119,7 @@
                 <tr>
                     <td>UF:</td>
                     <td>
-                        <input type="text" id="uf"  disabled>
+                        <input type="text" id="uf" disabled>
                     </td>
                 </tr>
             </table>

@@ -149,3 +149,46 @@ function chamar() {
     btnChamado.style.fontWeight = "bold";
     btnChamado.style.backgroundColor = "#023f79";
 }
+
+function chamar_config(){
+    corpo_config.style.display = "none";
+    chamado.style.display = "flex";
+
+    botaoselecionado.style.borderBottom = "none";
+    botaoselecionado.style.fontWeight = "normal";
+    botaoselecionado.style.backgroundColor = "transparent";
+    
+    empresaA.style.borderBottom = "none";
+    empresaA.style.fontWeight = "normal";
+    empresaA.style.backgroundColor = "transparent";
+    
+    funcionarioA.style.borderBottom = "none";
+    funcionarioA.style.fontWeight = "normal";
+    funcionarioA.style.backgroundColor = "transparent";
+
+    btnChamado.style.borderBottom = "solid 3px #D71B22";
+    btnChamado.style.fontWeight = "bold";
+    btnChamado.style.backgroundColor = "#023f79";
+}
+
+function chamar_func(){
+    corpo_config.style.display = "none";
+    chamado.style.display = "flex";
+    func.style.display = "flex";
+
+    botaoselecionado.style.borderBottom = "none";
+    botaoselecionado.style.fontWeight = "normal";
+    botaoselecionado.style.backgroundColor = "transparent";
+    
+    empresaA.style.borderBottom = "none";
+    empresaA.style.fontWeight = "normal";
+    empresaA.style.backgroundColor = "transparent";
+    
+    funcionarioA.style.borderBottom = "none";
+    funcionarioA.style.fontWeight = "normal";
+    funcionarioA.style.backgroundColor = "transparent";
+
+    btnChamado.style.borderBottom = "solid 3px #D71B22";
+    btnChamado.style.fontWeight = "bold";
+    btnChamado.style.backgroundColor = "#023f79";
+}
