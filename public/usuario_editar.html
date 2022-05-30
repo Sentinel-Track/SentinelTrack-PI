@@ -20,9 +20,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./js/funcoes.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- Include the Dark theme -->
-
-  <!-- Include the Dark theme -->
+  <script src="./js/login.js"></script>
   <link rel="text/css" href="@sweetalert2/theme-dark/dark.css" />
 </head>
 
@@ -142,7 +140,6 @@
     var dadosUsuario = JSON.parse(usuarioSession);
     var campoSenha = nova_senha.value;
     var senhaconf = confirmar_senha.value;
-    var novaSenha = "";
     var nomeVazio = nomeUsuario.value != "";
     var sobrenomeVazio = sobrenomeUsuario.value != "";
     var cargoVazio = cargoUsuario.value != "";
@@ -161,7 +158,8 @@
         confirmButtonText: "Ok",
       });
       return false;
-    } else if (novaSenha.length < 5) {
+    } else if (campoSenha.length < 5) {
+      console.log('senha :' + campoSenha.length);
       Swal.fire({
         title: "Erro!",
         background: "#212121",
