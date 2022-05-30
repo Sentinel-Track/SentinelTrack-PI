@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<style>
+  <style>
     #bolinha {
-        height: 20px;
-        width: 20px;
-        background-color: red;
-        cursor: pointer;
-        border-radius: 100%;
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      cursor: pointer;
+      border-radius: 100%;
     }
-</style>
+  </style>
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,149 +20,310 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/funcoes.js"></script>
     <script src="./js/login.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="text/css" href="@sweetalert2/theme-dark/dark.css" />
+  </head>
 
-</head>
-
-<body onload="validarSessao()">
-
-    <div class="dash" id="cont" style="display: none;">
-        <div class="fold">
-            <div class="titulo_nav">
-                <img src="assets/icon/Logo_Temporaria.png" height="50px">
-                <h3 class="texts">Configurações</h3>
-            </div>
-            <div class="usuario_nav">
-                <span class="texts" id="b_usuario"></span>
-            </div>
-            <div class="botoes_nav">
-                <a href="usuario.html">
-                    <button class="botao">
-                        Usuário
-                    </button>
-                </a>
-                <a href="empresa.html" id="empresaA">
-                    <button class="botao">
-                        Empresa
-                    </button>
-                </a>
-                <a href="funcionario.html" id="funcionarioA">
-                    <button class="botao" id="botaoselecionado">
-                        Funcionarios
-                    </button>
-                </a>
-            </div>
-
-            <div class="chamado_nav">
-                <button id="btnChamado" onclick="chamar_config()">Chamado</button>
-            </div>
-
-            <div class="opcoes_nav">
-                <a href="dashboard.html">Dashboard</a>
-                <a class="sair" onclick="sair()">Sair</a>
-            </div>
+  <body onload="validarSessao(), carregarFunc()">
+    <div class="dash" id="cont" style="display: none">
+      <div class="fold">
+        <div class="titulo_nav">
+          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+          <h3 class="texts">Configurações</h3>
+        </div>
+        <div class="usuario_nav">
+          <span class="texts" id="b_usuario"></span>
+        </div>
+        <div class="botoes_nav">
+          <a href="usuario.html">
+            <button class="botao">Usuário</button>
+          </a>
+          <a href="empresa.html" id="empresaA">
+            <button class="botao">Empresa</button>
+          </a>
+          <a href="funcionario.html" id="funcionarioA">
+            <button class="botao" id="botaoselecionado">Funcionarios</button>
+          </a>
         </div>
 
-        <div class="chamado" id="chamado">
-            <div class="centro">
-                <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
-            </div>
+        <div class="chamado_nav">
+          <button id="btnChamado" onclick="chamar_config()">Chamado</button>
         </div>
 
-        <div id="corpo_config" class="corpo_config">
-            <h1>Meu Usuário:</h1>
-
-            <table class="tab_info">
-                <tr>
-                    <td>Nome:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Sobrenome:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Cargo:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Usuário:</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>Senha Atual:</td>
-                    <td class="senha">
-                        <input id="b1" type="password" id="atual_senha">
-                        <button onclick="mostrarSenha(1)"><img id="i1" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nova Senha:</td>
-                    <td class="senha">
-                        <input id="b2" type="password" id="nova_senha">
-                        <button onclick="mostrarSenha(2)"><img id="i2" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Confirmar Senha:</td>
-                    <td class="senha">
-                        <input id="b3" type="password" id="confirmar_senha">
-                        <button onclick="mostrarSenha(3)"><img id="i3" src="imagens/olho_d.png" height="30px"></button>
-                    </td>
-                </tr>
-
-            </table>
-
-            <div class="botao_config">
-                <a href="funcionario.html">
-                    <button>Salvar Alterações</button>
-                </a>
-            </div>
+        <div class="opcoes_nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a class="sair" onclick="sair()">Sair</a>
         </div>
+      </div>
 
+      <div class="chamado" id="chamado">
+        <div class="centro">
+          <iframe
+            class="frame"
+            src="https://app.pipefy.com/public/form/mWVzTe7P"
+            frameborder="0"
+          ></iframe>
+        </div>
+      </div>
+
+      <div id="corpo_config" class="corpo_config">
+        <h1 id="nomezin">Meu Usuário:</h1>
+
+        <table class="tab_info">
+          <tr>
+            <td>Nome:</td>
+            <td><input type="text" id="nomeUsuario" /></td>
+          </tr>
+          <tr>
+            <td>Sobrenome:</td>
+            <td><input type="text" id="sobrenomeUsuario" /></td>
+          </tr>
+          <tr>
+            <td>Cargo:</td>
+            <td><input type="text" id="cargoUsuario"/></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><input type="text" id="emailUsuario"/></td>
+          </tr>
+          <tr>
+            <td>Senha Atual:</td>
+            <td class="senha">
+              <input type="password" id="atual_senha" />
+              <button onclick="mostrarSenha(1)">
+                <img id="i1" src="imagens/olho_d.png" height="30px" />
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Nova Senha:</td>
+            <td class="senha">
+              <input  type="password" id="nova_senha" />
+              <button onclick="mostrarSenha(2)">
+                <img id="i2" src="imagens/olho_d.png" height="30px" />
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Confirmar Senha:</td>
+            <td class="senha">
+              <input  type="password" id="confirmar_senha" />
+              <button onclick="mostrarSenha(3)">
+                <img id="i3" src="imagens/olho_d.png" height="30px" />
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <div class="botao_config">
+  
+            <button onclick="editar()">Salvar Alterações</button>
+        </div>
+      </div>
     </div>
-    <div id="carregamento" style="display: flex; height: 100vh; align-items: center; justify-content: center;">
-        <img src="./imagens/carregamento.gif" width="70px" alt="">
+    <div
+      id="carregamento"
+      style="
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <img src="./imagens/carregamento.gif" width="70px" alt="" />
     </div>
-</body>
-
+  </body>
 </html>
 <script>
+    var data = {}
+  function carregarFunc() {
+    var query = location.search.slice(1);
+    var partes = query.split("&");
+ 
+    partes.forEach(function (parte) {
+      var chaveValor = parte.split("=");
+      var chave = chaveValor[0];
+      var valor = chaveValor[1];
+      data[chave] = valor;
+    });
 
-    function mostrarSenha(campo) {
+    console.log(data.id);
 
-        if (campo == 1) {
+    fetch("/usuarios/usuarioDados", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuario: data.id,
+           
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO que pega dados do endereco da empresa!")
 
-            if (b1.type == 'password') {
+        if (resposta.ok) {
+            console.log(resposta);
 
-                b1.type = 'text';
-                i1.src = 'imagens/olho_a.png';
-            } else {
+            resposta.json().then(json => {
+                
+                console.log(JSON.stringify(json));
+                console.log(json[0].nome);
+                nomezin.innerHTML = json[0].nome + ' ' + json[0].sobrenome;
+                nomeUsuario.value = json[0].nome;
+                sobrenomeUsuario.value = json[0].sobrenome;
+                cargoUsuario.value = json[0].cargo;
+                emailUsuario.value = json[0].usuario;
+                atual_senha.value = json[0].senha;
+                
+            }); 
+            acabarCarregar()   
+        } else {
 
-                b1.type = 'password';
-                i1.src = 'imagens/olho_d.png';
-            }
-        } else if (campo == 2) {
+            console.log("Houve um erro ao tentar pegar os dados da empresa!");
 
-            if (b2.type == 'password') {
+            resposta.text().then(texto => {
+                console.log(texto);
+                finalizarAguardar(texto);
+            });
+        }         
+    }).catch(function (erro) {
+        console.log(erro);
+        alert(erro)
+    })
 
-                b2.type = 'text';
-                i2.src = 'imagens/olho_a.png';
-            } else {
-
-                b2.type = 'password';
-                i2.src = 'imagens/olho_d.png';
-            }
-        } else if (campo == 3) {
-
-            if (b3.type == 'password') {
-
-                b3.type = 'text';
-                i3.src = 'imagens/olho_a.png';
-            } else {
-
-                b3.type = 'password';
-                i3.src = 'imagens/olho_d.png';
-            }
-        }
+  }
+  function mostrarSenha(campo) {
+    if (campo == 1) {
+      if (b1.type == "password") {
+        b1.type = "text";
+        i1.src = "imagens/olho_a.png";
+      } else {
+        b1.type = "password";
+        i1.src = "imagens/olho_d.png";
+      }
+    } else if (campo == 2) {
+      if (b2.type == "password") {
+        b2.type = "text";
+        i2.src = "imagens/olho_a.png";
+      } else {
+        b2.type = "password";
+        i2.src = "imagens/olho_d.png";
+      }
+    } else if (campo == 3) {
+      if (b3.type == "password") {
+        b3.type = "text";
+        i3.src = "imagens/olho_a.png";
+      } else {
+        b3.type = "password";
+        i3.src = "imagens/olho_d.png";
+      }
     }
+  }
+
+  function editar(){
+
+  
+
+    var campoSenha = nova_senha .value;
+    var senhaconf = confirmar_senha.value;
+    var nomeVazio = nomeUsuario.value != "";
+    var sobrenomeVazio = sobrenomeUsuario.value != "";
+    var cargoVazio = cargoUsuario.value != "";
+    var usuarioVazio = emailUsuario.value != "";
+    var valida = false;
+    if (campoSenha == "") {
+      novaSenha = atual_senha.value;
+      valida = true;
+    } else if (senhaconf != campoSenha) {
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "As senhas não coincidem!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return false;
+    } else if (campoSenha.length < 5) {
+      console.log('senha :' + campoSenha.length);
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "A senha deve conter no mínimo 6 caracteres!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      return false;
+    } else {
+      novaSenha = campoSenha;
+      valida = true;
+    }if (nomeVazio && sobrenomeVazio && cargoVazio && usuarioVazio && valida) {
+      fetch("/usuarios/alterar", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: data.id,
+          nomeServer: nomeUsuario.value,
+          sobrenomeServer: sobrenomeUsuario.value,
+          cargoServer: cargoUsuario.value,
+          emailServer: emailUsuario.value,
+          senhaServer: novaSenha,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("ESTOU NO THEN DO alterar()!");
+          console.log(resposta);
+          if (resposta.ok) {
+            console.log(resposta);
+            resposta.json().then((json) => {
+              // console.log(json);
+              console.log(JSON.stringify(json));
+
+              Swal.fire({
+                title: "Sucesso!",
+                background: "#212121",
+                color: "#fff",
+                text: "Usuário alterado com sucesso!",
+                icon: "success",
+                willClose: () => {
+                  location.href = "./funcionario.html";
+                },
+                confirmButtonText: "Ok",
+              });
+            });
+          } else {
+            Swal.fire({
+              title: "Erro!",
+              background: "#212121",
+              color: "#fff",
+              text: "Houve um erro ao tentar realizar a alteração!",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            console.log("Houve um erro ao tentar realizar a alteração!");
+
+            resposta.text().then((texto) => {
+              console.error(texto);
+            });
+          }
+        })
+        .catch(function (erro) {
+          console.log(erro);
+        });
+
+      return false;
+    } else {
+      Swal.fire({
+        title: "Erro!",
+        background: "#212121",
+        color: "#fff",
+        text: "Preencha todos os campos!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
+  }
 </script>

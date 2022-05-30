@@ -237,12 +237,11 @@ function puxarFuncionarios(){
                         </div>
                         <div class="botoes_lista">
                             <li>
-                                <a href="funcionario_editar.html">
-                                    <button>Editar</button>
-                                </a>
+                                    <button onclick='auxiliar("${funcionario.idUsuario}")'>Editar</button>
+                               
                             </li>
                             <li>
-                                <button class="excluir">Excluir</button>
+                                <button onclick='deletar("${funcionario.idUsuario}","${funcionario.nome}")' class="excluir">Excluir</button>
                             </li>
                         </div>
                     </ul>
@@ -266,5 +265,81 @@ function puxarFuncionarios(){
         alert(erro)
     })
 
+}
+
+function auxiliar(funcionario){
+    console.log(funcionario)
+    location.href = "funcionario_editar.html?id="+funcionario;
+}
+
+function deletar(funcionario, nome){
+
+    Swal.fire({
+        title: "Espera aí!",
+        background: "#212121",
+        color: "#fff",
+        text: "Deseja realmente apagar o(a) usuário(a) "+nome+"?",
+        icon: "warning",
+        showDenyButton: true,
+        confirmButtonText: "Sim",
+        denyButtonText: "Não",
+        
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            cont.style.display = 'none';
+            carregamento.style.display = 'block';
+            fetch("/usuarios/apagarUsuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idUsuario: funcionario,
+                }),
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO que apaga o usuario!")
+        
+                if (resposta.ok) {
+                    console.log(resposta);
+                    cont.style.display = 'block';
+                    carregamento.style.display = 'none';
+                    resposta.json().then(json => {
+                        console.log(json);
+                        Swal.fire({
+                            title: "Sucesso!",
+                            background: "#212121",
+                            color: "#fff",
+                            text: "Usuário alterado com sucesso!",
+                            icon: "success",
+                            willClose: () => {
+                              location.href = "./funcionario.html";
+                            },
+                            confirmButtonText: "Ok",
+                          });
+                    });    
+                } else {
+                    Swal.fire({
+                        title: "Erro!",
+                        background: "#212121",
+                        color: "#fff",
+                        text: "Houve um erro ao tentar realizar a alteração!",
+                        icon: "error",
+                        confirmButtonText: "Ok",
+                      });
+                    console.log("Houve um erro ao tentar pegar os dados da empresa!");
+        
+                    resposta.text().then(texto => {
+                        console.log(texto);
+                        finalizarAguardar(texto);
+                    });
+                }         
+            });
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+
+    
 }
 

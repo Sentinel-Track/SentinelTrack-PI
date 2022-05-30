@@ -15,6 +15,10 @@ router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
+router.post("/usuarioDados", function (req, res) {
+    usuarioController.usuarioDados(req, res);
+})
+
 router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
@@ -38,6 +42,10 @@ router.patch('/alterar', function (req, res) {
 
 router.patch('/alterarEmpresa', function (req, res) {
     usuarioController.empresaEditar(req, res);
+});
+
+router.post('/apagarUsuario', function (req, res) {
+    usuarioController.apagarUsuario(req, res);
 });
 
 router.patch('/alterarEnderecoEmpresa', function (req, res) {

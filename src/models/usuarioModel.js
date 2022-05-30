@@ -9,6 +9,24 @@ function listar() {
     return database.executar(instrucao);
 }
 
+function apagarUsuario(id){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function apagarUsuario()");
+    var instrucao = `
+        DELETE FROM tbUsuario WHERE idUsuario = '${id}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function usuarioDados(id){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente.")
+    var instrucao = `
+        SELECT * FROM tbUsuario WHERE idUsuario = '${id}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function entrar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `
@@ -92,5 +110,7 @@ module.exports = {
     empresaEndereco,
     empresaEditar,
     empresaEnderecoEditar,
-    funcionariosLista
+    funcionariosLista,
+    usuarioDados,
+    apagarUsuario
 };

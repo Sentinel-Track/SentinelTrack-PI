@@ -6,6 +6,47 @@ function testar(req, res) {
     console.log("ENTRAMOS NA usuarioController");
     res.json("ESTAMOS FUNCIONANDO!");
 }
+function usuarioDados(req, res){
+    var id = req.body.idUsuario;
+    usuarioModel.usuarioDados(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function apagarUsuario(req, res){
+        var idUsuario = req.body.idUsuario;
+        console.log(' controller da empresa')
+        usuarioModel.apagarUsuario(idUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    console.log(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                        erro.sqlMessage
+                    );
+    
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    
+}
 
 function listar(req, res) {
     usuarioModel.listar()
@@ -109,6 +150,7 @@ function alterar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     console.log(req.body);
+    console.log("sexo");
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (sobrenome == undefined) {
@@ -279,5 +321,7 @@ module.exports = {
     empresaEndereco,
     empresaEditar,
     alterarEnderecoEmpresa,
-    funcionariosLista
+    funcionariosLista,
+    usuarioDados,
+    apagarUsuario
 }
