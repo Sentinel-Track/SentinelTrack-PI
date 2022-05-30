@@ -1,3 +1,5 @@
+const { listar } = require("../../src/models/usuarioModel");
+
 // sessão
 function validarSessao() {
     // aguardar();
@@ -192,3 +194,70 @@ function chamar_func(){
     btnChamado.style.fontWeight = "bold";
     btnChamado.style.backgroundColor = "#023f79";
 }
+
+function puxarFuncionarios(){
+    
+    var usuarioSession = sessionStorage.USUARIO;
+    var dadosUsuario = JSON.parse(usuarioSession);
+    var idEmpresa = dadosUsuario.fkEmpresa;
+
+    fetch("/usuarios/funcionariosLista", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fkEmpresa: idEmpresa,
+           
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO que pega dados do endereco da empresa!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                
+                console.log(JSON.stringify(json));
+                json.forEach( funcionario => {
+                    console.log(funcionario.nome)
+                    lista.innerHTML +=`
+                    <div class="lista_item">
+                    <ul>
+                        <div class="lista_campo">
+                            <li>${funcionario.nome}</li>
+                            <li>${funcionario.sobrenome}</li>
+                            <li>${funcionario.cargo}</li>
+                        </div>
+                        <div class="botoes_lista">
+                            <li>
+                                <a href="funcionario_editar.html">
+                                    <button>Editar</button>
+                                </a>
+                            </li>
+                            <li>
+                                <button class="excluir">Excluir</button>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+
+                    `
+                });
+            });    
+        } else {
+
+            console.log("Houve um erro ao tentar pegar os dados da empresa!");
+
+            resposta.text().then(texto => {
+                console.log(texto);
+                finalizarAguardar(texto);
+            });
+        }         
+    }).catch(function (erro) {
+        console.log(erro);
+        alert(erro)
+    })
+
+}
+

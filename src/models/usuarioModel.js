@@ -75,6 +75,14 @@ function empresaEnderecoEditar(uf, bairro, cep, cidade, complemento,logradouro,n
     return database.executar(instrucao);
 }
 
+function funcionariosLista(idEmpresa){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function alterar():");
+    var instrucao = `SELECT * FROM tbUsuario WHERE fkEmpresa = ${idEmpresa};
+     `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrar,
@@ -83,5 +91,6 @@ module.exports = {
     empresaDados,   
     empresaEndereco,
     empresaEditar,
-    empresaEnderecoEditar
+    empresaEnderecoEditar,
+    funcionariosLista
 };

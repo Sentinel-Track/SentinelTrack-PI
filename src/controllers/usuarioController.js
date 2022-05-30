@@ -211,6 +211,7 @@ function empresaEditar(req, res) {
         );
 
 }
+
 function alterarEnderecoEmpresa(req, res) {
     var enderecoId = req.body.idEndereco;
     var cep = req.body.cep;
@@ -242,6 +243,31 @@ function alterarEnderecoEmpresa(req, res) {
 
 }
 
+function funcionariosLista(req, res) {
+    var empresaId = req.body.fkEmpresa;
+    var vazio = empresaId == undefined;
+    if (!vazio) {
+        usuarioModel.funcionariosLista(empresaId)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    console.log(resultado)
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao buscar os dados da empresa! Erro: ",
+                        erro.sqlMessage
+                    );
+
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }else{
+        res.status(400).send("Você não enviou nenhum id da empresa!");
+    }
+}
 
 module.exports = {
     entrar,
@@ -252,5 +278,6 @@ module.exports = {
     empresaDados,
     empresaEndereco,
     empresaEditar,
-    alterarEnderecoEmpresa
+    alterarEnderecoEmpresa,
+    funcionariosLista
 }

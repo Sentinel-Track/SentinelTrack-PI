@@ -27,6 +27,11 @@ router.post("/empresaEndereco",function(req,res){
     usuarioController.empresaEndereco(req,res);
 })
 
+router.post("/funcionariosLista",function(req,res){
+    usuarioController.funcionariosLista(req,res);
+})
+
+
 router.patch('/alterar', function (req, res) {
     usuarioController.alterar(req, res);
 });
