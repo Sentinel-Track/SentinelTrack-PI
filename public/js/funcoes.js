@@ -18,13 +18,13 @@ function validarSessao() {
      usuario.value = email;
      senhaUsuario.value = senha;*/
     console.log(dadosUsuario.nome)
-    if (dadosUsuario.usuario != null && dadosUsuario.nome != null) {
+    if (dadosUsuario.usuario != undefined && dadosUsuario.nome != undefined) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         if (h1LoginUsuario != undefined) {
             h1LoginUsuario.innerHTML = dadosUsuario.email;
         }
         b_usuario.innerHTML = 'Olá, '+dadosUsuario.nome;
-
+        acabarCarregar()
         // finalizarAguardar();
     } else {
         window.location = "../login.html";
@@ -46,7 +46,7 @@ function dadosUsuario() {
      sobrenomeUsuario.value = dadosUsuario.sobrenome;
      cargoUsuario.value = dadosUsuario.cargo;
      usuario.value = dadosUsuario.usuario;
-    
+     senhaUsuario.value = dadosUsuario.senha;
     if (dadosUsuario.usuario != null && dadosUsuario.nome != null) {
         // window.alert(`Seja bem-vindo, ${nome}!`);
         if (h1LoginUsuario != undefined) {
@@ -59,6 +59,11 @@ function dadosUsuario() {
         console.log(dadosUsuario + " não está logado")
        // window.location = "../login.html";
     }
+   acabarCarregar();
+}
+function acabarCarregar(){
+    carregamento.style.display = "none";
+    cont.style.display = "flex";
 }
 
 function limparSessao() {
@@ -116,6 +121,7 @@ function dadosEmpresa(){
     bairro.value = dadosEndereco.bairro;
     cidade.value = dadosEndereco.cidade;
     uf.value = dadosEndereco.UF;
+    acabarCarregar()
 }
 
 function obterDadosUltimaHora(idSensor){
@@ -243,6 +249,7 @@ function puxarFuncionarios(){
                 </div>
 
                     `
+                    acabarCarregar();
                 });
             });    
         } else {
