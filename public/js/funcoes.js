@@ -1,4 +1,3 @@
-const { listar } = require("../../src/models/usuarioModel");
 
 // sessão
 function validarSessao() {
@@ -30,6 +29,36 @@ function validarSessao() {
         window.location = "../login.html";
     }
 }
+function validarSessao2() {
+    // aguardar();
+  
+    var usuarioSession = sessionStorage.USUARIO;
+    console.log(usuarioSession)
+    var dadosUsuario = JSON.parse(usuarioSession)
+    console.log(dadosUsuario.nome)
+ 
+   
+    
+    var h1LoginUsuario = document.getElementById("h1_login_usuario");
+    /* nomeUsuario.value = nome;
+     sobrenomeUsuario.value = sobrenome;
+     cargoUsuario.value = cargo;
+     usuario.value = email;
+     senhaUsuario.value = senha;*/
+    console.log(dadosUsuario.nome)
+    if (dadosUsuario.usuario != undefined && dadosUsuario.nome != undefined) {
+        // window.alert(`Seja bem-vindo, ${nome}!`);
+        if (h1LoginUsuario != undefined) {
+            h1LoginUsuario.innerHTML = dadosUsuario.email;
+        }
+        b_usuario.innerHTML = 'Olá, '+dadosUsuario.nome;
+        //acabarCarregar()
+        // finalizarAguardar();
+    } else {
+        window.location = "../login.html";
+    }
+}
+
 
 
 function dadosUsuario() {
