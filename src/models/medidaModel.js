@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idEmpresa) {
+function buscarUltimasMedidasHora(idEmpresa) {
     /*instrucaoSql = `select 
                         temperatura, 
                         umidade, 
@@ -8,8 +8,7 @@ function buscarUltimasMedidas(idEmpresa) {
                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                     from medida
                     where fk_aquario = ${idAquario}
-                    order by id desc limit ${limite_linhas}`;
-      
+                    order by id desc limit ${limite_linhas}`; 
                     */
     instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(HOUR, m.dataHora) as 'hora' from tbMovimentacao m
                     JOIN tbSensor s ON s.idSensor = m.fkSensor
@@ -20,6 +19,27 @@ function buscarUltimasMedidas(idEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function buscarUltimasMedidasDia(idEmpresa) {
+    /*instrucaoSql = `select 
+                        temperatura, 
+                        umidade, 
+                        momento,
+                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
+                    from medida
+                    where fk_aquario = ${idAquario}
+                    order by id desc limit ${limite_linhas}`; 
+                    */
+    instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(HOUR, m.dataHora) as 'hora' from tbMovimentacao m
+                    JOIN tbSensor s ON s.idSensor = m.fkSensor
+                        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+                            WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(DAY, dataHora) = DATEPART(DAY, DATEADD(DAY, 0, GETDATE()))
+                        GROUP BY DATEPART(HOUR, dataHora) ORDER BY DATEPART(HOUR, dataHora) DESC;`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 function buscarKpiMes(idEmpresa) {
     instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
@@ -89,7 +109,7 @@ function buscarMedidasHora(idSensor) {
 
 
 module.exports = {
-    buscarUltimasMedidas,
+    buscarUltimasMedidasHora,
     buscarMedidasEmTempoReal,
     buscarKpiMes,
     buscarKpiSem,

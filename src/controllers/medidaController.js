@@ -1,6 +1,6 @@
 var medidaModel = require("../models/medidaModel");
 
-function buscarUltimasMedidas(req, res) {
+function buscarUltimasMedidasHora(req, res) {
 
     const limite_linhas = 12;
 
@@ -8,7 +8,7 @@ function buscarUltimasMedidas(req, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(idEmpresa).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasHora(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -79,8 +79,6 @@ function buscarKpiDia(req, res){
     });
 }
 
-
-
 function buscarMedidasEmTempoReal(req, res) {
 
     var idAquario = req.params.idAquario;
@@ -101,7 +99,7 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
+    buscarUltimasMedidasHora,
     buscarMedidasEmTempoReal,
     buscarKpiMes,
     buscarKpiSem,

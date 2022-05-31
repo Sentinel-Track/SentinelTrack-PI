@@ -148,7 +148,7 @@
   var dados = JSON.parse(sessionStorage.USUARIO);
 
   var fkEmpresa = dados.fkEmpresa;
-  window.onload = obterDadosGrafico(fkEmpresa), validarSessao2(), obterDadosKPI(fkEmpresa), setTimeout(carregamento, 3000);
+  window.onload = obterDadosHora(fkEmpresa), obterDadosDia(fkEmpresa), validarSessao2(), obterDadosKPI(fkEmpresa), setTimeout(carregamento, 3000);
 
   function carregamento() {
 
@@ -159,7 +159,7 @@
     }
   }
 
-  function obterDadosGrafico(id) {
+  function obterDadosHora(id) {
     fetch(`/medidas/ultimas/${id}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
@@ -184,10 +184,33 @@
           `Erro na obtenção dos dados p/ gráfico: ${error.message}`
         );
       });
+  }
 
+  function obterDadosDia(id) {
 
+    fetch(`/medidas/ultimas/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-
+              plotarGraficoDiario(resposta, id);
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
   }
 
   function obterDadosKPI(id) {
@@ -283,7 +306,7 @@
     }
 
     //colocar data atual numa variavel
-    var data = new Date(); 
+    var data = new Date();
     var dia = data.getDate();
     var mes = data.getMonth() + 1;
     var ano = data.getFullYear();
@@ -292,13 +315,13 @@
     dia = (dia < 10) ? "0" + dia : dia;
 
     const fluxoHora = {
-      labels: ['22:00'],
+      labels: hora,
       datasets: [
         {
           label: "Quantidade de pessoas por hora - " + dia + "/" + mes + "/" + ano,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
-          data: [123],
+          data: dados,
         },
       ],
     };
@@ -308,7 +331,54 @@
       data: fluxoHora,
       options: {},
     };
-    ("");
+
+
+    console.log(JSON.stringify(dados));
+
+    const c_hora = new Chart(document.getElementById("hora"), config4);
+    //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+  }
+
+
+  function plotarGraficoDiario(resposta, id) {
+    const dias = [];
+    const dados = [];
+
+    //colocar data atual numa variavel
+    var data = new Date();
+    var dia = data.getDate();
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+
+    mes = (mes < 10) ? "0" + mes : mes;
+    dia = (dia < 10) ? "0" + dia : dia;
+
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      dias.push(registro.dia + "\n" + dia + "/" + mes);
+      dados.push(registro.mov);
+    }
+
+    console.log(dias);
+
+    const fluxoHora = {
+      labels: hora,
+      datasets: [
+        {
+          label: "Quantidade de pessoas por hora - " + dia + "/" + mes + "/" + ano,
+          backgroundColor: "rgb(215, 38, 61)",
+          borderColor: "rgb(215, 38, 61)",
+          data: dados,
+        },
+      ],
+    };
+
+    const config4 = {
+      type: "bar",
+      data: fluxoHora,
+      options: {},
+    };
+
 
     console.log(JSON.stringify(dados));
 
@@ -636,10 +706,10 @@
       mostrarDiario();
     } else if (tipoGrafico == "anual") {
       mostrarAnual();
-    }else if(tipoGrafico == "mensal"){
+    } else if (tipoGrafico == "mensal") {
       mostrarMensal();
-    } 
-    
+    }
+
     else {
       mostrarHora();
     }
