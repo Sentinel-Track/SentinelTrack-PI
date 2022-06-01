@@ -1,116 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<style>
-  #bolinha {
-    height: 20px;
-    width: 20px;
-    background-color: red;
-    cursor: pointer;
-    border-radius: 100%;
-  }
-</style>
+  <style>
+    #bolinha {
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      cursor: pointer;
+      border-radius: 100%;
+    }
+  </style>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
-  <link rel="stylesheet" href="estilo.css" />
-  <script src="./js/funcoes.js"></script>
-  <script src="./js/login.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
+    <link rel="stylesheet" href="estilo.css" />
+    <script src="./js/funcoes.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<body onload="validarSessao()">
-  <div class="dash">
-
-    <div class="fold">
-      <div class="titulo_nav">
-        <img src="assets/icon/Logo_Temporaria.png" height="50px" />
-        <h3 class="texts">Dashboard</h3>
-      </div>
-      <div class="usuario_nav">
-        <span class="texts" id="b_usuario"></span>
-      </div>
-      <div class="botoes_nav">
-        <button class="botao" id="btnHora" onclick="mostrarHora()">
-          Hora
-        </button>
-        <button class="botao" id="btnDiario" onclick="mostrarDiario()">
-          Diário
-        </button>
-        <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
-          Semanal
-        </button>
-        <button class="botao" id="btnMensal" onclick="mostrarMensal()">
-          Mensal
-        </button>
-        <button class="botao" id="btnAnual" onclick="mostrarAnual()">
-          Anual
-        </button>
-      </div>
-
-      <div class="chamado_nav">
-        <button id="btnChamado" onclick="chamar()">Chamado</button>
-      </div>
-
-      <div class="opcoes_nav">
-        <a href="usuario.html">Configurações</a>
-        <a class="sair" onclick="sair()">Sair</a>
-      </div>
-    </div>
-
-    <div class="chamado" id="chamado">
-      <div class="centro">
-        <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
-      </div>
-    </div>
-
-    <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
-    <div class="grafico" id="grafico">
-      <h2 style="color: aliceblue">Movimentação de pessoas</h2>
-      <div class="kpis">
-        <div class="kpi" style="border-color: #00af54">
-          <span class="nmr" id="nmrMes">125M</span>
-          <span class="title">Último mês</span>
-          <span style="color: #00af54" class="title">Boa</span>
+  <body onload="validarSessao()">
+    <div class="dash">
+      <div class="fold">
+        <div class="titulo_nav">
+          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+          <h3 class="texts">Dashboard</h3>
         </div>
-        <div class="kpi">
-          <span class="nmr" id="nmrSem">19M</span>
-          <span class="title">Última semana</span>
-          <span style="color: #d7263d" class="title">Altíssima</span>
+        <div class="usuario_nav">
+          <span class="texts" id="b_usuario"></span>
         </div>
-        <div class="kpi" style="border-color: #9ac1e8">
-          <span class="nmr" id="nmrDia">120K</span>
-          <span class="title">Último dia</span>
-          <span style="color: #9ac1e8" class="title">Baixíssima</span>
+        <div class="botoes_nav">
+          <button class="botao" id="btnHora" onclick="mostrarHora()">
+            Hora
+          </button>
+          <button class="botao" id="btnDiario" onclick="mostrarDiario()">
+            Diário
+          </button>
+          <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
+            Semanal
+          </button>
+          <button class="botao" id="btnMensal" onclick="mostrarMensal()">
+            Mensal
+          </button>
+          <button class="botao" id="btnAnual" onclick="mostrarAnual()">
+            Anual
+          </button>
+        </div>
+
+        <div class="chamado_nav">
+          <button id="btnChamado" onclick="chamar()">Chamado</button>
+        </div>
+
+        <div class="opcoes_nav">
+          <a href="usuario.html">Configurações</a>
+          <a class="sair" onclick="sair()">Sair</a>
         </div>
       </div>
-      <div class="escolheGrafico">
-        <button class="botao" id="convencional" onclick="mapaConvencional()">
-          Convencional
-        </button>
-        <button class="botao" id="calor" onclick="mapaCalor()">
-          Mapa de Calor
-        </button>
+
+      <div class="chamado" id="chamado">
+        <div class="centro">
+          <iframe
+            class="frame"
+            src="https://app.pipefy.com/public/form/mWVzTe7P"
+            frameborder="0"
+          ></iframe>
+        </div>
       </div>
-      <div class="chart" id="diario" style="display: none">
-        <canvas id="dia"></canvas>
-      </div>
-      <div class="chart" id="semanal" style="display: none">
-        <canvas id="semana"></canvas>
-      </div>
-      <div class="chart" id="mensal" style="display: none">
-        <canvas id="mes"></canvas>
-      </div>
-      <div class="chart" id="anual" style="display: none">
-        <canvas id="ano"></canvas>
-      </div>
-      <div class="chart" id="horario" style="display: none">
-        <canvas id="hora"></canvas>
-      </div>
-      <div id="calorDiario" style="
+
+      <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
+      <div class="grafico" id="grafico">
+        <h2 style="color: aliceblue">Movimentação de pessoas</h2>
+        <div class="kpis">
+          <div class="kpi" style="border-color: #00af54">
+            <span class="nmr" id="nmrMes">125M</span>
+            <span class="title">Último mês</span>
+            <span style="color: #00af54" class="title">Boa</span>
+          </div>
+          <div class="kpi">
+            <span class="nmr" id="nmrSem">19M</span>
+            <span class="title">Última semana</span>
+            <span style="color: #d7263d" class="title">Altíssima</span>
+          </div>
+          <div class="kpi" style="border-color: #9ac1e8">
+            <span class="nmr" id="nmrDia">120K</span>
+            <span class="title">Último dia</span>
+            <span style="color: #9ac1e8" class="title">Baixíssima</span>
+          </div>
+        </div>
+        <div class="escolheGrafico">
+          <button class="botao" id="convencional" onclick="mapaConvencional()">
+            Convencional
+          </button>
+          <button class="botao" id="calor" onclick="mapaCalor()">
+            Mapa de Calor
+          </button>
+        </div>
+        <div class="chart" id="diario" style="display: none">
+          <canvas id="dia"></canvas>
+        </div>
+        <div class="chart" id="semanal" style="display: none">
+          <canvas id="semana"></canvas>
+        </div>
+        <div class="chart" id="mensal" style="display: none">
+          <canvas id="mes"></canvas>
+        </div>
+        <div class="chart" id="anual" style="display: none">
+          <canvas id="ano"></canvas>
+        </div>
+        <div class="chart" id="horario" style="display: none">
+          <canvas id="hora"></canvas>
+        </div>
+        <div
+          id="calorDiario"
+          style="
             display: none;
             position: relative;
             top: 0px;
@@ -118,43 +123,102 @@
             height: 400px;
             width: 792px;
             margin-bottom: 50px;
-          ">
-        <img src="imagens/mapa.png" style="width: 100%; height: 100%" border="0" />
+          "
+        >
+          <img
+            src="imagens/mapa.png"
+            style="width: 100%; height: 100%"
+            border="0"
+          />
 
-        <div style="position: absolute; top: 158px; left: 100px" id="bolinha1"></div>
-        <div style="position: absolute; top: 140px; left: 190px" id="bolinha2"></div>
-        <div style="position: absolute; top: 277px; left: 290px" id="bolinha3"></div>
-        <div style="position: absolute; top: 237px; left: 220px" id="bolinha4"></div>
-        <div style="position: absolute; top: 305px; left: 230px" id="bolinha5"></div>
-        <div style="position: absolute; top: 310px; left: 390px" id="bolinha6"></div>
-        <div style="position: absolute; top: 310px; left: 450px" id="bolinha7"></div>
-        <div style="position: absolute; top: 310px; left: 560px" id="bolinha8"></div>
-        <div style="position: absolute; top: 95px; left: 360px" id="bolinha9"></div>
-        <div style="position: absolute; top: 180px; left: 660px" id="bolinha10"></div>
-        <div style="position: absolute; top: 265px; left: 670px" id="bolinha11"></div>
-        <div style="position: absolute; top: 275px; left: 420px" id="bolinha12"></div>
-        <div style="position: absolute; top: 200px; left: 420px" id="bolinha13"></div>
-        <div style="position: absolute; top: 228px; left: 390px" id="bolinha14"></div>
-        <div style="position: absolute; top: 140px; left: 490px" id="bolinha15"></div>
-        <div style="position: absolute; top: 143px; left: 600px" id="bolinha16"></div>
-        <div style="position: absolute; top: 170px; left: 390px" id="bolinha17"></div>
+          <div
+            style="position: absolute; top: 158px; left: 100px"
+            id="bolinha1"
+          ></div>
+          <div
+            style="position: absolute; top: 140px; left: 190px"
+            id="bolinha2"
+          ></div>
+          <div
+            style="position: absolute; top: 277px; left: 290px"
+            id="bolinha3"
+          ></div>
+          <div
+            style="position: absolute; top: 237px; left: 220px"
+            id="bolinha4"
+          ></div>
+          <div
+            style="position: absolute; top: 305px; left: 230px"
+            id="bolinha5"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 390px"
+            id="bolinha6"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 450px"
+            id="bolinha7"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 560px"
+            id="bolinha8"
+          ></div>
+          <div
+            style="position: absolute; top: 95px; left: 360px"
+            id="bolinha9"
+          ></div>
+          <div
+            style="position: absolute; top: 180px; left: 660px"
+            id="bolinha10"
+          ></div>
+          <div
+            style="position: absolute; top: 265px; left: 670px"
+            id="bolinha11"
+          ></div>
+          <div
+            style="position: absolute; top: 275px; left: 420px"
+            id="bolinha12"
+          ></div>
+          <div
+            style="position: absolute; top: 200px; left: 420px"
+            id="bolinha13"
+          ></div>
+          <div
+            style="position: absolute; top: 228px; left: 390px"
+            id="bolinha14"
+          ></div>
+          <div
+            style="position: absolute; top: 140px; left: 490px"
+            id="bolinha15"
+          ></div>
+          <div
+            style="position: absolute; top: 143px; left: 600px"
+            id="bolinha16"
+          ></div>
+          <div
+            style="position: absolute; top: 170px; left: 390px"
+            id="bolinha17"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
 <script>
   var dados = JSON.parse(sessionStorage.USUARIO);
 
   var fkEmpresa = dados.fkEmpresa;
-  window.onload = obterDadosHora(fkEmpresa), obterDadosAnos(fkEmpresa), obterDadosDia(fkEmpresa), validarSessao2(), obterDadosKPI(fkEmpresa), setTimeout(carregamento, 3000);
+  (window.onload = obterDadosHora(fkEmpresa)),
+    obterDadosAnos(fkEmpresa),
+    obterDadosDia(fkEmpresa),
+    validarSessao2(),
+    obterDadosKPI(fkEmpresa),
+    obterDadosMesAno(fkEmpresa),
+    setTimeout(carregamento, 3000);
 
   function carregamento() {
-
-    if (chartmg.style.display == '') {
-
-      chartmg.style.display = 'none';
+    if (chartmg.style.display == "") {
+      chartmg.style.display = "none";
       mostrarHora();
     }
   }
@@ -166,9 +230,61 @@
             .json()
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            //  resposta.reverse();
+              //  resposta.reverse();
 
-             plotarGraficoAnual(resposta, id);
+              plotarGraficoAnual(resposta, id);
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+  function obterDadosMesAno(id) {
+    fetch(`/medidas/mesAno/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              //  resposta.reverse();
+
+              plotarGraficoMesAno(resposta, id);
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+  function obterDadosSemanasMes(id) {
+    fetch(`/medidas/semanasMes/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              //  resposta.reverse();
+
+              plotarGraficoAnual(resposta, id);
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -213,7 +329,6 @@
   }
 
   function obterDadosDia(id) {
-
     fetch(`/medidas/ultimasDia/${id}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
@@ -240,7 +355,6 @@
   }
 
   function obterDadosKPI(id) {
-
     fetch(`/medidas/kpiMes/${id}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
@@ -249,9 +363,8 @@
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               resposta.reverse();
-              console.log(resposta[0].mov)
+              console.log(resposta[0].mov);
               nmrMes.innerHTML = resposta[0].mov;
-
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -275,9 +388,8 @@
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               resposta.reverse();
-              console.log(resposta[0].mov)
+              console.log(resposta[0].mov);
               nmrDia.innerHTML = resposta[0].mov;
-
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -301,9 +413,8 @@
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               resposta.reverse();
-              console.log(resposta[0].mov)
+              console.log(resposta[0].mov);
               nmrSem.innerHTML = resposta[0].mov;
-
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -318,7 +429,6 @@
           `Erro na obtenção dos dados p/ gráfico: ${error.message}`
         );
       });
-
   }
 
   function plotarGraficoHora(resposta, id) {
@@ -337,14 +447,15 @@
     var mes = data.getMonth() + 1;
     var ano = data.getFullYear();
 
-    mes = (mes < 10) ? "0" + mes : mes;
-    dia = (dia < 10) ? "0" + dia : dia;
+    mes = mes < 10 ? "0" + mes : mes;
+    dia = dia < 10 ? "0" + dia : dia;
 
     const fluxoHora = {
       labels: hora,
       datasets: [
         {
-          label: "Quantidade de pessoas por hora - " + dia + "/" + mes + "/" + ano,
+          label:
+            "Quantidade de pessoas por hora - " + dia + "/" + mes + "/" + ano,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -358,50 +469,38 @@
       options: {},
     };
 
-
     console.log(JSON.stringify(dados));
 
     const c_hora = new Chart(document.getElementById("hora"), config4);
     //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
   }
-
-
   function plotarGraficoDiario(resposta, id) {
-    const dias = [];
+    const semana = [];
     const dados = [];
-
     //colocar data atual numa variavel
-    var data = new Date();
-    var dia = data.getDate();
-    var mes = data.getMonth() + 1;
-    var ano = data.getFullYear();
-
-    mes = (mes < 10) ? "0" + mes : mes;
-    dia = (dia < 10) ? "0" + dia : dia;
-
+    console.log(resposta);
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
-      dias.push(registro.DIA + "h");
+      semana.push(registro.DIA);
       dados.push(registro.mov);
     }
 
-    console.log(dias);
+    console.log(dados);
 
-    const fluxoDia = {
-      labels: dia,
+    const qtdPessoas = {
+      labels: semana,
       datasets: [
         {
-          label: "Quantidade de pessoas por dia - " + dia + "/" + mes + "/" + ano,
+          label: "Quantidade de pessoas na semana",
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
         },
       ],
     };
-
     const config = {
       type: "bar",
-      data: fluxoDia,
+      data: qtdPessoas,
       options: {},
     };
 
@@ -411,56 +510,37 @@
     //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
   }
 
-  const semana = [
-    "1º Semana",
-    "2º Semana",
-    "3º Semana",
-    "4º Semana",
-    "5º Semana",
-    "6º Semana",
-    "7º Semana",
-  ];
+  function plotarGraficoMesAno(resposta) {
+    const mes = [];
+    const dados = []
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      mes.push(registro.MES);
+      dados.push(registro.mov);
+    }
+    const fluxoMensal = {
+      labels: mes,
+      datasets: [
+        {
+          label: "Quantidade de pessoas no Mes",
+          backgroundColor: "rgb(215, 38, 61)",
+          borderColor: "rgb(215, 38, 61)",
+          data: dados,
+        },
+      ],
+    };
 
-  const qtdPessoas = {
-    labels: semana,
-    datasets: [
-      {
-        label: "Quantidade de pessoas na semana",
-        backgroundColor: "rgb(215, 38, 61)",
-        borderColor: "rgb(215, 38, 61)",
-        data: [5960000, 6620000, 6650000, 7110000, 7020000, 7300000, 7200000],
-      },
-    ],
-  };
+    const config5 = {
+      type: "bar",
+      data: fluxoMensal,
+      options: {},
+    };
 
-  const config2 = {
-    type: "line",
-    data: qtdPessoas,
-    options: {},
-  };
+    const c_mensal = new Chart(document.getElementById("mes"), config5);
+  }
 
-  const mes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio"];
-
-  const fluxoMensal = {
-    labels: mes,
-    datasets: [
-      {
-        label: "Quantidade de pessoas no Mes",
-        backgroundColor: "rgb(215, 38, 61)",
-        borderColor: "rgb(215, 38, 61)",
-        data: [534960000, 663420000, 663450000, 553210007, 99430001],
-      },
-    ],
-  };
-
-  const config5 = {
-    type: "bar",
-    data: fluxoMensal,
-    options: {},
-  };
-
-  function plotarGraficoAnual(resposta){
-  const ano = [];
+  function plotarGraficoAnual(resposta) {
+    const ano = [];
     const dados = [];
 
     for (i = 0; i < resposta.length; i++) {
@@ -468,30 +548,58 @@
       ano.push(registro.ANO);
       dados.push(registro.mov);
     }
-  const fluxoAnual = {
-    labels: ano,
+    const fluxoAnual = {
+      labels: ano,
+      datasets: [
+        {
+          label: "Quantidade de pessoas no ano",
+          backgroundColor: "rgb(215, 38, 61)",
+          borderColor: "rgb(215, 38, 61)",
+          data: dados,
+        },
+      ],
+    };
+
+    const config3 = {
+      type: "line",
+      data: fluxoAnual,
+      options: {},
+    };
+    const c_anual = new Chart(document.getElementById("ano"), config3);
+  }
+  function plotarGraficoSemanal(resposta) {
+    console.log(resposta + "  -   ");
+    /*const qtdPessoas = {
+    labels: semana,
     datasets: [
       {
-        label: "Quantidade de pessoas no ano",
+        label: "Quantidade de pessoas na semana",
         backgroundColor: "rgb(215, 38, 61)",
         borderColor: "rgb(215, 38, 61)",
         data: dados,
-            },
+      },
     ],
   };
+    const config2 = {
+      type: "bar",
+      data: qtdPessoas,
+      options: {},
+    };
 
-  const config3 = {
+    console.log(JSON.stringify(dados));
+
+    const c_diario = new Chart(document.getElementById("dia"), config2);*/
+  }
+
+  const config2 = {
     type: "line",
-    data: fluxoAnual,
+    data: qtdPessoas,
     options: {},
   };
-  const c_anual = new Chart(document.getElementById("ano"), config3);
-}
 
   const c_semanal = new Chart(document.getElementById("semana"), config2);
 
   const c_mensal = new Chart(document.getElementById("mes"), config5);
-
 </script>
 
 <script>
@@ -711,9 +819,7 @@
       mostrarAnual();
     } else if (tipoGrafico == "mensal") {
       mostrarMensal();
-    }
-
-    else {
+    } else {
       mostrarHora();
     }
   }

@@ -19,6 +19,14 @@ router.get("/tempo-real/:idAquario", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
+router.get("/semanasMes/:idEmpresa", function (req, res) {
+    medidaController.semanasMes(req, res);
+})
+
+router.get("/mesAno/:idEmpresa", function (req, res) {
+    medidaController.mesAno(req, res);
+});
+
 router.get("/kpiMes/:idEmpresa", function (req, res) {
     medidaController.buscarKpiMes(req, res);
 })

@@ -19,6 +19,25 @@ function buscarUltimasMedidasHora(idEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function semanasMes(idEmpresa){
+
+}
+
+function mesAno(idEmpresa){
+    instrucaoSql = `Set Language 'Portuguese';
+    SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(MONTH, m.dataHora), DATENAME(MONTH, m.dataHora) AS 'MES' from tbMovimentacao m
+    JOIN tbSensor s ON s.idSensor = m.fkSensor
+        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+            WHERE e.idEmpresa = 11 	AND DATEPART(YEAR, m.dataHora) = DATEPART(YEAR, GETDATE())
+				GROUP BY DATENAME(MONTH, m.dataHora), DATEPART(MONTH, m.dataHora)
+					ORDER BY DATEPART(MONTH, m.dataHora), DATENAME(MONTH, m.dataHora)
+
+`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 function buscarUltimasMedidasAnos(idEmpresa) {
     instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(YEAR, m.dataHora) as 'ANO' from tbMovimentacao m
     JOIN tbSensor s ON s.idSensor = m.fkSensor
@@ -39,11 +58,16 @@ function buscarUltimasMedidasDia(idEmpresa) {
                     where fk_aquario = ${idAquario}
                     order by id desc limit ${limite_linhas}`; 
                     */
-    instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(DAY, m.dataHora) as 'DIA' from tbMovimentacao m
+    instrucaoSql = ` Set Language 'Portuguese';
+    SELECT COUNT(m.idMovimentacao) as 'mov',DATEPART(dy, m.dataHora), DATENAME(WEEKDAY, m.dataHora) as 'DIA' from tbMovimentacao m
     JOIN tbSensor s ON s.idSensor = m.fkSensor
         JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-            WHERE e.idEmpresa = ${idEmpresa} 
-             GROUP BY DATEPART(DAY, dataHora) ORDER BY DATEPART(DAY, dataHora);`
+            WHERE e.idEmpresa = ${idEmpresa} AND DATEADD(day, 0, m.dataHora) > DATEADD(day, -7, GETDATE()) AND DATEADD(day, 0, m.dataHora) < DATEADD(day, -1, GETDATE())
+             GROUP BY DATENAME(WEEKDAY, m.dataHora), DATEPART(dy, m.dataHora)
+			 	ORDER BY DATEPART(dy, m.dataHora) , DATENAME(WEEKDAY, m.dataHora)
+
+
+`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -124,5 +148,7 @@ module.exports = {
     buscarKpiMes,
     buscarKpiSem,
     buscarKpiDia,
-    buscarUltimasMedidasAnos
+    buscarUltimasMedidasAnos,
+    mesAno,
+    semanasMes
 }
