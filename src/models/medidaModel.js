@@ -78,7 +78,7 @@ function buscarKpiMes(idEmpresa) {
     instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
     JOIN tbSensor s ON s.idSensor = m.fkSensor
         JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-            WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(DAY, datahora) BETWEEN  DATEPART(DAY, DATEADD(DAY, -7, GETDATE())) AND DATEPART(DAY, DATEADD(DAY, 0, GETDATE()))
+            WHERE e.idEmpresa = ${idEmpresa} AND MONTH(dataHora) = MONTH(DATEADD(MONTH,-1,GETDATE()))
 `
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -95,10 +95,13 @@ function buscarKpiMes(idEmpresa) {
 */
 
 function buscarKpiSem(idEmpresa) {
-    instrucaoSql = ` SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
+    instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
     JOIN tbSensor s ON s.idSensor = m.fkSensor
         JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-            WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(DAY, datahora) BETWEEN  DATEPART(DAY, DATEADD(DAY, -7, GETDATE())) AND DATEPART(DAY, DATEADD(DAY, 0, GETDATE()))
+            WHERE e.idEmpresa = ${idEmpresa}
+			AND DATEADD(day, 0, m.dataHora) > DATEADD(day, -7, GETDATE())
+				
+
 `
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -122,9 +125,9 @@ function buscarMedidasEmTempoReal(idAquario) {
 function buscarKpiDia(idEmpresa) {
 
     instrucaoSql = ` SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
-                            JOIN tbSensor s ON s.idSensor = m.fkSensor
-                                JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-                                    WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(DAY, datahora) BETWEEN  DATEPART(DAY, DATEADD(DAY, -1, GETDATE())) AND DATEPART(DAY, DATEADD(DAY, 0, GETDATE()))
+    JOIN tbSensor s ON s.idSensor = m.fkSensor
+        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+            WHERE e.idEmpresa = ${idEmpresa} AND DAY(dataHora) = DAY(DATEADD(DAY,-1,GETDATE()))
                   `
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
