@@ -148,7 +148,7 @@
   var dados = JSON.parse(sessionStorage.USUARIO);
 
   var fkEmpresa = dados.fkEmpresa;
-  window.onload = obterDadosHora(fkEmpresa), obterDadosDia(fkEmpresa), validarSessao2(), obterDadosKPI(fkEmpresa), setTimeout(carregamento, 3000);
+  window.onload = obterDadosHora(fkEmpresa), obterDadosAnos(fkEmpresa), obterDadosDia(fkEmpresa), validarSessao2(), obterDadosKPI(fkEmpresa), setTimeout(carregamento, 3000);
 
   function carregamento() {
 
@@ -157,6 +157,32 @@
       chartmg.style.display = 'none';
       mostrarHora();
     }
+  }
+  function obterDadosAnos(id) {
+    fetch(`/medidas/ultimosAnos/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            //  resposta.reverse();
+
+             plotarGraficoAnual(resposta, id);
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
   }
 
   function obterDadosHora(id) {
@@ -436,8 +462,15 @@
     options: {},
   };
 
-  const ano = ["2018", "2019", "2020", "2021", "2022"];
+  function plotarGraficoAnual(resposta){
+  const ano = [];
+    const dados = [];
 
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      ano.push(registro.ANO);
+      dados.push(registro.mov);
+    }
   const fluxoAnual = {
     labels: ano,
     datasets: [
@@ -445,8 +478,8 @@
         label: "Quantidade de pessoas no ano",
         backgroundColor: "rgb(215, 38, 61)",
         borderColor: "rgb(215, 38, 61)",
-        data: [2600000000, 2500000000, 101000000, 1500000000, 2200000000],
-      },
+        data: dados,
+            },
     ],
   };
 
@@ -455,6 +488,8 @@
     data: fluxoAnual,
     options: {},
   };
+  const c_anual = new Chart(document.getElementById("ano"), config3);
+}
 
   const c_diario = new Chart(document.getElementById("dia"), config);
 
@@ -462,7 +497,6 @@
 
   const c_mensal = new Chart(document.getElementById("mes"), config5);
 
-  const c_anual = new Chart(document.getElementById("ano"), config3);
 </script>
 
 <script>

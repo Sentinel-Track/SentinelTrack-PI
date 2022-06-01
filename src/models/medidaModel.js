@@ -19,7 +19,16 @@ function buscarUltimasMedidasHora(idEmpresa) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function buscarUltimasMedidasAnos(idEmpresa) {
+    instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(YEAR, m.dataHora) as 'ANO' from tbMovimentacao m
+    JOIN tbSensor s ON s.idSensor = m.fkSensor
+        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+            WHERE e.idEmpresa = ${idEmpresa} 
+             GROUP BY DATEPART(YEAR, dataHora) ORDER BY DATEPART(YEAR, dataHora);`
 
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 function buscarUltimasMedidasDia(idEmpresa) {
     /*instrucaoSql = `select 
                         temperatura, 
@@ -114,5 +123,6 @@ module.exports = {
     buscarMedidasEmTempoReal,
     buscarKpiMes,
     buscarKpiSem,
-    buscarKpiDia
+    buscarKpiDia,
+    buscarUltimasMedidasAnos
 }
