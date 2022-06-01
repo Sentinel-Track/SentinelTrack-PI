@@ -42,11 +42,9 @@ function buscarUltimasMedidasAnos(req, res) {
 
 function buscarUltimasMedidasDia(req, res) {
 
-    const limite_linhas = 7;
-
     var idEmpresa = req.params.idEmpresa;
-
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+    
+    console.log(`Recuperando as ultimas medidas`);
 
     medidaModel.buscarUltimasMedidasDia(idEmpresa).then(function (resultado) {
         if (resultado.length > 0) {

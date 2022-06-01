@@ -370,8 +370,6 @@
     const dias = [];
     const dados = [];
 
-    console.log('aaa teste')
-
     //colocar data atual numa variavel
     var data = new Date();
     var dia = data.getDate();
@@ -383,7 +381,7 @@
 
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
-      dias.push(registro.dia + "\n" + dia + "/" + mes);
+      dias.push(registro.DIA + "h");
       dados.push(registro.mov);
     }
 
@@ -406,7 +404,6 @@
       data: fluxoDia,
       options: {},
     };
-
 
     console.log(JSON.stringify(dados));
 
@@ -490,8 +487,6 @@
   };
   const c_anual = new Chart(document.getElementById("ano"), config3);
 }
-
-  const c_diario = new Chart(document.getElementById("dia"), config);
 
   const c_semanal = new Chart(document.getElementById("semana"), config2);
 

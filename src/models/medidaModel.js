@@ -39,11 +39,11 @@ function buscarUltimasMedidasDia(idEmpresa) {
                     where fk_aquario = ${idAquario}
                     order by id desc limit ${limite_linhas}`; 
                     */
-    instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(DAY, m.dataDia) as 'dia' from tbMovimentacao m
-                    JOIN tbSensor s ON s.idSensor = m.fkSensor
-                        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-                            WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(DAY, dataDia) = DATEPART(DAY, DATEADD(DAY, 0, GETDATE()))
-                        GROUP BY DATEPART(DAY, dataDia) ORDER BY DATEPART(DAY, dataDia);`
+    instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(DAY, m.dataHora) as 'DIA' from tbMovimentacao m
+    JOIN tbSensor s ON s.idSensor = m.fkSensor
+        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+            WHERE e.idEmpresa = ${idEmpresa} 
+             GROUP BY DATEPART(DAY, dataHora) ORDER BY DATEPART(DAY, dataHora);`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
