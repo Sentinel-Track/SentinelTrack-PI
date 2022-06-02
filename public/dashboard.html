@@ -213,8 +213,8 @@
     obterDadosDia(fkEmpresa),
     validarSessao2(),
     obterDadosKPI(fkEmpresa),
-    obterDadosMesAno(fkEmpresa),
-    setTimeout(carregamento, 3000);
+    obterDadosSemanasMes(fkEmpresa);
+  obterDadosMesAno(fkEmpresa), setTimeout(carregamento, 3000);
 
   function carregamento() {
     if (chartmg.style.display == "") {
@@ -284,7 +284,7 @@
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               //  resposta.reverse();
 
-              plotarGraficoAnual(resposta, id);
+              plotarGraficoSemanasMes(resposta, id);
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -430,7 +430,81 @@
         );
       });
   }
+  function plotarGraficoSemanasMes(resposta, id) {
+    var semanas = []
+    var dados = []
+    var semana = []
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      semana.push(registro.DIA);
+      dados.push(registro.mov);
+    }
+    for(i = 1; i <= semana.length; i++){
+      semanas.push(i);
+    }
+    var data = Date.now();
+    var mesPassado = new Date(data).getMonth();
+    var nomeMes = "";
+    switch (mesPassado) {
+      case 0:
+        nomeMes = "Janeiro";
+        break;
+      case 1:
+        nomeMes = "Fevereiro";
+        break;
+      case 2:
+        nomeMes = "Março";
+        break;
+      case 3:
+        nomeMes = "Abril";
+        break;
+      case 4:
+        nomeMes = "Maio";
+        break;
+      case 5:
+        nomeMes = "Junho";
+        break;
+      case 6:
+        nomeMes = "Julho";
+        break;
+      case 7:
+        nomeMes = "Agosto";
+        break;
+      case 8:
+        nomeMes = "Setembro";
+        break;
+      case 9:
+        nomeMes = "Outubro";
+        break;
+      case 10:
+        nomeMes = "Novembro";
+        break;
+      case 11:
+        nomeMes = "Dezembro";
+        break;
+    }
+    const ano = new Date(data).getFullYear();
+    const fluxoSemana = {
+      labels: semanas,
+      datasets: [
+        {
+          label:
+            "Fluxo de pessoas por semana do mês " + mesPassado + "/" + ano,
+          backgroundColor: "rgb(215, 38, 61)",
+          borderColor: "rgb(215, 38, 61)",
+          data: dados,
+        },
+      ],
+    }
 
+    const config2 = {
+      type: "line",
+      data: fluxoSemana,
+      options: {},
+    };
+
+    const c_semanal = new Chart(document.getElementById("semana"), config2);
+  }
   function plotarGraficoHora(resposta, id) {
     const hora = [];
     const dados = [];
@@ -512,7 +586,7 @@
 
   function plotarGraficoMesAno(resposta) {
     const mes = [];
-    const dados = []
+    const dados = [];
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
       mes.push(registro.MES);
@@ -590,16 +664,6 @@
 
     const c_diario = new Chart(document.getElementById("dia"), config2);*/
   }
-
-  const config2 = {
-    type: "line",
-    data: qtdPessoas,
-    options: {},
-  };
-
-  const c_semanal = new Chart(document.getElementById("semana"), config2);
-
-  const c_mensal = new Chart(document.getElementById("mes"), config5);
 </script>
 
 <script>
