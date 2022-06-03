@@ -22,12 +22,12 @@ function buscarUltimasMedidasHora(idEmpresa) {
 
 function semanasMes(idEmpresa) {
 
-  instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', DATEPART(WEEK, m.dataHora) as 'semana' from tbMovimentacao m
+  instrucaoSql = `SELECT TOP(5) COUNT(m.idMovimentacao) as 'mov', DATEPART(isowk, m.dataHora) as 'semana' from tbMovimentacao m
 JOIN tbSensor s ON s.idSensor = m.fkSensor
     JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
         WHERE e.idEmpresa = ${idEmpresa} AND DATEPART(MONTH, m.dataHora) = DATEPART(MONTH,(DATEADD(MONTH, -1, GETDATE())))
-         GROUP BY DATEPART(WEEK, dataHora)
-         ORDER BY DATEPART(WEEK, dataHora)`;
+         GROUP BY DATEPART(isowk, dataHora)
+         ORDER BY DATEPART(isowk, dataHora)`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -138,6 +138,17 @@ function buscarKpiDia(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
+function buscarDadosDiaCalor(idEmpresa){
+  instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov', m.fkSensor as 'sensor' from tbMovimentacao m
+  JOIN tbSensor s ON s.idSensor = m.fkSensor
+      JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+          WHERE e.idEmpresa = ${idEmpresa} AND DAY(dataHora) = DAY(DATEADD(DAY,0,GETDATE()))
+    GROUP BY m.fkSensor`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 function buscarMedidasHora(idSensor) {
   instrucaoSql = `SELECT COUNT(idMovimentacao), HOUR(dataHora) from tbMovimentacao WHERE HOUR(dataHora) >= 00 AND HOUR(dataHora) <=24 AND fkSensor = 1 GROUP BY HOUR(dataHora);`;
 
@@ -155,4 +166,5 @@ module.exports = {
   buscarUltimasMedidasAnos,
   mesAno,
   semanasMes,
+  buscarDadosDiaCalor
 };

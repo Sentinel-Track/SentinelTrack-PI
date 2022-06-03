@@ -7,6 +7,10 @@ router.get("/ultimasHora/:idEmpresa", function (req, res) {
     medidaController.buscarUltimasMedidasHora(req, res);
 });
 
+router.get("/dadosMapaCalor/:idEmpresa", function (req, res) {
+    medidaController.dadosMapaCalor(req, res);
+})
+
 router.get("/ultimosAnos/:idEmpresa", function (req, res) {
     medidaController.buscarUltimasMedidasAnos(req, res);
 });

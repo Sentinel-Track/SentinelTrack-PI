@@ -33,6 +33,7 @@
           <span class="texts" id="b_usuario"></span>
         </div>
         <div class="botoes_nav">
+         
           <button class="botao" id="btnHora" onclick="mostrarHora()">
             Hora
           </button>
@@ -47,6 +48,9 @@
           </button>
           <button class="botao" id="btnAnual" onclick="mostrarAnual()">
             Anual
+          </button>
+          <button class="botao" id="btnMapa" onclick="mapaCalor()">
+            Mapa de calor
           </button>
         </div>
 
@@ -214,7 +218,7 @@
     validarSessao2(),
     obterDadosKPI(fkEmpresa),
     obterDadosSemanasMes(fkEmpresa);
-  obterDadosMesAno(fkEmpresa), setTimeout(carregamento, 3000);
+  obterDadosMesAno(fkEmpresa), obterDadosMapaCalor(fkEmpresa), setTimeout(carregamento, 3000);
 
   function carregamento() {
     if (chartmg.style.display == "") {
@@ -353,6 +357,34 @@
         );
       });
   }
+var dadosMapaCalor = []
+  function obterDadosMapaCalor(id){
+    fetch(`/medidas/dadosMapaCalor/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response
+            .json()
+            .then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              resposta.forEach(dado => {
+                dadosMapaCalor.push(Number(dado.mov))
+              });
+           
+            })
+            .catch(function (error) {
+              console.error(`Erro na obtenção dos dados: ${error.message}`);
+              alert("não existem dados");
+            });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
 
   function obterDadosKPI(id) {
     fetch(`/medidas/kpiMes/${id}`, { cache: "no-store" })
@@ -431,16 +463,16 @@
       });
   }
   function plotarGraficoSemanasMes(resposta, id) {
-    var semanas = []
-    var dados = []
-    var semana = []
+    var semanas = [];
+    var dados = [];
+    var semana = [];
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
       semana.push(registro.DIA);
       dados.push(registro.mov);
     }
-    for(i = 1; i <= semana.length; i++){
-      semanas.push(i);
+    for (i = 1; i <= semana.length; i++) {
+      semanas.push("Semana " + i);
     }
     var data = Date.now();
     var mesPassado = new Date(data).getMonth();
@@ -488,14 +520,13 @@
       labels: semanas,
       datasets: [
         {
-          label:
-            "Fluxo de pessoas por semana do mês " + mesPassado + "/" + ano,
+          label: "Fluxo de pessoas por semana do mês " + mesPassado + "/" + ano,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
         },
       ],
-    }
+    };
 
     const config2 = {
       type: "line",
@@ -708,6 +739,10 @@
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
+
+    btnMapa.style.borderBottom = "none";
+    btnMapa.style.fontWeight = "normal";
+    btnMapa.style.backgroundColor = "transparent";
   }
 
   function mostrarDiario() {
@@ -749,6 +784,10 @@
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
+
+    btnMapa.style.borderBottom = "none";
+    btnMapa.style.fontWeight = "normal";
+    btnMapa.style.backgroundColor = "transparent";
   }
 
   function mostrarMensal() {
@@ -790,6 +829,10 @@
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
+
+    btnMapa.style.borderBottom = "none";
+    btnMapa.style.fontWeight = "normal";
+    btnMapa.style.backgroundColor = "transparent";
   }
 
   function mostrarAnual() {
@@ -831,6 +874,10 @@
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
+
+    btnMapa.style.borderBottom = "none";
+    btnMapa.style.fontWeight = "normal";
+    btnMapa.style.backgroundColor = "transparent";
   }
 
   function mostrarHora() {
@@ -872,6 +919,10 @@
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
+
+    btnMapa.style.borderBottom = "none";
+    btnMapa.style.fontWeight = "normal";
+    btnMapa.style.backgroundColor = "transparent";
   }
 
   function mapaConvencional() {
@@ -889,177 +940,88 @@
   }
 
   function mapaCalor() {
-    if (tipoGrafico == "semanal") {
-      calorDiario.style.display = "block";
-      semanal.style.display = "none";
+ 
+    chartmg.style.display = "none";
+    grafico.style.display = "flex";
+    
+    btnMapa.style.borderBottom = "solid 3px #D71B22";
+    btnMapa.style.fontWeight = "bold";
+    btnMapa.style.backgroundColor = "#023f79";
 
-      //metricas
-      var minimo = 6000000;
-      var quartil1 = 6650000;
-      var media = 9871000;
-      var mediana = 9470000;
-      var quartil3 = 11000000;
-      var maximo = 19290000;
+    btnHora.style.borderBottom = "none";
+    btnHora.style.fontWeight = "normal";
+    btnHora.style.backgroundColor = "transparent";
 
-      for (var i = 1; i <= 17; i++) {
-        var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo; //numero aleatorio - não decimal
+    btnDiario.style.borderBottom = "none";
+    btnDiario.style.fontWeight = "normal";
+    btnDiario.style.backgroundColor = "transparent";
 
-        var idBola = "bolinha" + i;
-        var bola = document.getElementById(idBola);
-        if (numero < quartil1) {
-          //bola azul #9AC1E8
-          bola.style.background =
-            "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
-        } else if (numero < media) {
-          //bola amarela #FFFE00
-          bola.style.background =
-            "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
-        } else if (numero < mediana) {
-          //bola verde #91D150
-          bola.style.background =
-            "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
-        } else if (numero < quartil3) {
-          //bola verde escura #00AF54
-          bola.style.background =
-            "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
-        } else if (numero < maximo) {
-          //bola laranja #FDC100
-          bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
-        } else {
-          //bola vermelha #FE0001
-          bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
-        }
-        bola.style.width = "25px";
-        bola.style.height = "25px";
-        bola.style.borderRadius = "100%";
-        bola.style.opacity = "0.9";
-      }
-    } else if (tipoGrafico == "diario") {
-      calorDiario.style.display = "block";
-      diario.style.display = "none";
+    btnSemanal.style.borderBottom = "none";
+    btnSemanal.style.fontWeight = "normal";
+    btnSemanal.style.backgroundColor = "transparent";
 
-      //numero aleatorio entre 6000000 e 19290000
-      var minimo = 110000;
-      var quartil1 = 280000;
-      var media = 484090.9;
-      var mediana = 400000;
-      var quartil3 = 500000;
-      var maximo = 1200000;
+    btnMensal.style.borderBottom = "none";
+    btnMensal.style.fontWeight = "normal";
+    btnMensal.style.backgroundColor = "transparent";
 
-      for (var i = 1; i <= 17; i++) {
-        var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+    btnAnual.style.borderBottom = "none";
+    btnAnual.style.fontWeight = "normal";
+    btnAnual.style.backgroundColor = "transparent";
 
-        var idBola = "bolinha" + i;
-        var bola = document.getElementById(idBola);
-        if (numero < quartil1) {
-          //bola azul #9AC1E8
-          bola.style.background =
-            "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
-        } else if (numero < media) {
-          //bola amarela #FFFE00
-          bola.style.background =
-            "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
-        } else if (numero < mediana) {
-          //bola verde #91D150
-          bola.style.background =
-            "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
-        } else if (numero < quartil3) {
-          //bola verde escura #00AF54
-          bola.style.background =
-            "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
-        } else if (numero < maximo) {
-          //bola laranja #FDC100
-          bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
-        } else {
-          //bola vermelha #FE0001
-          bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
-        }
+    btnChamado.style.borderBottom = "none";
+    btnChamado.style.fontWeight = "normal";
+    btnChamado.style.backgroundColor = "transparent";
 
-        bola.style.width = "25px";
-        bola.style.height = "25px";
-        bola.style.borderRadius = "100%";
-        bola.style.opacity = "0.9";
-      }
-    } else if (tipoGrafico == "anual") {
-      calorDiario.style.display = "block";
-      anual.style.display = "none";
 
-      //numero aleatorio entre 6000000 e 19290000
-      var minimo = 1800000000;
-      var quartil1 = 2000000000;
-      var media = 2664545454.5;
-      var mediana = 2460000000;
-      var quartil3 = 3000000000;
-      var maximo = 4500000000;
-
-      for (var i = 1; i <= 17; i++) {
-        var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
-
-        var idBola = "bolinha" + i;
-        var bola = document.getElementById(idBola);
-        if (numero < quartil1) {
-          //bola azul #9AC1E8
-          bola.style.background =
-            "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
-        } else if (numero < media) {
-          //bola amarela #FFFE00
-          bola.style.background =
-            "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
-        } else if (numero < mediana) {
-          //bola verde #91D150
-          bola.style.background =
-            "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
-        } else if (numero < quartil3) {
-          //bola verde escura #00AF54
-          bola.style.background =
-            "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
-        } else if (numero < maximo) {
-          //bola laranja #FDC100
-          bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
-        } else {
-          //bola vermelha #FE0001
-          bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
-        }
-
-        bola.style.width = "25px";
-        bola.style.height = "25px";
-        bola.style.borderRadius = "100%";
-        bola.style.opacity = "0.9";
-      }
-    } else if (tipoGrafico == "horario") {
       calorDiario.style.display = "block";
       horario.style.display = "none";
+    
+      var dados = dadosMapaCalor;
+      var minimo1 = 9999999999;
+      var maximo1 = 0;
 
+      for(var i = 0; i < dados.length; i++){
+        if(dados[i] > maximo1){
+          maximo1 = dados[i];
+        }
+        if(dados[i] < minimo1){
+          minimo1 = dados[i];
+        }
+      }
+      console.log(minimo1 + ' - ' + maximo1)
+      var metrica = (maximo1 - minimo1) / 4;
+  
       //numero aleatorio entre 6000000 e 19290000
-      var minimo = 10000;
-      var quartil1 = 20000;
-      var media = 39909.1;
-      var mediana = 30000;
-      var quartil3 = 60000;
-      var maximo = 90000;
+      var minimo = minimo1;
+      var quartil1 = minimo1 + metrica;
+      var media = minimo1 + (metrica*2);
+      var mediana = minimo1 + (metrica*3);
+      var quartil3 = minimo1 + (metrica*4);
+      var maximo = maximo1; 
 
-      for (var i = 1; i <= 17; i++) {
-        var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
+      for (var i = 0; i <= 17; i++) {
+        var numero = dados[i]
+        if(i == 0) numero *= 5;
 
-        var idBola = "bolinha" + i;
+        var idBola = "bolinha" + (i+1);
         var bola = document.getElementById(idBola);
-        if (numero < quartil1) {
+        if (numero == minimo1) {
           //bola azul #9AC1E8
           bola.style.background =
             "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
-        } else if (numero < media) {
+        } else if (numero < quartil1) {
           //bola amarela #FFFE00
           bola.style.background =
             "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
-        } else if (numero < mediana) {
+        } else if (numero < media) {
           //bola verde #91D150
           bola.style.background =
             "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
-        } else if (numero < quartil3) {
+        } else if (numero < mediana) {
           //bola verde escura #00AF54
           bola.style.background =
             "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
-        } else if (numero < maximo) {
+        } else if (numero < quartil3) {
           //bola laranja #FDC100
           bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
         } else {
@@ -1072,52 +1034,6 @@
         bola.style.borderRadius = "100%";
         bola.style.opacity = "0.9";
       }
-    } else {
-      calorDiario.style.display = "block";
-      mensal.style.display = "none";
-
-      //numero aleatorio entre 6000000 e 19290000
-      var minimo = 10000;
-      var quartil1 = 20000;
-      var media = 39909.1;
-      var mediana = 30000;
-      var quartil3 = 60000;
-      var maximo = 90000;
-      console.log("mensal");
-      for (var i = 1; i <= 17; i++) {
-        var numero = Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
-
-        var idBola = "bolinha" + i;
-        var bola = document.getElementById(idBola);
-        if (numero < quartil1) {
-          //bola azul #9AC1E8
-          bola.style.background =
-            "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
-        } else if (numero < media) {
-          //bola amarela #FFFE00
-          bola.style.background =
-            "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
-        } else if (numero < mediana) {
-          //bola verde #91D150
-          bola.style.background =
-            "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
-        } else if (numero < quartil3) {
-          //bola verde escura #00AF54
-          bola.style.background =
-            "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
-        } else if (numero < maximo) {
-          //bola laranja #FDC100
-          bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
-        } else {
-          //bola vermelha #FE0001
-          bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
-        }
-
-        bola.style.width = "25px";
-        bola.style.height = "25px";
-        bola.style.borderRadius = "100%";
-        bola.style.opacity = "0.9";
-      }
-    }
+    
   }
 </script>
