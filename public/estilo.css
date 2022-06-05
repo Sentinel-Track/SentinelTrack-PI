@@ -213,8 +213,8 @@ body {
 }
 
 .msg_validacao {
-    color: red;
-    font-size: 60%;
+    color: #fff;
+    font-size: 70%;
     text-align: center;
 }
 
