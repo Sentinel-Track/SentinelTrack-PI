@@ -1,125 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <style>
-    #bolinha {
-      height: 20px;
-      width: 20px;
-      background-color: red;
-      cursor: pointer;
-      border-radius: 100%;
-    }
-  </style>
+<style>
+  #bolinha {
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    cursor: pointer;
+    border-radius: 100%;
+  }
+</style>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
-    <link rel="stylesheet" href="estilo.css" />
-    <script src="./js/funcoes.js"></script>
-    <script src="./js/login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
+  <link rel="stylesheet" href="estilo.css" />
+  <script src="./js/funcoes.js"></script>
+  <script src="./js/login.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 
-  <body onload="validarSessao()">
-    <div class="dash">
-      <div class="fold">
-        <div class="titulo_nav">
-          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
-          <h3 class="texts">Dashboard</h3>
-        </div>
-        <div class="usuario_nav">
-          <span class="texts" id="b_usuario"></span>
-        </div>
-        <div class="botoes_nav">
-         
-          <button class="botao" id="btnHora" onclick="mostrarHora()">
-            Hora
-          </button>
-          <button class="botao" id="btnDiario" onclick="mostrarDiario()">
-            Diário
-          </button>
-          <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
-            Semanal
-          </button>
-          <button class="botao" id="btnMensal" onclick="mostrarMensal()">
-            Mensal
-          </button>
-          <button class="botao" id="btnAnual" onclick="mostrarAnual()">
-            Anual
-          </button>
-          <button class="botao" id="btnMapa" onclick="mapaCalor()">
-            Mapa de calor
-          </button>
-        </div>
+<body onload="validarSessao()">
+  <div class="dash">
+    <div class="fold">
+      <div class="titulo_nav">
+        <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+        <h3 class="texts">Dashboard</h3>
+      </div>
+      <div class="usuario_nav">
+        <span class="texts" id="b_usuario"></span>
+      </div>
+      <div class="botoes_nav">
 
-        <div class="chamado_nav">
-          <button id="btnChamado" onclick="chamar()">Chamado</button>
-        </div>
-
-        <div class="opcoes_nav">
-          <a href="usuario.html">Configurações</a>
-          <a class="sair" onclick="sair()">Sair</a>
-        </div>
+        <button class="botao" id="btnHora" onclick="mostrarHora()">
+          Hora
+        </button>
+        <button class="botao" id="btnDiario" onclick="mostrarDiario()">
+          Diário
+        </button>
+        <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
+          Semanal
+        </button>
+        <button class="botao" id="btnMensal" onclick="mostrarMensal()">
+          Mensal
+        </button>
+        <button class="botao" id="btnAnual" onclick="mostrarAnual()">
+          Anual
+        </button>
+        <button class="botao" id="btnMapa" onclick="mapaCalor()">
+          Mapa de calor
+        </button>
       </div>
 
-      <div class="chamado" id="chamado">
-        <div class="centro">
-          <iframe
-            class="frame"
-            src="https://app.pipefy.com/public/form/mWVzTe7P"
-            frameborder="0"
-          ></iframe>
-        </div>
+      <div class="chamado_nav">
+        <button id="btnChamado" onclick="chamar()">Chamado</button>
       </div>
 
-      <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
-      <div class="grafico" id="grafico">
-        <h2 style="color: aliceblue">Movimentação de pessoas</h2>
-        <div class="kpis">
-          <div class="kpi" style="border-color: #00af54">
-            <span class="nmr" id="nmrMes">125M</span>
-            <span class="title">Último mês</span>
-            <span style="color: #00af54" class="title">Boa</span>
-          </div>
-          <div class="kpi">
-            <span class="nmr" id="nmrSem">19M</span>
-            <span class="title">Última semana</span>
-            <span style="color: #d7263d" class="title">Altíssima</span>
-          </div>
-          <div class="kpi" style="border-color: #9ac1e8">
-            <span class="nmr" id="nmrDia">120K</span>
-            <span class="title">Último dia</span>
-            <span style="color: #9ac1e8" class="title">Baixíssima</span>
-          </div>
+      <div class="opcoes_nav">
+        <a href="usuario.html">Configurações</a>
+        <a class="sair" onclick="sair()">Sair</a>
+      </div>
+    </div>
+
+    <div class="chamado" id="chamado">
+      <div class="centro">
+        <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
+      </div>
+    </div>
+
+    <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
+    <div class="grafico" id="grafico">
+      <h2 style="color: aliceblue">Movimentação de pessoas</h2>
+      <div class="kpis">
+        <div class="kpi" style="border-color: #00af54">
+          <span class="nmr" id="nmrMes">125M</span>
+          <span class="title">Último mês</span>
+          <span style="color: #00af54" class="title">Boa</span>
         </div>
-        <div class="escolheGrafico">
-          <button class="botao" id="convencional" onclick="mapaConvencional()">
-            Convencional
-          </button>
-          <button class="botao" id="calor" onclick="mapaCalor()">
-            Mapa de Calor
-          </button>
+        <div class="kpi">
+          <span class="nmr" id="nmrSem">19M</span>
+          <span class="title">Última semana</span>
+          <span style="color: #d7263d" class="title">Altíssima</span>
         </div>
-        <div class="chart" id="diario" style="display: none">
-          <canvas id="dia"></canvas>
+        <div class="kpi" style="border-color: #9ac1e8">
+          <span class="nmr" id="nmrDia">120K</span>
+          <span class="title">Último dia</span>
+          <span style="color: #9ac1e8" class="title">Baixíssima</span>
         </div>
-        <div class="chart" id="semanal" style="display: none">
-          <canvas id="semana"></canvas>
-        </div>
-        <div class="chart" id="mensal" style="display: none">
-          <canvas id="mes"></canvas>
-        </div>
-        <div class="chart" id="anual" style="display: none">
-          <canvas id="ano"></canvas>
-        </div>
-        <div class="chart" id="horario" style="display: none">
-          <canvas id="hora"></canvas>
-        </div>
-        <div
-          id="calorDiario"
-          style="
+      </div>
+      <div class="chart" id="diario" style="display: none">
+        <canvas id="dia"></canvas>
+      </div>
+      <div class="chart" id="semanal" style="display: none">
+        <canvas id="semana"></canvas>
+      </div>
+      <div class="chart" id="mensal" style="display: none">
+        <canvas id="mes"></canvas>
+      </div>
+      <div class="chart" id="anual" style="display: none">
+        <canvas id="ano"></canvas>
+      </div>
+      <div class="chart" id="horario" style="display: none">
+        <canvas id="hora"></canvas>
+      </div>
+      <div id="calorDiario" style="
             display: none;
             position: relative;
             top: 0px;
@@ -127,86 +113,31 @@
             height: 400px;
             width: 792px;
             margin-bottom: 50px;
-          "
-        >
-          <img
-            src="imagens/mapa.png"
-            style="width: 100%; height: 100%"
-            border="0"
-          />
+          ">
+        <img src="imagens/mapa.png" style="width: 100%; height: 100%" border="0" />
 
-          <div
-            style="position: absolute; top: 158px; left: 100px"
-            id="bolinha1"
-          ></div>
-          <div
-            style="position: absolute; top: 140px; left: 190px"
-            id="bolinha2"
-          ></div>
-          <div
-            style="position: absolute; top: 277px; left: 290px"
-            id="bolinha3"
-          ></div>
-          <div
-            style="position: absolute; top: 237px; left: 220px"
-            id="bolinha4"
-          ></div>
-          <div
-            style="position: absolute; top: 305px; left: 230px"
-            id="bolinha5"
-          ></div>
-          <div
-            style="position: absolute; top: 310px; left: 390px"
-            id="bolinha6"
-          ></div>
-          <div
-            style="position: absolute; top: 310px; left: 450px"
-            id="bolinha7"
-          ></div>
-          <div
-            style="position: absolute; top: 310px; left: 560px"
-            id="bolinha8"
-          ></div>
-          <div
-            style="position: absolute; top: 95px; left: 360px"
-            id="bolinha9"
-          ></div>
-          <div
-            style="position: absolute; top: 180px; left: 660px"
-            id="bolinha10"
-          ></div>
-          <div
-            style="position: absolute; top: 265px; left: 670px"
-            id="bolinha11"
-          ></div>
-          <div
-            style="position: absolute; top: 275px; left: 420px"
-            id="bolinha12"
-          ></div>
-          <div
-            style="position: absolute; top: 200px; left: 420px"
-            id="bolinha13"
-          ></div>
-          <div
-            style="position: absolute; top: 228px; left: 390px"
-            id="bolinha14"
-          ></div>
-          <div
-            style="position: absolute; top: 140px; left: 490px"
-            id="bolinha15"
-          ></div>
-          <div
-            style="position: absolute; top: 143px; left: 600px"
-            id="bolinha16"
-          ></div>
-          <div
-            style="position: absolute; top: 170px; left: 390px"
-            id="bolinha17"
-          ></div>
-        </div>
+        <div style="position: absolute; top: 158px; left: 100px" id="bolinha1"></div>
+        <div style="position: absolute; top: 140px; left: 190px" id="bolinha2"></div>
+        <div style="position: absolute; top: 277px; left: 290px" id="bolinha3"></div>
+        <div style="position: absolute; top: 237px; left: 220px" id="bolinha4"></div>
+        <div style="position: absolute; top: 305px; left: 230px" id="bolinha5"></div>
+        <div style="position: absolute; top: 310px; left: 390px" id="bolinha6"></div>
+        <div style="position: absolute; top: 310px; left: 450px" id="bolinha7"></div>
+        <div style="position: absolute; top: 310px; left: 560px" id="bolinha8"></div>
+        <div style="position: absolute; top: 95px; left: 360px" id="bolinha9"></div>
+        <div style="position: absolute; top: 180px; left: 660px" id="bolinha10"></div>
+        <div style="position: absolute; top: 265px; left: 670px" id="bolinha11"></div>
+        <div style="position: absolute; top: 275px; left: 420px" id="bolinha12"></div>
+        <div style="position: absolute; top: 200px; left: 420px" id="bolinha13"></div>
+        <div style="position: absolute; top: 228px; left: 390px" id="bolinha14"></div>
+        <div style="position: absolute; top: 140px; left: 490px" id="bolinha15"></div>
+        <div style="position: absolute; top: 143px; left: 600px" id="bolinha16"></div>
+        <div style="position: absolute; top: 170px; left: 390px" id="bolinha17"></div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <script>
   var dados = JSON.parse(sessionStorage.USUARIO);
@@ -357,8 +288,8 @@
         );
       });
   }
-var dadosMapaCalor = []
-  function obterDadosMapaCalor(id){
+  var dadosMapaCalor = []
+  function obterDadosMapaCalor(id) {
     fetch(`/medidas/dadosMapaCalor/${id}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
@@ -369,7 +300,7 @@ var dadosMapaCalor = []
               resposta.forEach(dado => {
                 dadosMapaCalor.push(Number(dado.mov))
               });
-           
+
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -477,6 +408,8 @@ var dadosMapaCalor = []
     var data = Date.now();
     var mesPassado = new Date(data).getMonth();
     var nomeMes = "";
+
+
     switch (mesPassado) {
       case 0:
         nomeMes = "Janeiro";
@@ -515,6 +448,9 @@ var dadosMapaCalor = []
         nomeMes = "Dezembro";
         break;
     }
+
+    mesPassado = mesPassado < 10 ? "0" + mesPassado : mesPassado;
+
     const ano = new Date(data).getFullYear();
     const fluxoSemana = {
       labels: semanas,
@@ -560,7 +496,7 @@ var dadosMapaCalor = []
       datasets: [
         {
           label:
-            "Quantidade de pessoas por hora - " + dia + "/" + mes + "/" + ano,
+            "Fluxo de pessoas por hora - " + dia + "/" + mes + "/" + ano,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -596,7 +532,7 @@ var dadosMapaCalor = []
       labels: semana,
       datasets: [
         {
-          label: "Quantidade de pessoas na semana",
+          label: "Fluxo de pessoas nessa semana" ,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -627,7 +563,7 @@ var dadosMapaCalor = []
       labels: mes,
       datasets: [
         {
-          label: "Quantidade de pessoas no Mes",
+          label: "Fluxo de pessoas no Mes",
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -653,11 +589,15 @@ var dadosMapaCalor = []
       ano.push(registro.ANO);
       dados.push(registro.mov);
     }
+
+    var data = new Date();
+    var anod = data.getFullYear();
+
     const fluxoAnual = {
       labels: ano,
       datasets: [
         {
-          label: "Quantidade de pessoas no ano",
+          label: "Fluxo de pessoas no ano - " + anod,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -701,15 +641,16 @@ var dadosMapaCalor = []
   var tipoGrafico = "";
 
   function mostrarSemanal() {
-    diario.style.display = "none";
-    grafico.style.display = "flex";
-    anual.style.display = "none";
-    mensal.style.display = "none";
     semanal.style.display = "block";
+    grafico.style.display = "flex";
+    diario.style.display = "none";
+    mensal.style.display = "none";
+    anual.style.display = "none";
     horario.style.display = "none";
     chartmg.style.display = "none";
-    calorDiario.style.display = "none";
     tipoGrafico = "semanal";
+    chamado.style.display = "none";
+    calorDiario.style.display = "none";
 
     btnSemanal.style.borderBottom = "solid 3px #D71B22";
     btnSemanal.style.fontWeight = "bold";
@@ -731,9 +672,6 @@ var dadosMapaCalor = []
     btnHora.style.fontWeight = "normal";
     btnHora.style.backgroundColor = "transparent";
 
-    calor.style.display = "block";
-    convencional.style.display = "block";
-
     chamado.style.display = "none";
 
     btnChamado.style.borderBottom = "none";
@@ -743,17 +681,22 @@ var dadosMapaCalor = []
     btnMapa.style.borderBottom = "none";
     btnMapa.style.fontWeight = "normal";
     btnMapa.style.backgroundColor = "transparent";
+
+    chamado.style.display = "none";
+
   }
 
   function mostrarDiario() {
     semanal.style.display = "none";
     grafico.style.display = "flex";
-    anual.style.display = "none";
-    mensal.style.display = "none";
     diario.style.display = "block";
+    mensal.style.display = "none";
+    anual.style.display = "none";
     horario.style.display = "none";
     chartmg.style.display = "none";
     tipoGrafico = "diario";
+    chamado.style.display = "none";
+    calorDiario.style.display = "none";
 
     btnDiario.style.borderBottom = "solid 3px #D71B22";
     btnDiario.style.fontWeight = "bold";
@@ -776,9 +719,6 @@ var dadosMapaCalor = []
     btnHora.style.fontWeight = "normal";
     btnHora.style.backgroundColor = "transparent";
 
-    calor.style.display = "block";
-    convencional.style.display = "block";
-
     chamado.style.display = "none";
 
     btnChamado.style.borderBottom = "none";
@@ -788,17 +728,22 @@ var dadosMapaCalor = []
     btnMapa.style.borderBottom = "none";
     btnMapa.style.fontWeight = "normal";
     btnMapa.style.backgroundColor = "transparent";
+
+    chamado.style.display = "none";
+
   }
 
   function mostrarMensal() {
     semanal.style.display = "none";
     grafico.style.display = "flex";
+    diario.style.display = "none";
     mensal.style.display = "block";
     anual.style.display = "none";
-    diario.style.display = "none";
     horario.style.display = "none";
     chartmg.style.display = "none";
     tipoGrafico = "mensal";
+    chamado.style.display = "none";
+    calorDiario.style.display = "none";
 
     btnDiario.style.borderBottom = "none";
     btnDiario.style.fontWeight = "none";
@@ -821,9 +766,6 @@ var dadosMapaCalor = []
     btnHora.style.fontWeight = "normal";
     btnHora.style.backgroundColor = "transparent";
 
-    calor.style.display = "block";
-    convencional.style.display = "block";
-
     chamado.style.display = "none";
 
     btnChamado.style.borderBottom = "none";
@@ -833,6 +775,9 @@ var dadosMapaCalor = []
     btnMapa.style.borderBottom = "none";
     btnMapa.style.fontWeight = "normal";
     btnMapa.style.backgroundColor = "transparent";
+
+    chamado.style.display = "none";
+
   }
 
   function mostrarAnual() {
@@ -844,6 +789,8 @@ var dadosMapaCalor = []
     horario.style.display = "none";
     chartmg.style.display = "none";
     tipoGrafico = "anual";
+    chamado.style.display = "none";
+    calorDiario.style.display = "none";
 
     btnAnual.style.borderBottom = "solid 3px #D71B22";
     btnAnual.style.fontWeight = "bold";
@@ -866,11 +813,6 @@ var dadosMapaCalor = []
     btnHora.style.fontWeight = "normal";
     btnHora.style.backgroundColor = "transparent";
 
-    calor.style.display = "block";
-    convencional.style.display = "block";
-
-    chamado.style.display = "none";
-
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
@@ -878,6 +820,10 @@ var dadosMapaCalor = []
     btnMapa.style.borderBottom = "none";
     btnMapa.style.fontWeight = "normal";
     btnMapa.style.backgroundColor = "transparent";
+
+    chamado.style.display = "none";
+    calorDiario.style.display = "none";
+
   }
 
   function mostrarHora() {
@@ -889,11 +835,12 @@ var dadosMapaCalor = []
     horario.style.display = "block";
     chartmg.style.display = "none";
     tipoGrafico = "horario";
+    chamado.style.display = "none";
+    calorDiario.style.display = "none";
 
     btnAnual.style.borderBottom = "none";
     btnAnual.style.fontWeight = "normal";
     btnAnual.style.backgroundColor = "transparent";
-    calorDiario.style.display = "none";
 
     btnSemanal.style.borderBottom = "none";
     btnSemanal.style.fontWeight = "normal";
@@ -911,11 +858,6 @@ var dadosMapaCalor = []
     btnHora.style.fontWeight = "bold";
     btnHora.style.backgroundColor = "#023f79";
 
-    calor.style.display = "block";
-    convencional.style.display = "block";
-
-    chamado.style.display = "none";
-
     btnChamado.style.borderBottom = "none";
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
@@ -923,27 +865,19 @@ var dadosMapaCalor = []
     btnMapa.style.borderBottom = "none";
     btnMapa.style.fontWeight = "normal";
     btnMapa.style.backgroundColor = "transparent";
-  }
 
-  function mapaConvencional() {
-    if (tipoGrafico == "semanal") {
-      mostrarSemanal();
-    } else if (tipoGrafico == "diario") {
-      mostrarDiario();
-    } else if (tipoGrafico == "anual") {
-      mostrarAnual();
-    } else if (tipoGrafico == "mensal") {
-      mostrarMensal();
-    } else {
-      mostrarHora();
-    }
   }
 
   function mapaCalor() {
- 
+
+    semanal.style.display = "none";
+    diario.style.display = "none";
+    mensal.style.display = "none";
+    anual.style.display = "none";
+    horario.style.display = "none";
     chartmg.style.display = "none";
     grafico.style.display = "flex";
-    
+
     btnMapa.style.borderBottom = "solid 3px #D71B22";
     btnMapa.style.fontWeight = "bold";
     btnMapa.style.backgroundColor = "#023f79";
@@ -972,68 +906,68 @@ var dadosMapaCalor = []
     btnChamado.style.fontWeight = "normal";
     btnChamado.style.backgroundColor = "transparent";
 
+    calorDiario.style.display = "block";
+    chamado.style.display = "none";
+    horario.style.display = "none";
 
-      calorDiario.style.display = "block";
-      horario.style.display = "none";
-    
-      var dados = dadosMapaCalor;
-      var minimo1 = 9999999999;
-      var maximo1 = 0;
+    var dados = dadosMapaCalor;
+    var minimo1 = 9999999999;
+    var maximo1 = 0;
 
-      for(var i = 0; i < dados.length; i++){
-        if(dados[i] > maximo1){
-          maximo1 = dados[i];
-        }
-        if(dados[i] < minimo1){
-          minimo1 = dados[i];
-        }
+    for (var i = 0; i < dados.length; i++) {
+      if (dados[i] > maximo1) {
+        maximo1 = dados[i];
       }
-      console.log(minimo1 + ' - ' + maximo1)
-      var metrica = (maximo1 - minimo1) / 4;
-  
-      //numero aleatorio entre 6000000 e 19290000
-      var minimo = minimo1;
-      var quartil1 = minimo1 + metrica;
-      var media = minimo1 + (metrica*2);
-      var mediana = minimo1 + (metrica*3);
-      var quartil3 = minimo1 + (metrica*4);
-      var maximo = maximo1; 
-
-      for (var i = 0; i <= 17; i++) {
-        var numero = dados[i]
-        if(i == 0) numero *= 5;
-
-        var idBola = "bolinha" + (i+1);
-        var bola = document.getElementById(idBola);
-        if (numero == minimo1) {
-          //bola azul #9AC1E8
-          bola.style.background =
-            "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
-        } else if (numero < quartil1) {
-          //bola amarela #FFFE00
-          bola.style.background =
-            "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
-        } else if (numero < media) {
-          //bola verde #91D150
-          bola.style.background =
-            "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
-        } else if (numero < mediana) {
-          //bola verde escura #00AF54
-          bola.style.background =
-            "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
-        } else if (numero < quartil3) {
-          //bola laranja #FDC100
-          bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
-        } else {
-          //bola vermelha #FE0001
-          bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
-        }
-
-        bola.style.width = "25px";
-        bola.style.height = "25px";
-        bola.style.borderRadius = "100%";
-        bola.style.opacity = "0.9";
+      if (dados[i] < minimo1) {
+        minimo1 = dados[i];
       }
-    
+    }
+    console.log(minimo1 + ' - ' + maximo1)
+    var metrica = (maximo1 - minimo1) / 4;
+
+    //numero aleatorio entre 6000000 e 19290000
+    var minimo = minimo1;
+    var quartil1 = minimo1 + metrica;
+    var media = minimo1 + (metrica * 2);
+    var mediana = minimo1 + (metrica * 3);
+    var quartil3 = minimo1 + (metrica * 4);
+    var maximo = maximo1;
+
+    for (var i = 0; i <= 17; i++) {
+      var numero = dados[i]
+      if (i == 0) numero *= 5;
+
+      var idBola = "bolinha" + (i + 1);
+      var bola = document.getElementById(idBola);
+      if (numero == minimo1) {
+        //bola azul #9AC1E8
+        bola.style.background =
+          "radial-gradient( #9AC1E8 35%,  #FFFE00 80%, #91D150  40%)";
+      } else if (numero < quartil1) {
+        //bola amarela #FFFE00
+        bola.style.background =
+          "radial-gradient( #FFFE00 25%, #91D150 70%, #FFFE00 40%)";
+      } else if (numero < media) {
+        //bola verde #91D150
+        bola.style.background =
+          "radial-gradient( #91D150 25%, #00AF54 70%, #FDC100 40%)";
+      } else if (numero < mediana) {
+        //bola verde escura #00AF54
+        bola.style.background =
+          "radial-gradient( #00AF54 35%, #FDC100 70%, #FE0001 45%)";
+      } else if (numero < quartil3) {
+        //bola laranja #FDC100
+        bola.style.background = "radial-gradient( #FDC100 35%, #FE0001 70%)";
+      } else if (numero == maximo1) {
+        //bola vermelha #FE0001
+        bola.style.background = "radial-gradient( #FE0001 35%, #FDC100 70%)";
+      }
+
+      bola.style.width = "25px";
+      bola.style.height = "25px";
+      bola.style.borderRadius = "100%";
+      bola.style.opacity = "0.9";
+    }
+
   }
 </script>

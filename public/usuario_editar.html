@@ -91,17 +91,17 @@
           <td>Nova Senha:</td>
           <td class="senha">
             <input type="password" id="senhaUsuario" />
-            <button onclick="mostrarSenha(2)">
-              <img id="i2" src="imagens/olho_d.png" height="30px" />
+            <button onclick="mostrarSenha(1)">
+              <img id="o1" src="imagens/olho_d.png" height="30px" />
             </button>
           </td>
         </tr>
         <tr>
           <td>Confirmar Senha:</td>
           <td class="senha">
-            <input xtype="password" id="confirmar_senha" />
-            <button onclick="mostrarSenha(3)">
-              <img id="i3" src="imagens/olho_d.png" height="30px" />
+            <input type="password" id="confirmar_senha" />
+            <button onclick="mostrarSenha(2)">
+              <img id="o2" src="imagens/olho_d.png" height="30px" />
             </button>
           </td>
         </tr>
@@ -114,12 +114,13 @@
   </div>
   <div id="carregamento" style="display: flex; height: 100vh; align-items: center; justify-content: center;">
     <img src="./imagens/carregamento.gif" width="70px" alt="">
-</div>
+  </div>
 </body>
 
 </html>
 
 <script>
+
   function validarSenha() {
     var senha = senhaUsuario.value;
     var senhaconf = confirmar_senha.value;
@@ -260,31 +261,4 @@
     }
   }
 
-  function mostrarSenha(campo) {
-    if (campo == 1) {
-      if (b1.type == "password") {
-        b1.type = "text";
-        i1.src = "imagens/olho_a.png";
-      } else {
-        b1.type = "password";
-        i1.src = "imagens/olho_d.png";
-      }
-    } else if (campo == 2) {
-      if (b2.type == "password") {
-        b2.type = "text";
-        i2.src = "imagens/olho_a.png";
-      } else {
-        b2.type = "password";
-        i2.src = "imagens/olho_d.png";
-      }
-    } else if (campo == 3) {
-      if (b3.type == "password") {
-        b3.type = "text";
-        i3.src = "imagens/olho_a.png";
-      } else {
-        b3.type = "password";
-        i3.src = "imagens/olho_d.png";
-      }
-    }
-  }
 </script>

@@ -709,6 +709,8 @@ button {
 .lista_head li {
     display: flex;
     align-items: center;
+    height: 40px;
+    width: 25%;
 }
 
 

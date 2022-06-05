@@ -90,8 +90,8 @@
             <td>Senha Atual:</td>
             <td class="senha">
               <input type="password" id="atual_senha" />
-              <button onclick="mostrarSenha(1)">
-                <img id="i1" src="imagens/olho_d.png" height="30px" />
+              <button onclick="mostrarSenha(5)">
+                <img id="o5" src="imagens/olho_d.png" height="30px" />
               </button>
             </td>
           </tr>
@@ -99,8 +99,8 @@
             <td>Nova Senha:</td>
             <td class="senha">
               <input  type="password" id="nova_senha" />
-              <button onclick="mostrarSenha(2)">
-                <img id="i2" src="imagens/olho_d.png" height="30px" />
+              <button onclick="mostrarSenha(6)">
+                <img id="o6" src="imagens/olho_d.png" height="30px" />
               </button>
             </td>
           </tr>
@@ -108,8 +108,8 @@
             <td>Confirmar Senha:</td>
             <td class="senha">
               <input  type="password" id="confirmar_senha" />
-              <button onclick="mostrarSenha(3)">
-                <img id="i3" src="imagens/olho_d.png" height="30px" />
+              <button onclick="mostrarSenha(7)">
+                <img id="o7" src="imagens/olho_d.png" height="30px" />
               </button>
             </td>
           </tr>
@@ -192,37 +192,7 @@
     })
 
   }
-  function mostrarSenha(campo) {
-    if (campo == 1) {
-      if (b1.type == "password") {
-        b1.type = "text";
-        i1.src = "imagens/olho_a.png";
-      } else {
-        b1.type = "password";
-        i1.src = "imagens/olho_d.png";
-      }
-    } else if (campo == 2) {
-      if (b2.type == "password") {
-        b2.type = "text";
-        i2.src = "imagens/olho_a.png";
-      } else {
-        b2.type = "password";
-        i2.src = "imagens/olho_d.png";
-      }
-    } else if (campo == 3) {
-      if (b3.type == "password") {
-        b3.type = "text";
-        i3.src = "imagens/olho_a.png";
-      } else {
-        b3.type = "password";
-        i3.src = "imagens/olho_d.png";
-      }
-    }
-  }
-
   function editar(){
-
-  
 
     var campoSenha = nova_senha .value;
     var senhaconf = confirmar_senha.value;
