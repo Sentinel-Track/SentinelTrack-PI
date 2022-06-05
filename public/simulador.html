@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilo.css">
     <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Simulador | Sentinel Track</title>
 </head>
 
@@ -17,7 +18,7 @@
             <div class="container">
 
                 <div class="titulo">
-                   <img src="./assets/icon/Logo_Temporaria.png" alt="Logo">
+                    <img src="./assets/icon/Logo_Temporaria.png" alt="Logo">
                     <h1>Sentinel Track</h1>
                 </div>
 
@@ -27,7 +28,7 @@
                             <a href="index.html">Home</a>
                         </li>
                         <li>
-                            <a href="simulador.html"  id="aqui"> Simulador </a>
+                            <a href="simulador.html" id="aqui"> Simulador </a>
                         </li>
                         <li>
                             <a href="login.html">Login</a>
@@ -37,19 +38,19 @@
             </div>
         </div>
     </div>
-    
+
     <div class="simulador">
         <div class="container">
             <div class="banner">
 
                 <div class="label">
                     <label>Média de pessoas que transitam por mês:</label>
-                    <input type="text" id="qtdPessoasINP">
+                    <input type="number" id="qtdPessoasINP">
                 </div>
 
                 <div class="label">
                     <label>Valor do aluguel por loja:</label>
-                    <input type="text" id="valorAluguelINP">
+                    <input type="number" id="valorAluguelINP">
                 </div>
 
                 <button onclick="calcular()">Calcular</button>
@@ -76,8 +77,32 @@
         var totalPessoas = qtdPessoas * 0.6;
         var valorAluguel = document.getElementById("valorAluguelINP").value;
         var resultado = valorAluguel * 1.2
-        result.innerHTML =
-            `Tendo como premissa que <b>60%</b> das pessoas que entram no shopping, ou seja <b>${totalPessoas.toFixed(0)}</b> pessoas, passe na frente de pelo menos <b>4</b> lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até <b>20%</b>.
-            <br><br>O valor do aluguel das lojas mais vistas será de <b>R$${resultado.toFixed(2)}</b>`;
+        var vali =  true;
+
+        if (qtdPessoas == '' || valorAluguel == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Digite um número',
+                color: '#eee',
+                background: '#021b33',
+            })
+            vali = false;
+        }
+        if (qtdPessoas < 0 || valorAluguel < 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Digite valores válidos',
+            })
+            vali = false;
+        }
+        if(vali) {
+            result.innerHTML =
+                `Tendo como premissa que <b>60%</b> das pessoas que entram no shopping, ou seja <b>${totalPessoas.toFixed(0)}</b> pessoas, passe na frente de pelo menos <b>4</b> lojas específicas, você pode aumentar o valor do aluguel dessas lojas em até <b>20%</b>.
+                <br><br>O valor do aluguel das lojas mais vistas será de <b>R$${resultado.toFixed(2)}</b>`;
+        }
+
+
     }
 </script>
