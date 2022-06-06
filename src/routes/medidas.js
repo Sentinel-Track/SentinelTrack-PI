@@ -19,7 +19,7 @@ router.get("/ultimasDia/:idEmpresa", function (req, res) {
     medidaController.buscarUltimasMedidasDia(req, res);
 });
 
-router.get("/tempo-real/:idAquario", function (req, res) {
+router.get("/tempo-real/:idEmpresa", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 

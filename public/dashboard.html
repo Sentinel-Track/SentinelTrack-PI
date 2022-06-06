@@ -1,111 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<style>
-  #bolinha {
-    height: 20px;
-    width: 20px;
-    background-color: red;
-    cursor: pointer;
-    border-radius: 100%;
-  }
-</style>
+  <style>
+    #bolinha {
+      height: 20px;
+      width: 20px;
+      background-color: red;
+      cursor: pointer;
+      border-radius: 100%;
+    }
+  </style>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
-  <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
-  <link rel="stylesheet" href="estilo.css" />
-  <script src="./js/funcoes.js"></script>
-  <script src="./js/login.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
+    <link rel="stylesheet" href="estilo.css" />
+    <script src="./js/funcoes.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<body onload="validarSessao()">
-  <div class="dash">
-    <div class="fold">
-      <div class="titulo_nav">
-        <img src="assets/icon/Logo_Temporaria.png" height="50px" />
-        <h3 class="texts">Dashboard</h3>
-      </div>
-      <div class="usuario_nav">
-        <span class="texts" id="b_usuario"></span>
-      </div>
-      <div class="botoes_nav">
-
-        <button class="botao" id="btnHora" onclick="mostrarHora()">
-          Hora
-        </button>
-        <button class="botao" id="btnDiario" onclick="mostrarDiario()">
-          Diário
-        </button>
-        <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
-          Semanal
-        </button>
-        <button class="botao" id="btnMensal" onclick="mostrarMensal()">
-          Mensal
-        </button>
-        <button class="botao" id="btnAnual" onclick="mostrarAnual()">
-          Anual
-        </button>
-        <button class="botao" id="btnMapa" onclick="mapaCalor()">
-          Mapa de calor
-        </button>
-      </div>
-
-      <div class="chamado_nav">
-        <button id="btnChamado" onclick="chamar()">Chamado</button>
-      </div>
-
-      <div class="opcoes_nav">
-        <a href="usuario.html">Configurações</a>
-        <a class="sair" onclick="sair()">Sair</a>
-      </div>
-    </div>
-
-    <div class="chamado" id="chamado">
-      <div class="centro">
-        <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
-      </div>
-    </div>
-
-    <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
-    <div class="grafico" id="grafico">
-      <h2 style="color: aliceblue">Movimentação de pessoas</h2>
-      <div class="kpis">
-        <div class="kpi" id="kpiMes" style="border-color: #00af54">
-          <span class="nmr" id="nmrMes">125M</span>
-          <span class="title">Último mês</span>
-          <span style="color: #00af54" id="tituloMes" class="title">Boa</span>
+  <body onload="validarSessao()">
+    <div class="dash">
+      <div class="fold">
+        <div class="titulo_nav">
+          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+          <h3 class="texts">Dashboard</h3>
         </div>
-        <div class="kpi" id="kpiSemana">
-          <span class="nmr" id="nmrSem">19M</span>
-          <span class="title">Última semana</span>
-          <span style="color: #d7263d" class="title" id="tituloSemana">Altíssima</span>
+        <div class="usuario_nav">
+          <span class="texts" id="b_usuario"></span>
         </div>
-        <div class="kpi" id="kpiDia" style="border-color: #9ac1e8">
-          <span class="nmr" id="nmrDia">120K</span>
-          <span class="title">Último dia</span>
-          <span style="color: #9ac1e8" class="title" id="tituloDia">Baixíssima</span>
+        <div class="botoes_nav">
+          <button class="botao" id="btnHora" onclick="mostrarHora()">
+            Hora
+          </button>
+          <button class="botao" id="btnDiario" onclick="mostrarDiario()">
+            Diário
+          </button>
+          <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
+            Semanal
+          </button>
+          <button class="botao" id="btnMensal" onclick="mostrarMensal()">
+            Mensal
+          </button>
+          <button class="botao" id="btnAnual" onclick="mostrarAnual()">
+            Anual
+          </button>
+          <button class="botao" id="btnMapa" onclick="mapaCalor()">
+            Mapa de calor
+          </button>
+        </div>
+
+        <div class="chamado_nav">
+          <button id="btnChamado" onclick="chamar()">Chamado</button>
+        </div>
+
+        <div class="opcoes_nav">
+          <a href="usuario.html">Configurações</a>
+          <a class="sair" onclick="sair()">Sair</a>
         </div>
       </div>
-      <div class="chart" id="diario" style="display: none">
-        <canvas id="dia"></canvas>
+
+      <div class="chamado" id="chamado">
+        <div class="centro">
+          <iframe
+            class="frame"
+            src="https://app.pipefy.com/public/form/mWVzTe7P"
+            frameborder="0"
+          ></iframe>
+        </div>
       </div>
-      <div class="chart" id="semanal" style="display: none">
-        <canvas id="semana"></canvas>
-      </div>
-      <div class="chart" id="mensal" style="display: none">
-        <canvas id="mes"></canvas>
-      </div>
-      <div class="chart" id="anual" style="display: none">
-        <canvas id="ano"></canvas>
-      </div>
-      <div class="chart" id="horario" style="display: none">
-        <canvas id="hora"></canvas>
-      </div>
-      <div id="calorDiario" style="
+
+      <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
+      <div class="grafico" id="grafico">
+        <h2 style="color: aliceblue">Movimentação de pessoas</h2>
+        <div class="kpis">
+          <div class="kpi" id="kpiMes" style="border-color: #00af54">
+            <span class="nmr" id="nmrMes">125M</span>
+            <span class="title">Último mês</span>
+            <span style="color: #00af54" id="tituloMes" class="title">Boa</span>
+          </div>
+          <div class="kpi" id="kpiSemana">
+            <span class="nmr" id="nmrSem">19M</span>
+            <span class="title">Última semana</span>
+            <span style="color: #d7263d" class="title" id="tituloSemana"
+              >Altíssima</span
+            >
+          </div>
+          <div class="kpi" id="kpiDia" style="border-color: #9ac1e8">
+            <span class="nmr" id="nmrDia">120K</span>
+            <span class="title">Último dia</span>
+            <span style="color: #9ac1e8" class="title" id="tituloDia"
+              >Baixíssima</span
+            >
+          </div>
+        </div>
+        <div class="chart" id="diario" style="display: none">
+          <canvas id="dia"></canvas>
+        </div>
+        <div class="chart" id="semanal" style="display: none">
+          <canvas id="semana"></canvas>
+        </div>
+        <div class="chart" id="mensal" style="display: none">
+          <canvas id="mes"></canvas>
+        </div>
+        <div class="chart" id="anual" style="display: none">
+          <canvas id="ano"></canvas>
+        </div>
+        <div class="chart" id="horario" style="display: none">
+          <canvas id="hora"></canvas>
+        </div>
+        <div
+          id="calorDiario"
+          style="
             display: none;
             position: relative;
             top: 0px;
@@ -113,31 +122,86 @@
             height: 400px;
             width: 792px;
             margin-bottom: 50px;
-          ">
-        <img src="imagens/mapa.png" style="width: 100%; height: 100%" border="0" />
+          "
+        >
+          <img
+            src="imagens/mapa.png"
+            style="width: 100%; height: 100%"
+            border="0"
+          />
 
-        <div style="position: absolute; top: 158px; left: 100px" id="bolinha1"></div>
-        <div style="position: absolute; top: 140px; left: 190px" id="bolinha2"></div>
-        <div style="position: absolute; top: 277px; left: 290px" id="bolinha3"></div>
-        <div style="position: absolute; top: 237px; left: 220px" id="bolinha4"></div>
-        <div style="position: absolute; top: 305px; left: 230px" id="bolinha5"></div>
-        <div style="position: absolute; top: 310px; left: 390px" id="bolinha6"></div>
-        <div style="position: absolute; top: 310px; left: 450px" id="bolinha7"></div>
-        <div style="position: absolute; top: 310px; left: 560px" id="bolinha8"></div>
-        <div style="position: absolute; top: 95px; left: 360px" id="bolinha9"></div>
-        <div style="position: absolute; top: 180px; left: 660px" id="bolinha10"></div>
-        <div style="position: absolute; top: 265px; left: 670px" id="bolinha11"></div>
-        <div style="position: absolute; top: 275px; left: 420px" id="bolinha12"></div>
-        <div style="position: absolute; top: 200px; left: 420px" id="bolinha13"></div>
-        <div style="position: absolute; top: 228px; left: 390px" id="bolinha14"></div>
-        <div style="position: absolute; top: 140px; left: 490px" id="bolinha15"></div>
-        <div style="position: absolute; top: 143px; left: 600px" id="bolinha16"></div>
-        <div style="position: absolute; top: 170px; left: 390px" id="bolinha17"></div>
+          <div
+            style="position: absolute; top: 158px; left: 100px"
+            id="bolinha1"
+          ></div>
+          <div
+            style="position: absolute; top: 140px; left: 190px"
+            id="bolinha2"
+          ></div>
+          <div
+            style="position: absolute; top: 277px; left: 290px"
+            id="bolinha3"
+          ></div>
+          <div
+            style="position: absolute; top: 237px; left: 220px"
+            id="bolinha4"
+          ></div>
+          <div
+            style="position: absolute; top: 305px; left: 230px"
+            id="bolinha5"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 390px"
+            id="bolinha6"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 450px"
+            id="bolinha7"
+          ></div>
+          <div
+            style="position: absolute; top: 310px; left: 560px"
+            id="bolinha8"
+          ></div>
+          <div
+            style="position: absolute; top: 95px; left: 360px"
+            id="bolinha9"
+          ></div>
+          <div
+            style="position: absolute; top: 180px; left: 660px"
+            id="bolinha10"
+          ></div>
+          <div
+            style="position: absolute; top: 265px; left: 670px"
+            id="bolinha11"
+          ></div>
+          <div
+            style="position: absolute; top: 275px; left: 420px"
+            id="bolinha12"
+          ></div>
+          <div
+            style="position: absolute; top: 200px; left: 420px"
+            id="bolinha13"
+          ></div>
+          <div
+            style="position: absolute; top: 228px; left: 390px"
+            id="bolinha14"
+          ></div>
+          <div
+            style="position: absolute; top: 140px; left: 490px"
+            id="bolinha15"
+          ></div>
+          <div
+            style="position: absolute; top: 143px; left: 600px"
+            id="bolinha16"
+          ></div>
+          <div
+            style="position: absolute; top: 170px; left: 390px"
+            id="bolinha17"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
 <script>
   var dados = JSON.parse(sessionStorage.USUARIO);
@@ -146,11 +210,12 @@
   (window.onload = obterDadosHora(fkEmpresa)),
     obterDadosAnos(fkEmpresa),
     obterDadosDia(fkEmpresa),
-
     validarSessao2(),
     obterDadosKPI(fkEmpresa),
     obterDadosSemanasMes(fkEmpresa);
-  obterDadosMesAno(fkEmpresa), obterDadosMapaCalor(fkEmpresa), setTimeout(carregamento, 3000);
+  obterDadosMesAno(fkEmpresa),
+    obterDadosMapaCalor(fkEmpresa),
+    setTimeout(carregamento, 3000);
 
   function carregamento() {
     if (chartmg.style.display == "") {
@@ -158,10 +223,10 @@
       mostrarHora();
     }
   }
-var numeroMes = 0;
-var numeroSemana =0;
-var numeroDia = 0;
-  function pintarKPIS(kpi, resposta){
+  var numeroMes = 0;
+  var numeroSemana = 0;
+  var numeroDia = 0;
+  function pintarKPIS(kpi, resposta) {
     var dados = [];
     for (i = 0; i < resposta.length; i++) {
       var registro = resposta[i];
@@ -169,145 +234,128 @@ var numeroDia = 0;
       dados.push(registro.mov);
     }
 
-    for(i = 0; i<resposta.length; i++){
+    for (i = 0; i < resposta.length; i++) {
       //ver qual o numero maior e o menor
-      if(i == 0){
+      if (i == 0) {
         var maior = resposta[i].mov;
         var menor = resposta[i].mov;
-      }else{
-        if(resposta[i].mov > maior){
+      } else {
+        if (resposta[i].mov > maior) {
           maior = resposta[i].mov;
         }
-        if(resposta[i].mov < menor){
+        if (resposta[i].mov < menor) {
           menor = resposta[i].mov;
         }
       }
     }
-    console.log(numeroMes)
-    
+    console.log(numeroMes);
+
     var metrica = (maior - menor) / 4;
     var minimo = menor;
     var quartil1 = minimo + metrica;
-    var media = minimo + (metrica * 2);
-    var mediana = minimo + (metrica * 3);
-    var quartil3 = minimo + (metrica * 4);
+    var media = minimo + metrica * 2;
+    var mediana = minimo + metrica * 3;
+    var quartil3 = minimo + metrica * 4;
     var maximo = maior;
 
-    
-   
-    if(kpi == 0){
+    if (kpi == 0) {
       var numero = numeroMes;
       if (numero <= minimo) {
         //bola azul #9AC1E8
-        kpiMes.style.borderColor =
-          "#9AC1E8";
-          tituloMes.style.color = "#9AC1E8";
-          tituloMes.innerHTML = "Baixíssima";
+        kpiMes.style.borderColor = "#9AC1E8";
+        tituloMes.style.color = "#9AC1E8";
+        tituloMes.innerHTML = "Baixíssima";
       } else if (numero < quartil1) {
         //bola amarela #FFFE00
-        kpiMes.style.borderColor =
-          "#FFFE00";
-          tituloMes.style.color = "#FFFE00";
-          tituloMes.innerHTML = "Baixa";
+        kpiMes.style.borderColor = "#FFFE00";
+        tituloMes.style.color = "#FFFE00";
+        tituloMes.innerHTML = "Baixa";
       } else if (numero < media) {
         //bola verde #91D150
-        kpiMes.style.borderColor =
-          "#91D150";
-          tituloMes.style.color = "#91D150";
-          tituloMes.innerHTML = "Média";
-
+        kpiMes.style.borderColor = "#91D150";
+        tituloMes.style.color = "#91D150";
+        tituloMes.innerHTML = "Média";
       } else if (numero < mediana) {
         //bola verde escura #00AF54
-        kpiMes.style.borderColor =
-          "#00AF54";
-          tituloMes.style.color = "#00AF54";
-          tituloMes.innerHTML = "Acima da média";
+        kpiMes.style.borderColor = "#00AF54";
+        tituloMes.style.color = "#00AF54";
+        tituloMes.innerHTML = "Acima da média";
       } else if (numero < quartil3) {
         //bola laranja #FDC100
         kpiMes.style.borderColor = "#FDC100";
-          tituloMes.style.color = "#FDC100";
-          tituloMes.innerHTML = "Alta";
+        tituloMes.style.color = "#FDC100";
+        tituloMes.innerHTML = "Alta";
       } else if (numero >= maximo) {
         //bola vermelha #FE0001
         kpiMes.style.borderColor = "#FE0001";
-          tituloMes.style.color = "#FE0001";
-          tituloMes.innerHTML = "Altíssima";
+        tituloMes.style.color = "#FE0001";
+        tituloMes.innerHTML = "Altíssima";
       }
-
-    }else if(kpi == 1){
+    } else if (kpi == 1) {
       var numero = numeroSemana;
       if (numero <= minimo) {
         //bola azul #9AC1E8
-        kpiSemana.style.borderColor =
-          "#9AC1E8";
-          tituloSemana.style.color = "#9AC1E8";
-          tituloSemana.innerHTML = "Baixíssima";
+        kpiSemana.style.borderColor = "#9AC1E8";
+        tituloSemana.style.color = "#9AC1E8";
+        tituloSemana.innerHTML = "Baixíssima";
       } else if (numero < quartil1) {
         //bola amarela #FFFE00
-        kpiSemana.style.borderColor =
-          "#FFFE00";
-          tituloSemana.style.color = "#FFFE00";
-          tituloSemana.innerHTML = "Baixa";
+        kpiSemana.style.borderColor = "#FFFE00";
+        tituloSemana.style.color = "#FFFE00";
+        tituloSemana.innerHTML = "Baixa";
       } else if (numero < media) {
         //bola verde #91D150
-        kpiSemana.style.borderColor =
-          "#91D150";
-          tituloSemana.style.color = "#91D150";
-          tituloSemana.innerHTML = "Média";
-
+        kpiSemana.style.borderColor = "#91D150";
+        tituloSemana.style.color = "#91D150";
+        tituloSemana.innerHTML = "Média";
       } else if (numero < mediana) {
         //bola verde escura #00AF54
         kpiSemana.style.borderColor = "#00AF54";
-          tituloSemana.style.color = "#00AF54";
-          tituloSemana.innerHTML = "Acima da média";
+        tituloSemana.style.color = "#00AF54";
+        tituloSemana.innerHTML = "Acima da média";
       } else if (numero < quartil3) {
         //bola laranja #FDC100
         kpiSemana.style.borderColor = "#FDC100";
-          tituloSemana.style.color = "#FDC100";
-          tituloSemana.innerHTML = "Alta";
+        tituloSemana.style.color = "#FDC100";
+        tituloSemana.innerHTML = "Alta";
       } else if (numero >= maximo) {
         //bola vermelha #FE0001
         kpiSemana.style.borderColor = "#FE0001";
-          tituloSemana.style.color = "#FE0001";
-          tituloSemana.innerHTML = "Altíssima";
+        tituloSemana.style.color = "#FE0001";
+        tituloSemana.innerHTML = "Altíssima";
       }
-    }else{
+    } else {
       var numero = numeroDia;
       if (numero <= minimo) {
         //bola azul #9AC1E8
-        kpiDia.style.borderColor =
-          "#9AC1E8";
-          tituloDia.style.color = "#9AC1E8";
-          tituloDia.innerHTML = "Baixíssima";
+        kpiDia.style.borderColor = "#9AC1E8";
+        tituloDia.style.color = "#9AC1E8";
+        tituloDia.innerHTML = "Baixíssima";
       } else if (numero < quartil1) {
         //bola amarela #FFFE00
-        kpiDia.style.borderColor =
-          "#FFFE00";
-          tituloDia.style.color = "#FFFE00";
-          tituloDia.innerHTML = "Baixa";
+        kpiDia.style.borderColor = "#FFFE00";
+        tituloDia.style.color = "#FFFE00";
+        tituloDia.innerHTML = "Baixa";
       } else if (numero < media) {
         //bola verde #91D150
-        kpiDia.style.borderColor =
-          "#91D150";
-          tituloDia.style.color = "#91D150";
-          tituloDia.innerHTML = "Média";
-
+        kpiDia.style.borderColor = "#91D150";
+        tituloDia.style.color = "#91D150";
+        tituloDia.innerHTML = "Média";
       } else if (numero < mediana) {
         //bola verde escura #00AF54
-        kpiDia.style.borderColor =
-          "#00AF54";
-          tituloDia.style.color = "#00AF54";
-          tituloDia.innerHTML = "Pouco alta";
+        kpiDia.style.borderColor = "#00AF54";
+        tituloDia.style.color = "#00AF54";
+        tituloDia.innerHTML = "Pouco alta";
       } else if (numero < quartil3) {
         //bola laranja #FDC100
         kpiDia.style.borderColor = "#FDC100";
-          tituloDia.style.color = "#FDC100";
-          tituloDia.innerHTML = "Alta";
+        tituloDia.style.color = "#FDC100";
+        tituloDia.innerHTML = "Alta";
       } else if (numero >= maximo) {
         //bola vermelha #FE0001
         kpiDia.style.borderColor = "#FE0001";
-          tituloDia.style.color = "#FE0001";
-          tituloDia.innerHTML = "Altíssima";
+        tituloDia.style.color = "#FE0001";
+        tituloDia.innerHTML = "Altíssima";
       }
     }
   }
@@ -321,7 +369,7 @@ var numeroDia = 0;
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               //  resposta.reverse();
-              
+
               plotarGraficoAnual(resposta, id);
             })
             .catch(function (error) {
@@ -347,7 +395,7 @@ var numeroDia = 0;
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               //  resposta.reverse();
-              
+
               plotarGraficoMesAno(resposta, id);
               pintarKPIS(0, resposta);
             })
@@ -404,7 +452,6 @@ var numeroDia = 0;
               resposta.reverse();
 
               plotarGraficoHora(resposta, id);
-
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -428,7 +475,9 @@ var numeroDia = 0;
           response
             .json()
             .then(function (resposta) {
-              console.log(`Dados recebidos: do dia ${JSON.stringify(resposta)}`);
+              console.log(
+                `Dados recebidos: do dia ${JSON.stringify(resposta)}`
+              );
 
               plotarGraficoDiario(resposta, id);
               pintarKPIS(2, resposta);
@@ -447,7 +496,7 @@ var numeroDia = 0;
         );
       });
   }
-  var dadosMapaCalor = []
+  var dadosMapaCalor = [];
   function obterDadosMapaCalor(id) {
     fetch(`/medidas/dadosMapaCalor/${id}`, { cache: "no-store" })
       .then(function (response) {
@@ -456,10 +505,9 @@ var numeroDia = 0;
             .json()
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-              resposta.forEach(dado => {
-                dadosMapaCalor.push(Number(dado.mov))
+              resposta.forEach((dado) => {
+                dadosMapaCalor.push(Number(dado.mov));
               });
-
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -487,7 +535,6 @@ var numeroDia = 0;
               console.log(resposta[0].mov);
               numeroMes = resposta[0].mov;
               nmrMes.innerHTML = resposta[0].mov;
-              
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -535,7 +582,7 @@ var numeroDia = 0;
             .json()
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-     
+
               console.log(resposta[0].mov);
               nmrSem.innerHTML = resposta[0].mov;
               numeroSemana = resposta[0].mov;
@@ -569,7 +616,6 @@ var numeroDia = 0;
     var data = Date.now();
     var mesPassado = new Date(data).getMonth();
     var nomeMes = "";
-
 
     switch (mesPassado) {
       case 0:
@@ -634,7 +680,6 @@ var numeroDia = 0;
     const c_semanal = new Chart(document.getElementById("semana"), config2);
   }
   function plotarGraficoHora(resposta, id) {
-    
     const hora = [];
     const dados = [];
 
@@ -657,8 +702,7 @@ var numeroDia = 0;
       labels: hora,
       datasets: [
         {
-          label:
-            "Fluxo de pessoas por hora - " + dia + "/" + mes + "/" + ano,
+          label: "Fluxo de pessoas por hora - " + dia + "/" + mes + "/" + ano,
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -673,9 +717,10 @@ var numeroDia = 0;
     };
 
     console.log(JSON.stringify(dados));
-
+  
     const c_hora = new Chart(document.getElementById("hora"), config4);
-    //setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+
+    
   }
   function plotarGraficoDiario(resposta, id) {
     const semana = [];
@@ -694,7 +739,7 @@ var numeroDia = 0;
       labels: semana,
       datasets: [
         {
-          label: "Fluxo de pessoas nessa semana" ,
+          label: "Fluxo de pessoas nessa semana",
           backgroundColor: "rgb(215, 38, 61)",
           borderColor: "rgb(215, 38, 61)",
           data: dados,
@@ -774,28 +819,43 @@ var numeroDia = 0;
     };
     const c_anual = new Chart(document.getElementById("ano"), config3);
   }
-  function plotarGraficoSemanal(resposta) {
-    console.log(resposta + "  -   ");
-    /*const qtdPessoas = {
-    labels: semana,
-    datasets: [
-      {
-        label: "Quantidade de pessoas na semana",
-        backgroundColor: "rgb(215, 38, 61)",
-        borderColor: "rgb(215, 38, 61)",
-        data: dados,
-      },
-    ],
-  };
-    const config2 = {
-      type: "bar",
-      data: qtdPessoas,
-      options: {},
-    };
+  
+  function atualizarGraficoHora(id, dados) {
+    fetch(`/medidas/tempo-real/${id}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico: ${dados}`);
 
-    console.log(JSON.stringify(dados));
+            // tirando e colocando valores no gráfico
+            dados.labels.shift(); // apagar o primeiro
+            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+            dados.datasets[0].data.shift(); // apagar o primeiro de umidade
+            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+            dados.datasets[1].data.shift(); // apagar o primeiro de umidade
+            dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de umidade
 
-    const c_diario = new Chart(document.getElementById("dia"), config2);*/
+            window.grafico_linha.update();
+
+            proximaAtualizacao = setTimeout(
+              () => atualizarGrafico(idAquario, dados),
+              2000
+            );
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+          proximaAtualizacao = setTimeout(
+            () => atualizarGrafico(idAquario, dados),
+            2000
+          );
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
   }
 </script>
 
@@ -845,7 +905,6 @@ var numeroDia = 0;
     btnMapa.style.backgroundColor = "transparent";
 
     chamado.style.display = "none";
-
   }
 
   function mostrarDiario() {
@@ -892,7 +951,6 @@ var numeroDia = 0;
     btnMapa.style.backgroundColor = "transparent";
 
     chamado.style.display = "none";
-
   }
 
   function mostrarMensal() {
@@ -939,7 +997,6 @@ var numeroDia = 0;
     btnMapa.style.backgroundColor = "transparent";
 
     chamado.style.display = "none";
-
   }
 
   function mostrarAnual() {
@@ -985,7 +1042,6 @@ var numeroDia = 0;
 
     chamado.style.display = "none";
     calorDiario.style.display = "none";
-
   }
 
   function mostrarHora() {
@@ -1027,11 +1083,9 @@ var numeroDia = 0;
     btnMapa.style.borderBottom = "none";
     btnMapa.style.fontWeight = "normal";
     btnMapa.style.backgroundColor = "transparent";
-
   }
 
   function mapaCalor() {
-
     semanal.style.display = "none";
     diario.style.display = "none";
     mensal.style.display = "none";
@@ -1084,19 +1138,19 @@ var numeroDia = 0;
         minimo1 = dados[i];
       }
     }
-    console.log(minimo1 + ' - ' + maximo1)
+    console.log(minimo1 + " - " + maximo1);
     var metrica = (maximo1 - minimo1) / 4;
 
     //numero aleatorio entre 6000000 e 19290000
     var minimo = minimo1;
     var quartil1 = minimo1 + metrica;
-    var media = minimo1 + (metrica * 2);
-    var mediana = minimo1 + (metrica * 3);
-    var quartil3 = minimo1 + (metrica * 4);
+    var media = minimo1 + metrica * 2;
+    var mediana = minimo1 + metrica * 3;
+    var quartil3 = minimo1 + metrica * 4;
     var maximo = maximo1;
 
     for (var i = 0; i <= 17; i++) {
-      var numero = dados[i]
+      var numero = dados[i];
       if (i == 0) numero *= 5;
 
       var idBola = "bolinha" + (i + 1);
@@ -1130,6 +1184,7 @@ var numeroDia = 0;
       bola.style.borderRadius = "100%";
       bola.style.opacity = "0.9";
     }
-
   }
+
+  
 </script>

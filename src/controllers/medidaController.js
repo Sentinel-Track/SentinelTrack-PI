@@ -246,12 +246,12 @@ function buscarKpiDia(req, res) {
 }
 
 function buscarMedidasEmTempoReal(req, res) {
-  var idAquario = req.params.idAquario;
+  var idEmpresa = req.params.idEmpresa;
 
   console.log(`Recuperando medidas em tempo real`);
 
   medidaModel
-    .buscarMedidasEmTempoReal(idAquario)
+    .buscarMedidasEmTempoReal(idEmpresa)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
