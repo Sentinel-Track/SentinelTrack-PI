@@ -74,20 +74,20 @@
     <div class="grafico" id="grafico">
       <h2 style="color: aliceblue">Movimentação de pessoas</h2>
       <div class="kpis">
-        <div class="kpi" style="border-color: #00af54">
+        <div class="kpi" id="kpiMes" style="border-color: #00af54">
           <span class="nmr" id="nmrMes">125M</span>
           <span class="title">Último mês</span>
-          <span style="color: #00af54" class="title">Boa</span>
+          <span style="color: #00af54" id="tituloMes" class="title">Boa</span>
         </div>
-        <div class="kpi">
+        <div class="kpi" id="kpiSemana">
           <span class="nmr" id="nmrSem">19M</span>
           <span class="title">Última semana</span>
-          <span style="color: #d7263d" class="title">Altíssima</span>
+          <span style="color: #d7263d" class="title" id="tituloSemana">Altíssima</span>
         </div>
-        <div class="kpi" style="border-color: #9ac1e8">
+        <div class="kpi" id="kpiDia" style="border-color: #9ac1e8">
           <span class="nmr" id="nmrDia">120K</span>
           <span class="title">Último dia</span>
-          <span style="color: #9ac1e8" class="title">Baixíssima</span>
+          <span style="color: #9ac1e8" class="title" id="tituloDia">Baixíssima</span>
         </div>
       </div>
       <div class="chart" id="diario" style="display: none">
@@ -146,6 +146,7 @@
   (window.onload = obterDadosHora(fkEmpresa)),
     obterDadosAnos(fkEmpresa),
     obterDadosDia(fkEmpresa),
+
     validarSessao2(),
     obterDadosKPI(fkEmpresa),
     obterDadosSemanasMes(fkEmpresa);
@@ -157,6 +158,160 @@
       mostrarHora();
     }
   }
+var numeroMes = 0;
+var numeroSemana =0;
+var numeroDia = 0;
+  function pintarKPIS(kpi, resposta){
+    var dados = [];
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+
+      dados.push(registro.mov);
+    }
+
+    for(i = 0; i<resposta.length; i++){
+      //ver qual o numero maior e o menor
+      if(i == 0){
+        var maior = resposta[i].mov;
+        var menor = resposta[i].mov;
+      }else{
+        if(resposta[i].mov > maior){
+          maior = resposta[i].mov;
+        }
+        if(resposta[i].mov < menor){
+          menor = resposta[i].mov;
+        }
+      }
+    }
+    console.log(numeroMes)
+    
+    var metrica = (maior - menor) / 4;
+    var minimo = menor;
+    var quartil1 = minimo + metrica;
+    var media = minimo + (metrica * 2);
+    var mediana = minimo + (metrica * 3);
+    var quartil3 = minimo + (metrica * 4);
+    var maximo = maior;
+
+    
+   
+    if(kpi == 0){
+      var numero = numeroMes;
+      if (numero <= minimo) {
+        //bola azul #9AC1E8
+        kpiMes.style.borderColor =
+          "#9AC1E8";
+          tituloMes.style.color = "#9AC1E8";
+          tituloMes.innerHTML = "Baixíssima";
+      } else if (numero < quartil1) {
+        //bola amarela #FFFE00
+        kpiMes.style.borderColor =
+          "#FFFE00";
+          tituloMes.style.color = "#FFFE00";
+          tituloMes.innerHTML = "Baixa";
+      } else if (numero < media) {
+        //bola verde #91D150
+        kpiMes.style.borderColor =
+          "#91D150";
+          tituloMes.style.color = "#91D150";
+          tituloMes.innerHTML = "Média";
+
+      } else if (numero < mediana) {
+        //bola verde escura #00AF54
+        kpiMes.style.borderColor =
+          "#00AF54";
+          tituloMes.style.color = "#00AF54";
+          tituloMes.innerHTML = "Acima da média";
+      } else if (numero < quartil3) {
+        //bola laranja #FDC100
+        kpiMes.style.borderColor = "#FDC100";
+          tituloMes.style.color = "#FDC100";
+          tituloMes.innerHTML = "Alta";
+      } else if (numero >= maximo) {
+        //bola vermelha #FE0001
+        kpiMes.style.borderColor = "#FE0001";
+          tituloMes.style.color = "#FE0001";
+          tituloMes.innerHTML = "Altíssima";
+      }
+
+    }else if(kpi == 1){
+      var numero = numeroSemana;
+      if (numero <= minimo) {
+        //bola azul #9AC1E8
+        kpiSemana.style.borderColor =
+          "#9AC1E8";
+          tituloSemana.style.color = "#9AC1E8";
+          tituloSemana.innerHTML = "Baixíssima";
+      } else if (numero < quartil1) {
+        //bola amarela #FFFE00
+        kpiSemana.style.borderColor =
+          "#FFFE00";
+          tituloSemana.style.color = "#FFFE00";
+          tituloSemana.innerHTML = "Baixa";
+      } else if (numero < media) {
+        //bola verde #91D150
+        kpiSemana.style.borderColor =
+          "#91D150";
+          tituloSemana.style.color = "#91D150";
+          tituloSemana.innerHTML = "Média";
+
+      } else if (numero < mediana) {
+        //bola verde escura #00AF54
+        kpiSemana.style.borderColor = "#00AF54";
+          tituloSemana.style.color = "#00AF54";
+          tituloSemana.innerHTML = "Acima da média";
+      } else if (numero < quartil3) {
+        //bola laranja #FDC100
+        kpiSemana.style.borderColor = "#FDC100";
+          tituloSemana.style.color = "#FDC100";
+          tituloSemana.innerHTML = "Alta";
+      } else if (numero >= maximo) {
+        //bola vermelha #FE0001
+        kpiSemana.style.borderColor = "#FE0001";
+          tituloSemana.style.color = "#FE0001";
+          tituloSemana.innerHTML = "Altíssima";
+      }
+    }else{
+      var numero = numeroDia;
+      if (numero <= minimo) {
+        //bola azul #9AC1E8
+        kpiDia.style.borderColor =
+          "#9AC1E8";
+          tituloDia.style.color = "#9AC1E8";
+          tituloDia.innerHTML = "Baixíssima";
+      } else if (numero < quartil1) {
+        //bola amarela #FFFE00
+        kpiDia.style.borderColor =
+          "#FFFE00";
+          tituloDia.style.color = "#FFFE00";
+          tituloDia.innerHTML = "Baixa";
+      } else if (numero < media) {
+        //bola verde #91D150
+        kpiDia.style.borderColor =
+          "#91D150";
+          tituloDia.style.color = "#91D150";
+          tituloDia.innerHTML = "Média";
+
+      } else if (numero < mediana) {
+        //bola verde escura #00AF54
+        kpiDia.style.borderColor =
+          "#00AF54";
+          tituloDia.style.color = "#00AF54";
+          tituloDia.innerHTML = "Pouco alta";
+      } else if (numero < quartil3) {
+        //bola laranja #FDC100
+        kpiDia.style.borderColor = "#FDC100";
+          tituloDia.style.color = "#FDC100";
+          tituloDia.innerHTML = "Alta";
+      } else if (numero >= maximo) {
+        //bola vermelha #FE0001
+        kpiDia.style.borderColor = "#FE0001";
+          tituloDia.style.color = "#FE0001";
+          tituloDia.innerHTML = "Altíssima";
+      }
+    }
+  }
+
   function obterDadosAnos(id) {
     fetch(`/medidas/ultimosAnos/${id}`, { cache: "no-store" })
       .then(function (response) {
@@ -166,7 +321,7 @@
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               //  resposta.reverse();
-
+              
               plotarGraficoAnual(resposta, id);
             })
             .catch(function (error) {
@@ -192,8 +347,9 @@
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
               //  resposta.reverse();
-
+              
               plotarGraficoMesAno(resposta, id);
+              pintarKPIS(0, resposta);
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -220,6 +376,7 @@
               //  resposta.reverse();
 
               plotarGraficoSemanasMes(resposta, id);
+              pintarKPIS(1, resposta);
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -247,6 +404,7 @@
               resposta.reverse();
 
               plotarGraficoHora(resposta, id);
+
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -270,9 +428,10 @@
           response
             .json()
             .then(function (resposta) {
-              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              console.log(`Dados recebidos: do dia ${JSON.stringify(resposta)}`);
 
               plotarGraficoDiario(resposta, id);
+              pintarKPIS(2, resposta);
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -325,9 +484,10 @@
             .json()
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-              resposta.reverse();
               console.log(resposta[0].mov);
+              numeroMes = resposta[0].mov;
               nmrMes.innerHTML = resposta[0].mov;
+              
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -350,9 +510,9 @@
             .json()
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-              resposta.reverse();
               console.log(resposta[0].mov);
               nmrDia.innerHTML = resposta[0].mov;
+              numeroDia = resposta[0].mov;
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -375,9 +535,10 @@
             .json()
             .then(function (resposta) {
               console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-              resposta.reverse();
+     
               console.log(resposta[0].mov);
               nmrSem.innerHTML = resposta[0].mov;
+              numeroSemana = resposta[0].mov;
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
@@ -473,6 +634,7 @@
     const c_semanal = new Chart(document.getElementById("semana"), config2);
   }
   function plotarGraficoHora(resposta, id) {
+    
     const hora = [];
     const dados = [];
 

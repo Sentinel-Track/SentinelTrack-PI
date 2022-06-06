@@ -457,8 +457,8 @@ button {
 }
 
 .kpi {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border: solid 3px #D7263D;
     display: flex;
     justify-content: space-evenly;
@@ -477,7 +477,7 @@ button {
     font-size: 15px;
     color: white;
     margin: 5px;
-    width: min-content;
+    width: 80%;
     align-self: center;
     text-align: center;
 }

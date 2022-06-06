@@ -20,6 +20,18 @@ function buscarUltimasMedidasHora(idEmpresa) {
   return database.executar(instrucaoSql);
 }
 
+function buscarKpiMesComparar(idEmpresa){
+/* */
+            instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
+            JOIN tbSensor s ON s.idSensor = m.fkSensor
+                JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+                    WHERE e.idEmpresa = ${idEmpresa} AND MONTH(dataHora) = MONTH(DATEADD(MONTH,-1,GETDATE()))`;
+            
+              console.log("Executando a instrução SQL: \n" + instrucaoSql);
+              return database.executar(instrucaoSql);
+
+          }
+
 function semanasMes(idEmpresa) {
 
   instrucaoSql = `SELECT TOP(5) COUNT(m.idMovimentacao) as 'mov', DATEPART(isowk, m.dataHora) as 'semana' from tbMovimentacao m
@@ -84,9 +96,9 @@ function buscarUltimasMedidasDia(idEmpresa) {
 
 function buscarKpiMes(idEmpresa) {
   instrucaoSql = `SELECT COUNT(m.idMovimentacao) as 'mov' from tbMovimentacao m
-    JOIN tbSensor s ON s.idSensor = m.fkSensor
-        JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
-            WHERE e.idEmpresa = ${idEmpresa} AND MONTH(dataHora) = MONTH(DATEADD(MONTH,-1,GETDATE()))
+  JOIN tbSensor s ON s.idSensor = m.fkSensor
+      JOIN tbEmpresa e ON e.idEmpresa = s.fkEmpresa
+          WHERE e.idEmpresa = ${idEmpresa} AND MONTH(dataHora) = MONTH(DATEADD(MONTH,-1,GETDATE())) AND YEAR(dataHora) = YEAR(DATEADD(YEAR,0,GETDATE()))
 `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -166,5 +178,6 @@ module.exports = {
   buscarUltimasMedidasAnos,
   mesAno,
   semanasMes,
-  buscarDadosDiaCalor
+  buscarDadosDiaCalor,
+  buscarKpiMesComparar
 };

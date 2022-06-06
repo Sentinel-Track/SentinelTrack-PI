@@ -43,6 +43,10 @@ router.get("/kpiDia/:idEmpresa", function (req, res) {
     medidaController.buscarKpiDia(req, res);
 })
 
+router.get("/kpiMesComparar/:idEmpresa", function (req, res) {
+    medidaController.buscarKpiMesComparar(req, res);
+})
+
 
 
 module.exports = router;
