@@ -75,7 +75,7 @@ const serial = async (
 
                 var sensor = 0;
                 if (chave == 1) {
-                    sensor = Math.floor(Math.random() * (12 - 10 + 1)) + 10;
+                    sensor = Math.floor(Math.random() * (44 - 28 + 1)) + 28;
                     tempo =
                         // Este insert irá inserir os dados na tabela "medida" -> altere se necessário
                         // Este insert irá inserir dados de fk_aquario id=1 >> você deve ter o aquario de id 1 cadastrado.
