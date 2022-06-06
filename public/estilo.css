@@ -215,7 +215,15 @@ body {
 .msg_validacao {
     color: #fff;
     font-size: 70%;
+    font-weight: bold;
     text-align: center;
+    width: 80%;
+    background-color: rgb(255, 82, 82);
+    border: 1px red solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    display: none;
 }
 
 .label {
@@ -407,7 +415,7 @@ button {
     background-color: transparent;
 }
 
-.chamado_nav{
+.chamado_nav {
     width: 90%;
     height: 70px;
     border-bottom: #D7263D 2px solid;
@@ -496,6 +504,25 @@ button {
     margin-bottom: 20px;
 }
 
+#div_dados {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-left: 250px;
+}
+
+#div_dados h1{
+    font-size: 30px;
+    color: white;
+    background-color: rgb(255, 82, 82);
+    border: 1px red solid;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+}
+
 .chamado {
     margin-left: 250px;
     width: 100%;
@@ -505,7 +532,7 @@ button {
     align-items: center;
 }
 
-#func{
+#func {
     width: 100%;
     height: 100%;
     display: none;
@@ -526,7 +553,7 @@ button {
     width: 100%;
 }
 
-.sair{
+.sair {
     cursor: pointer;
 }
 

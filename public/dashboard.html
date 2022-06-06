@@ -1,120 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <style>
-    #bolinha {
-      height: 20px;
-      width: 20px;
-      background-color: red;
-      cursor: pointer;
-      border-radius: 100%;
-    }
-  </style>
+<style>
+  #bolinha {
+    height: 20px;
+    width: 20px;
+    background-color: red;
+    cursor: pointer;
+    border-radius: 100%;
+  }
+</style>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
-    <link rel="stylesheet" href="estilo.css" />
-    <script src="./js/funcoes.js"></script>
-    <script src="./js/login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
+  <link rel="stylesheet" href="estilo.css" />
+  <script src="./js/funcoes.js"></script>
+  <script src="./js/login.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 
-  <body onload="validarSessao()">
-    <div class="dash">
-      <div class="fold">
-        <div class="titulo_nav">
-          <img src="assets/icon/Logo_Temporaria.png" height="50px" />
-          <h3 class="texts">Dashboard</h3>
-        </div>
-        <div class="usuario_nav">
-          <span class="texts" id="b_usuario"></span>
-        </div>
-        <div class="botoes_nav">
-          <button class="botao" id="btnHora" onclick="mostrarHora()">
-            Hora
-          </button>
-          <button class="botao" id="btnDiario" onclick="mostrarDiario()">
-            Diário
-          </button>
-          <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
-            Semanal
-          </button>
-          <button class="botao" id="btnMensal" onclick="mostrarMensal()">
-            Mensal
-          </button>
-          <button class="botao" id="btnAnual" onclick="mostrarAnual()">
-            Anual
-          </button>
-          <button class="botao" id="btnMapa" onclick="mapaCalor()">
-            Mapa de calor
-          </button>
-        </div>
-
-        <div class="chamado_nav">
-          <button id="btnChamado" onclick="chamar()">Chamado</button>
-        </div>
-
-        <div class="opcoes_nav">
-          <a href="usuario.html">Configurações</a>
-          <a class="sair" onclick="sair()">Sair</a>
-        </div>
+<body onload="validarSessao()">
+  <div class="dash">
+    <div class="fold">
+      <div class="titulo_nav">
+        <img src="assets/icon/Logo_Temporaria.png" height="50px" />
+        <h3 class="texts">Dashboard</h3>
+      </div>
+      <div class="usuario_nav">
+        <span class="texts" id="b_usuario"></span>
+      </div>
+      <div class="botoes_nav">
+        <button class="botao" id="btnHora" onclick="mostrarHora()">
+          Hora
+        </button>
+        <button class="botao" id="btnDiario" onclick="mostrarDiario()">
+          Diário
+        </button>
+        <button class="botao" id="btnSemanal" onclick="mostrarSemanal()">
+          Semanal
+        </button>
+        <button class="botao" id="btnMensal" onclick="mostrarMensal()">
+          Mensal
+        </button>
+        <button class="botao" id="btnAnual" onclick="mostrarAnual()">
+          Anual
+        </button>
+        <button class="botao" id="btnMapa" onclick="mapaCalor()">
+          Mapa de calor
+        </button>
       </div>
 
-      <div class="chamado" id="chamado">
-        <div class="centro">
-          <iframe
-            class="frame"
-            src="https://app.pipefy.com/public/form/mWVzTe7P"
-            frameborder="0"
-          ></iframe>
-        </div>
+      <div class="chamado_nav">
+        <button id="btnChamado" onclick="chamar()">Chamado</button>
       </div>
 
-      <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
-      <div class="grafico" id="grafico">
-        <h2 style="color: aliceblue">Movimentação de pessoas</h2>
-        <div class="kpis">
-          <div class="kpi" id="kpiMes" style="border-color: #00af54">
-            <span class="nmr" id="nmrMes">125M</span>
-            <span class="title">Último mês</span>
-            <span style="color: #00af54" id="tituloMes" class="title">Boa</span>
-          </div>
-          <div class="kpi" id="kpiSemana">
-            <span class="nmr" id="nmrSem">19M</span>
-            <span class="title">Última semana</span>
-            <span style="color: #d7263d" class="title" id="tituloSemana"
-              >Altíssima</span
-            >
-          </div>
-          <div class="kpi" id="kpiDia" style="border-color: #9ac1e8">
-            <span class="nmr" id="nmrDia">120K</span>
-            <span class="title">Último dia</span>
-            <span style="color: #9ac1e8" class="title" id="tituloDia"
-              >Baixíssima</span
-            >
-          </div>
+      <div class="opcoes_nav">
+        <a href="usuario.html">Configurações</a>
+        <a class="sair" onclick="sair()">Sair</a>
+      </div>
+    </div>
+
+    <div id="div_dados">
+      <h1>Sem dados de movimento <br> de fluxo necessários</h1>
+    </div>
+
+    <div class="chamado" id="chamado">
+      <div class="centro">
+        <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
+      </div>
+    </div>
+
+    <div id="chartmg" class="fotochart"><img src="imagens/barra.gif" /></div>
+    <div class="grafico" id="grafico">
+      <h2 style="color: aliceblue">Movimentação de pessoas</h2>
+      <div class="kpis">
+        <div class="kpi" id="kpiMes" style="border-color: #00af54">
+          <span class="nmr" id="nmrMes">125M</span>
+          <span class="title">Último mês</span>
+          <span style="color: #00af54" id="tituloMes" class="title">Boa</span>
         </div>
-        <div class="chart" id="diario" style="display: none">
-          <canvas id="dia"></canvas>
+        <div class="kpi" id="kpiSemana">
+          <span class="nmr" id="nmrSem">19M</span>
+          <span class="title">Última semana</span>
+          <span style="color: #d7263d" class="title" id="tituloSemana">Altíssima</span>
         </div>
-        <div class="chart" id="semanal" style="display: none">
-          <canvas id="semana"></canvas>
+        <div class="kpi" id="kpiDia" style="border-color: #9ac1e8">
+          <span class="nmr" id="nmrDia">120K</span>
+          <span class="title">Último dia</span>
+          <span style="color: #9ac1e8" class="title" id="tituloDia">Baixíssima</span>
         </div>
-        <div class="chart" id="mensal" style="display: none">
-          <canvas id="mes"></canvas>
-        </div>
-        <div class="chart" id="anual" style="display: none">
-          <canvas id="ano"></canvas>
-        </div>
-        <div class="chart" id="horario" style="display: none">
-          <canvas id="hora"></canvas>
-        </div>
-        <div
-          id="calorDiario"
-          style="
+      </div>
+      <div class="chart" id="diario" style="display: none">
+        <canvas id="dia"></canvas>
+      </div>
+      <div class="chart" id="semanal" style="display: none">
+        <canvas id="semana"></canvas>
+      </div>
+      <div class="chart" id="mensal" style="display: none">
+        <canvas id="mes"></canvas>
+      </div>
+      <div class="chart" id="anual" style="display: none">
+        <canvas id="ano"></canvas>
+      </div>
+      <div class="chart" id="horario" style="display: none">
+        <canvas id="hora"></canvas>
+      </div>
+      <div id="calorDiario" style="
             display: none;
             position: relative;
             top: 0px;
@@ -122,86 +116,31 @@
             height: 400px;
             width: 792px;
             margin-bottom: 50px;
-          "
-        >
-          <img
-            src="imagens/mapa.png"
-            style="width: 100%; height: 100%"
-            border="0"
-          />
+          ">
+        <img src="imagens/mapa.png" style="width: 100%; height: 100%" border="0" />
 
-          <div
-            style="position: absolute; top: 158px; left: 100px"
-            id="bolinha1"
-          ></div>
-          <div
-            style="position: absolute; top: 140px; left: 190px"
-            id="bolinha2"
-          ></div>
-          <div
-            style="position: absolute; top: 277px; left: 290px"
-            id="bolinha3"
-          ></div>
-          <div
-            style="position: absolute; top: 237px; left: 220px"
-            id="bolinha4"
-          ></div>
-          <div
-            style="position: absolute; top: 305px; left: 230px"
-            id="bolinha5"
-          ></div>
-          <div
-            style="position: absolute; top: 310px; left: 390px"
-            id="bolinha6"
-          ></div>
-          <div
-            style="position: absolute; top: 310px; left: 450px"
-            id="bolinha7"
-          ></div>
-          <div
-            style="position: absolute; top: 310px; left: 560px"
-            id="bolinha8"
-          ></div>
-          <div
-            style="position: absolute; top: 95px; left: 360px"
-            id="bolinha9"
-          ></div>
-          <div
-            style="position: absolute; top: 180px; left: 660px"
-            id="bolinha10"
-          ></div>
-          <div
-            style="position: absolute; top: 265px; left: 670px"
-            id="bolinha11"
-          ></div>
-          <div
-            style="position: absolute; top: 275px; left: 420px"
-            id="bolinha12"
-          ></div>
-          <div
-            style="position: absolute; top: 200px; left: 420px"
-            id="bolinha13"
-          ></div>
-          <div
-            style="position: absolute; top: 228px; left: 390px"
-            id="bolinha14"
-          ></div>
-          <div
-            style="position: absolute; top: 140px; left: 490px"
-            id="bolinha15"
-          ></div>
-          <div
-            style="position: absolute; top: 143px; left: 600px"
-            id="bolinha16"
-          ></div>
-          <div
-            style="position: absolute; top: 170px; left: 390px"
-            id="bolinha17"
-          ></div>
-        </div>
+        <div style="position: absolute; top: 158px; left: 100px" id="bolinha1"></div>
+        <div style="position: absolute; top: 140px; left: 190px" id="bolinha2"></div>
+        <div style="position: absolute; top: 277px; left: 290px" id="bolinha3"></div>
+        <div style="position: absolute; top: 237px; left: 220px" id="bolinha4"></div>
+        <div style="position: absolute; top: 305px; left: 230px" id="bolinha5"></div>
+        <div style="position: absolute; top: 310px; left: 390px" id="bolinha6"></div>
+        <div style="position: absolute; top: 310px; left: 450px" id="bolinha7"></div>
+        <div style="position: absolute; top: 310px; left: 560px" id="bolinha8"></div>
+        <div style="position: absolute; top: 95px; left: 360px" id="bolinha9"></div>
+        <div style="position: absolute; top: 180px; left: 660px" id="bolinha10"></div>
+        <div style="position: absolute; top: 265px; left: 670px" id="bolinha11"></div>
+        <div style="position: absolute; top: 275px; left: 420px" id="bolinha12"></div>
+        <div style="position: absolute; top: 200px; left: 420px" id="bolinha13"></div>
+        <div style="position: absolute; top: 228px; left: 390px" id="bolinha14"></div>
+        <div style="position: absolute; top: 140px; left: 490px" id="bolinha15"></div>
+        <div style="position: absolute; top: 143px; left: 600px" id="bolinha16"></div>
+        <div style="position: absolute; top: 170px; left: 390px" id="bolinha17"></div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <script>
   var dados = JSON.parse(sessionStorage.USUARIO);
@@ -223,6 +162,22 @@
       mostrarHora();
     }
   }
+
+  var val_dados_h = 0,
+    val_dados_d = 0,
+    val_dados_s = 0,
+    val_dados_m = 0,
+    val_dados_a = 0
+  val_dados_mc = 0;
+
+  function funcDados() {
+
+    div_dados.style.display = "flex";
+    grafico.style.display = "none";
+    chartmg.style.display = "none";
+    chamado.style.display = "none";
+  }
+
   var numeroMes = 0;
   var numeroSemana = 0;
   var numeroDia = 0;
@@ -374,7 +329,9 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
+
+              val_dados_a = 1;
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -401,7 +358,9 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
+
+              val_dados_m = 1;
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -428,7 +387,9 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
+
+              val_dados_s = 1;
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -455,7 +416,9 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
+
+              val_dados_h = 1;
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -484,7 +447,9 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
+
+              val_dados_d = 1;
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -511,7 +476,9 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
+
+              val_dados_mc = 1;
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -538,7 +505,7 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -563,7 +530,7 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -589,7 +556,7 @@
             })
             .catch(function (error) {
               console.error(`Erro na obtenção dos dados: ${error.message}`);
-              alert("não existem dados");
+              // alert("não existem dados");
             });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -717,10 +684,10 @@
     };
 
     console.log(JSON.stringify(dados));
-  
+
     const c_hora = new Chart(document.getElementById("hora"), config4);
 
-    
+
   }
   function plotarGraficoDiario(resposta, id) {
     const semana = [];
@@ -819,7 +786,7 @@
     };
     const c_anual = new Chart(document.getElementById("ano"), config3);
   }
-  
+
   function atualizarGraficoHora(id, dados) {
     fetch(`/medidas/tempo-real/${id}`, { cache: "no-store" })
       .then(function (response) {
@@ -863,16 +830,25 @@
   var tipoGrafico = "";
 
   function mostrarSemanal() {
-    semanal.style.display = "block";
-    grafico.style.display = "flex";
-    diario.style.display = "none";
-    mensal.style.display = "none";
-    anual.style.display = "none";
-    horario.style.display = "none";
-    chartmg.style.display = "none";
-    tipoGrafico = "semanal";
-    chamado.style.display = "none";
-    calorDiario.style.display = "none";
+
+    if (val_dados_s == 1) {
+
+      funcDados();
+
+    } else {
+
+      semanal.style.display = "block";
+      grafico.style.display = "flex";
+      diario.style.display = "none";
+      mensal.style.display = "none";
+      anual.style.display = "none";
+      horario.style.display = "none";
+      chartmg.style.display = "none";
+      tipoGrafico = "semanal";
+      chamado.style.display = "none";
+      calorDiario.style.display = "none";
+      div_dados.style.display = "none";
+    }
 
     btnSemanal.style.borderBottom = "solid 3px #D71B22";
     btnSemanal.style.fontWeight = "bold";
@@ -908,16 +884,25 @@
   }
 
   function mostrarDiario() {
-    semanal.style.display = "none";
-    grafico.style.display = "flex";
-    diario.style.display = "block";
-    mensal.style.display = "none";
-    anual.style.display = "none";
-    horario.style.display = "none";
-    chartmg.style.display = "none";
-    tipoGrafico = "diario";
-    chamado.style.display = "none";
-    calorDiario.style.display = "none";
+
+    if (val_dados_d == 1) {
+
+      funcDados();
+
+    } else {
+
+      semanal.style.display = "none";
+      grafico.style.display = "flex";
+      diario.style.display = "block";
+      mensal.style.display = "none";
+      anual.style.display = "none";
+      horario.style.display = "none";
+      chartmg.style.display = "none";
+      tipoGrafico = "diario";
+      chamado.style.display = "none";
+      calorDiario.style.display = "none";
+      div_dados.style.display = "none";
+    }
 
     btnDiario.style.borderBottom = "solid 3px #D71B22";
     btnDiario.style.fontWeight = "bold";
@@ -954,16 +939,25 @@
   }
 
   function mostrarMensal() {
-    semanal.style.display = "none";
-    grafico.style.display = "flex";
-    diario.style.display = "none";
-    mensal.style.display = "block";
-    anual.style.display = "none";
-    horario.style.display = "none";
-    chartmg.style.display = "none";
-    tipoGrafico = "mensal";
-    chamado.style.display = "none";
-    calorDiario.style.display = "none";
+
+    if (val_dados_m == 1) {
+
+      funcDados();
+
+    } else {
+
+      semanal.style.display = "none";
+      grafico.style.display = "flex";
+      diario.style.display = "none";
+      mensal.style.display = "block";
+      anual.style.display = "none";
+      horario.style.display = "none";
+      chartmg.style.display = "none";
+      tipoGrafico = "mensal";
+      chamado.style.display = "none";
+      calorDiario.style.display = "none";
+      div_dados.style.display = "none";
+    }
 
     btnDiario.style.borderBottom = "none";
     btnDiario.style.fontWeight = "none";
@@ -1000,16 +994,25 @@
   }
 
   function mostrarAnual() {
-    semanal.style.display = "none";
-    grafico.style.display = "flex";
-    diario.style.display = "none";
-    mensal.style.display = "none";
-    anual.style.display = "block";
-    horario.style.display = "none";
-    chartmg.style.display = "none";
-    tipoGrafico = "anual";
-    chamado.style.display = "none";
-    calorDiario.style.display = "none";
+
+    if (val_dados_a == 1) {
+
+      funcDados();
+
+    } else {
+
+      semanal.style.display = "none";
+      grafico.style.display = "flex";
+      diario.style.display = "none";
+      mensal.style.display = "none";
+      anual.style.display = "block";
+      horario.style.display = "none";
+      chartmg.style.display = "none";
+      tipoGrafico = "anual";
+      chamado.style.display = "none";
+      calorDiario.style.display = "none";
+      div_dados.style.display = "none";
+    }
 
     btnAnual.style.borderBottom = "solid 3px #D71B22";
     btnAnual.style.fontWeight = "bold";
@@ -1045,16 +1048,25 @@
   }
 
   function mostrarHora() {
-    semanal.style.display = "none";
-    grafico.style.display = "flex";
-    diario.style.display = "none";
-    mensal.style.display = "none";
-    anual.style.display = "none";
-    horario.style.display = "block";
-    chartmg.style.display = "none";
-    tipoGrafico = "horario";
-    chamado.style.display = "none";
-    calorDiario.style.display = "none";
+
+    if (val_dados_h == 1) {
+
+      funcDados();
+
+    } else {
+
+      semanal.style.display = "none";
+      grafico.style.display = "flex";
+      diario.style.display = "none";
+      mensal.style.display = "none";
+      anual.style.display = "none";
+      horario.style.display = "block";
+      chartmg.style.display = "none";
+      tipoGrafico = "horario";
+      chamado.style.display = "none";
+      calorDiario.style.display = "none";
+      div_dados.style.display = "none";
+    }
 
     btnAnual.style.borderBottom = "none";
     btnAnual.style.fontWeight = "normal";
@@ -1086,13 +1098,22 @@
   }
 
   function mapaCalor() {
-    semanal.style.display = "none";
-    diario.style.display = "none";
-    mensal.style.display = "none";
-    anual.style.display = "none";
-    horario.style.display = "none";
-    chartmg.style.display = "none";
-    grafico.style.display = "flex";
+
+    if (val_dados_mc == 1) {
+
+      funcDados();
+
+    } else {
+
+      semanal.style.display = "none";
+      diario.style.display = "none";
+      mensal.style.display = "none";
+      anual.style.display = "none";
+      horario.style.display = "none";
+      chartmg.style.display = "none";
+      grafico.style.display = "flex";
+      div_dados.style.display = "none";
+    }
 
     btnMapa.style.borderBottom = "solid 3px #D71B22";
     btnMapa.style.fontWeight = "bold";
@@ -1186,5 +1207,5 @@
     }
   }
 
-  
+
 </script>

@@ -11,9 +11,9 @@ function entrar() {
     var senhaVar = ipt_senha.value;
     var charMin = senhaVar.length < 6;
     var emailVar = ipt_email.value;
-  
-    if(!charMin && emailValido){
-        
+
+    if (!charMin && emailValido) {
+
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
@@ -30,6 +30,9 @@ function entrar() {
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
+
+                msgSenha.style.display = "none";
+
                 console.log(resposta);
 
                 resposta.json().then(json => {
@@ -50,19 +53,19 @@ function entrar() {
                         },
                         body: JSON.stringify({
                             fkEmpresa: json.fkEmpresa,
-                           
+
                         })
                     }).then(function (resposta) {
                         console.log("ESTOU NO THEN DO que pega dados da empresa!")
-            
+
                         if (resposta.ok) {
                             console.log(resposta);
-            
+
                             resposta.json().then(json => {
                                 console.log(json);
-                        console.log(JSON.stringify(json));
-                        sessionStorage.EMPRESA = JSON.stringify(json);
-                                var empresaSession = sessionStorage.EMPRESA 
+                                console.log(JSON.stringify(json));
+                                sessionStorage.EMPRESA = JSON.stringify(json);
+                                var empresaSession = sessionStorage.EMPRESA
                                 var dadosEmpresa = JSON.parse(empresaSession)
                                 var end = (dadosEmpresa.fkEndereco)
                                 console.log(dadosEmpresa.fkEndereco + ' ddddddd aqui a fk')
@@ -73,14 +76,14 @@ function entrar() {
                                     },
                                     body: JSON.stringify({
                                         idEndereco: end,
-                                       
+
                                     })
                                 }).then(function (resposta) {
                                     console.log("ESTOU NO THEN DO que pega dados do endereco da empresa!")
-                        
+
                                     if (resposta.ok) {
                                         console.log(resposta);
-                        
+
                                         resposta.json().then(json => {
                                             console.log(json);
                                             console.log(JSON.stringify(json));
@@ -89,42 +92,45 @@ function entrar() {
                                                 finalizarAguardar();
                                                 window.location = "./dashboard.html";
                                             }, 1000); // apenas para exibir o loading
-                                        });    
+                                        });
                                     } else {
-                        
+
                                         console.log("Houve um erro ao tentar pegar os dados da empresa!");
-                        
+
                                         resposta.text().then(texto => {
                                             console.log(texto);
                                             finalizarAguardar(texto);
                                         });
-                                    }         
+                                    }
                                 }).catch(function (erro) {
                                     console.log(erro);
                                     alert(erro)
                                 })
                             });
-            
+
                         } else {
-            
+
                             console.log("Houve um erro ao tentar pegar os dados da empresa!");
-            
+
                             resposta.text().then(texto => {
                                 console.log(texto);
                                 finalizarAguardar(texto);
                             });
                         }
-            
+
                     }).catch(function (erro) {
                         console.log(erro);
                         alert(erro)
                     })
                 });
-              
-            
+
+
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
+
+                msgSenha.style.display = "block";
+                msgSenha.innerHTML = `Email e/ou senha inválidos!`;
 
                 resposta.text().then(texto => {
                     console.error(texto);
@@ -136,10 +142,12 @@ function entrar() {
             console.log(erro);
         })
 
-       
-    }else if(charMin){
-    msgSenha.innerHTML = `A senha não tem o tamanho mínimo <br> (6 caracteres)`
-    }else {
+
+    } else if (charMin) {
+        msgSenha.style.display = "block";
+        msgSenha.innerHTML = `A senha não tem o tamanho mínimo <br> (6 caracteres)`
+    } else {
+        msgSenha.style.display = "block";
         msgSenha.innerHTML = `Senha incorreta`
     }
     finalizarAguardar()

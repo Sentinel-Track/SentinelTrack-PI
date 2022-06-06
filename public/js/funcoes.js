@@ -243,6 +243,7 @@ function chamar() {
     chartmg.style.display = "none";
     chamado.style.display = "flex";
     grafico.style.display = "none";
+    div_dados.style.display = "none";
 
     btnHora.style.borderBottom = "none";
     btnHora.style.fontWeight = "normal";

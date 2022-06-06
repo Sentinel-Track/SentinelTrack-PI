@@ -18,7 +18,7 @@
             <div class="container">
 
                 <div class="titulo">
-                   <img src="./assets/icon/Logo_Temporaria.png" alt="Logo">
+                    <img src="./assets/icon/Logo_Temporaria.png" alt="Logo">
                     <h1>Sentinel Track</h1>
                 </div>
 
@@ -46,7 +46,8 @@
 
                 <div class="label">
                     <label>Email: </label>
-                    <input type="email" name="email" id="ipt_email" placeholder="seu@email.com.br" onchange="validarEmail()">
+                    <input type="email" name="email" id="ipt_email" placeholder="seu@email.com.br"
+                        onchange="validarEmail()">
                     <span class="msg_validacao" style="color: white;" id="msgEmail"></span>
                 </div>
 
@@ -55,13 +56,13 @@
                     <input type="password" id="ipt_senha" placeholder="********">
                     <span class="msg_validacao" id="msgSenha"></span>
                 </div>
-                <div id="div_aguardar" style="margin-top: 10px; display: none;" >
-                    <img style=" width: 42px; height: 40px;" src="./imagens/carregamento.gif"  alt="">
+                <div id="div_aguardar" style="margin-top: 10px; display: none;">
+                    <img style=" width: 42px; height: 40px;" src="./imagens/carregamento.gif" alt="">
                 </div>
                 <div class="label">
                     <button class="btnEntrar" onclick="entrar()">Entrar</button>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -81,41 +82,47 @@
         var email = ipt_email.value;
         var temArroba = (email.indexOf('@') != -1)
         var temEspaco = (email.indexOf(' ') >= 0)
-        var posicao = email.indexOf('@') ;
+        var posicao = email.indexOf('@');
         var temChar = posicao - 1 != null && posicao + 1 != null;
         var temPonto = email.indexOf('.', posicao) != -1;
         var posicaoPonto = email.indexOf('.', posicao);
         var temCharPonto = email[posicaoPonto + 1] != undefined;
 
-               
+
         if (temArroba) {
-            if(!temEspaco){
-                if(temChar){
-                    if(temCharPonto){
-                        if(temPonto){
-                             msgEmail.innerHTML = '';
-                             emailValido = true;
-                        }else{
+            if (!temEspaco) {
+                if (temChar) {
+                    if (temCharPonto) {
+                        if (temPonto) {
+                            msgEmail.style.display = "none";
+                            msgEmail.innerHTML = '';
+                            emailValido = true;
+                        } else {
+                            msgEmail.style.display = "block";
                             msgEmail.innerHTML = `Email inválido! O email inserido não contém ponto após o @ `
                         }
-                    }else{
+                    } else {
+                        msgEmail.style.display = "block";
                         msgEmail.innerHTML = `Email inválido! É necessário que haja pelo menos um caracter após o . (ponto) `
                     }
-                }else{
+                } else {
+                    msgEmail.style.display = "block";
                     msgEmail.innerHTML = `Email inválido! É necessário que haja pelo menos um caracter antes e depois do @ `
                 }
-            }else{
+            } else {
+                msgEmail.style.display = "block";
                 msgEmail.innerHTML = `Email inválido! O Email tem espaço`
             }
         }
         else {
+            msgEmail.style.display = "block";
             msgEmail.innerHTML = `Email inválido! É necessário que haja @ `
         }
     }
 /*
-    function entrar() {
-        validarEmail();
-        aguardar();
-       
-    }*/
+            function entrar() {
+                validarEmail();
+                aguardar();
+               
+            }*/
 </script>
