@@ -56,12 +56,13 @@
                     <input type="password" id="ipt_senha" placeholder="********">
                     <span class="msg_validacao" id="msgSenha"></span>
                 </div>
-                <div id="div_aguardar" style="margin-top: 10px; display: none;">
-                    <img style=" width: 42px; height: 40px;" src="./imagens/carregamento.gif" alt="">
+                <div id="div_aguardar" style="margin-top: 10px; ">
+                    <img style="display: none; width: 42px; height: 40px;" id="carregar" src="./imagens/carregamento.gif" alt="">
                 </div>
                 <div class="label">
                     <button class="btnEntrar" onclick="entrar()">Entrar</button>
                 </div>
+               
 
             </div>
         </div>
@@ -119,10 +120,5 @@
             msgEmail.innerHTML = `Email inválido! É necessário que haja @ `
         }
     }
-/*
-            function entrar() {
-                validarEmail();
-                aguardar();
-               
-            }*/
+
 </script>
