@@ -1,10 +1,11 @@
 function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
+    var divAguardar = document.getElementById("carregar");
+    carregar.style.display = "block"
+    console.log(divAguardar.style.display)
 }
 function finalizarAguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
+    var divAguardar = document.getElementById("carregar");
+    carregar.style.display = "none"
 }
 function entrar() {
     aguardar();
@@ -146,11 +147,13 @@ function entrar() {
     } else if (charMin) {
         msgSenha.style.display = "block";
         msgSenha.innerHTML = `A senha não tem o tamanho mínimo <br> (6 caracteres)`
+        finalizarAguardar();
     } else {
         msgSenha.style.display = "block";
         msgSenha.innerHTML = `Senha incorreta`
+        finalizarAguardar();
     }
-    finalizarAguardar()
+   
 }
 
 function sair() {
