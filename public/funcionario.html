@@ -1,107 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <style>
-        #bolinha {
-            height: 20px;
-            width: 20px;
-            background-color: red;
-            cursor: pointer;
-            border-radius: 100%;
-        }
+<style>
+    #bolinha {
+        height: 20px;
+        width: 20px;
+        background-color: red;
+        cursor: pointer;
+        border-radius: 100%;
+    }
+</style>
 
-    </style>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png" />
+    <link rel="stylesheet" href="estilo.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/funcoes.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/login.js"></script>
 
-    <head>
-        <meta charset="UTF-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Dashboard</title>
-        <link rel="shortcut icon" href="./assets/icon/Logo_Temporaria.png"/>
-        <link rel="stylesheet" href="estilo.css"/>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="./js/funcoes.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="./js/login.js"></script>
+</head>
 
-    </head>
+<body onload="validarSessao(), puxarFuncionarios()">
 
-    <body onload="validarSessao(), puxarFuncionarios()">
-
-        <div id="cont" style="display: none;" class="dash">
-            <div class="fold_mask">
-                <div class="fold">
-                    <div class="titulo_nav">
-                        <img src="assets/icon/Logo_Temporaria.png" height="50px">
-                        <h3 class="texts">Configurações</h3>
-                    </div>
-                    <div class="usuario_nav">
-                        <span class="texts" id="b_usuario"></span>
-                    </div>
-                    <div class="botoes_nav">
-                        <a href="usuario.html">
-                            <button class="botao">
-                                Usuário
-                            </button>
-                        </a>
-                        <a href="empresa.html" id="empresaA">
-                            <button class="botao">
-                                Empresa
-                            </button>
-                        </a>
-                        <a href="funcionario.html" id="funcionarioA">
-                            <button class="botao" id="botaoselecionado">
-                                Funcionarios
-                            </button>
-                        </a>
-                    </div>
-
-                    <div class="chamado_nav">
-                        <button id="btnChamado" onclick="chamar_func()">Chamado</button>
-                    </div>
-
-                    <div class="opcoes_nav">
-                        <a href="dashboard.html">Dashboard</a>
-                        <a class="sair" onclick="sair()">Sair</a>
-                    </div>
+    <div id="cont" style="display: none;" class="dash">
+        <div class="fold_mask">
+            <div class="fold">
+                <div class="titulo_nav">
+                    <img src="assets/icon/Logo_Temporaria.png" height="50px">
+                    <h3 class="texts">Configurações</h3>
                 </div>
-            </div>
-
-            <div id="func">
-                <div class="chamado" id="chamado">
-                    <div class="centro">
-                        <iframe
-                            class="frame"
-                            src="https://app.pipefy.com/public/form/mWVzTe7P"
-                            frameborder="0"></iframe>
-                    </div>
+                <div class="usuario_nav">
+                    <span class="texts" id="b_usuario"></span>
                 </div>
-            </div>
-
-            <div class="funcionario" id="corpo_config">
-                <h1>Funcionários:</h1>
-
-                <div id="lista" class="lista">
-                    <div class="lista_head">
-                        <ul>
-                            <li>Nome</li>
-                            <li>Sobrenome</li>
-                            <li>Cargo</li>
-                        </ul>
-                    </div>
-                    
-                </div>
-
-                <div class="botao_config">
-                    <a href="funcionario_novo.html">
-                        <button>Novo Funcionário</button>
+                <div class="botoes_nav">
+                    <a href="usuario.html">
+                        <button class="botao">
+                            Usuário
+                        </button>
+                    </a>
+                    <a href="empresa.html" id="empresaA">
+                        <button class="botao">
+                            Empresa
+                        </button>
+                    </a>
+                    <a href="funcionario.html" id="funcionarioA">
+                        <button class="botao" id="botaoselecionado">
+                            Funcionarios
+                        </button>
                     </a>
                 </div>
+
+                <div class="chamado_nav">
+                    <button id="btnChamado" onclick="chamar_func()">Chamado</button>
+                </div>
+
+                <div class="opcoes_nav">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a class="sair" onclick="sair()">Sair</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="func">
+
+            <a href="assets/Manual de Instalação.pdf">
+                <div class="manual">
+                    <img src="imagens/inttergacao.png">
+                </div>
+            </a>
+
+            <div class="chamado" id="chamado">
+                <div class="centro">
+                    <iframe class="frame" src="https://app.pipefy.com/public/form/mWVzTe7P" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="funcionario" id="corpo_config">
+            <h1>Funcionários:</h1>
+
+            <div id="lista" class="lista">
+                <div class="lista_head">
+                    <ul>
+                        <li>Nome</li>
+                        <li>Sobrenome</li>
+                        <li>Cargo</li>
+                    </ul>
+                </div>
+
             </div>
 
+            <div class="botao_config">
+                <a href="funcionario_novo.html">
+                    <button>Novo Funcionário</button>
+                </a>
+            </div>
         </div>
-        <div id="carregamento" style="display: flex; height: 100vh; align-items: center; justify-content: center;">
-            <img src="./imagens/carregamento.gif" width="70px" alt="">
-        </div>  
-    </body>
+
+    </div>
+    <div id="carregamento" style="display: flex; height: 100vh; align-items: center; justify-content: center;">
+        <img src="./imagens/carregamento.gif" width="70px" alt="">
+    </div>
+</body>
 
 </html>

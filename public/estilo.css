@@ -523,6 +523,21 @@ button {
     text-align: center;
 }
 
+.manual{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    background-color: #003668;
+    border-radius: 100%;
+    border: 2px solid #000e1b;
+}
+
+.manual img{
+    height: 30px;
+    padding: 10px;
+}
+
 .chamado {
     margin-left: 250px;
     width: 100%;
